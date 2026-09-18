@@ -13,7 +13,9 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck && tsc --noEmit -p tsconfig.json",
     "test": "turbo run test && vitest run",
-    "test:api": "vitest run"
+    "test:api": "vitest run",
+    "storybook": "turbo run storybook --filter=@repo-radar/ui",
+    "build-storybook": "turbo run build-storybook --filter=@repo-radar/ui"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

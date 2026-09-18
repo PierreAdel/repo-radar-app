@@ -26,12 +26,19 @@ pnpm install
 pnpm dev
 ```
 
+Storybook for `packages/ui`'s shared components:
+
+```bash
+pnpm storybook          # dev server on :6006
+pnpm build-storybook    # static build to packages/ui/storybook-static
+```
+
 ## CI/CD
 
 - **CI** — [.github/workflows/ci.yml](.github/workflows/ci.yml) runs on every push to `main` or
-  `staging` and every pull request targeting either: `lint` → `typecheck` → `test` → `build`, via
-  the same `pnpm` scripts used locally. `main` and `staging` are protected branches; this check
-  must pass before a PR can merge.
+  `staging` and every pull request targeting either: `lint` → `typecheck` → `test` → `build` →
+  `build-storybook`, via the same `pnpm` scripts used locally. `main` and `staging` are protected
+  branches; this check must pass before a PR can merge.
 - **CD** — deployment is handled by Vercel's own GitHub integration, not this workflow: pushes to
   `main` deploy to production, and every branch/PR gets its own preview URL. No deploy secrets
   live in this repo.

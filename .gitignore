@@ -3,6 +3,7 @@ dist
 .turbo
 .vercel
 coverage
+storybook-static
 *.log
 .env
 .env.local
