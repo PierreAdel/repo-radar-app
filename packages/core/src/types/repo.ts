@@ -10,3 +10,13 @@ export interface GithubRepo {
   ownerLogin: string;
   ownerAvatarUrl: string;
 }
+
+export interface SearchReposResult {
+  items: GithubRepo[];
+  totalCount: number;
+}
+
+export interface ApiError {
+  status: number;
+  message: string;
+}
