@@ -1,0 +1,23 @@
+{
+  "name": "@repo-radar/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.3.0",
+    "react-redux": "^9.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  }
+}
