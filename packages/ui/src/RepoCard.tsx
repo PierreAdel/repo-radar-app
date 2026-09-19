@@ -7,6 +7,7 @@ import HistoryRoundedIcon from "@mui/icons-material/HistoryRounded";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
+import type { KeyboardEvent, MouseEvent } from "react";
 import {
   alpha,
   Avatar,
@@ -83,8 +84,40 @@ export function RepoCard({
     return null;
   }
 
+  const openRepo = () => window.open(repo.htmlUrl, "_blank", "noopener,noreferrer");
+
+  const stopThen = (handler?: () => void) => (event: MouseEvent) => {
+    event.stopPropagation();
+    handler?.();
+  };
+
   return (
-    <Card sx={{ p: 2 }}>
+    <Card
+      onClick={openRepo}
+      onKeyDown={(event: KeyboardEvent) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openRepo();
+        }
+      }}
+      role="link"
+      tabIndex={0}
+      aria-label={`Open ${repo.fullName} on GitHub`}
+      sx={{
+        p: 2,
+        cursor: "pointer",
+        transition: "transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease",
+        "&:hover": {
+          transform: "translateY(-2px)",
+          bgcolor: (theme) =>
+            alpha(theme.palette.primary.main, theme.palette.mode === "dark" ? 0.08 : 0.04),
+          boxShadow: (theme) =>
+            theme.palette.mode === "dark"
+              ? "0 6px 22px rgba(0,0,0,0.55)"
+              : "0 6px 20px rgba(15,15,25,0.12)",
+        },
+      }}
+    >
       <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
         <Stack direction="row" spacing={1.5} alignItems="flex-start">
           <Avatar src={repo.ownerAvatarUrl} alt={repo.ownerLogin} sx={{ width: 40, height: 40 }} />
@@ -119,20 +152,20 @@ export function RepoCard({
           <Stack direction="row" spacing={0.5}>
             {variant === "tracked" && onRefresh ? (
               <Tooltip title="Refresh">
-                <IconButton size="small" onClick={onRefresh} disabled={isLoading}>
+                <IconButton size="small" onClick={stopThen(onRefresh)} disabled={isLoading}>
                   <RefreshRoundedIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
             ) : null}
             {isTracked ? (
               <Tooltip title="Untrack">
-                <IconButton size="small" onClick={onUntrack}>
+                <IconButton size="small" onClick={stopThen(onUntrack)}>
                   <BookmarkRemoveOutlinedIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
             ) : (
               <Tooltip title="Track">
-                <IconButton size="small" onClick={onTrack}>
+                <IconButton size="small" onClick={stopThen(onTrack)}>
                   <BookmarkAddOutlinedIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
