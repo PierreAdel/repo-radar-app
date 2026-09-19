@@ -2,14 +2,25 @@ import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import RadarRoundedIcon from "@mui/icons-material/RadarRounded";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
-import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { githubApi, selectThemeMode, selectTrackedFullNames, toggleTheme } from "@repo-radar/core";
+import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { SearchBar } from "./features/search/SearchBar";
 import { useSearchBox } from "./features/search/useSearchBox";
 
 export function Header() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const trackedFullNames = useAppSelector(selectTrackedFullNames);
   const themeMode = useAppSelector(selectThemeMode);
   const { inputValue, setInputValue } = useSearchBox();
@@ -22,6 +33,11 @@ export function Header() {
     );
   };
 
+  const goHome = () => {
+    setInputValue("");
+    navigate("/");
+  };
+
   return (
     <AppBar
       position="sticky"
@@ -30,15 +46,23 @@ export function Header() {
       sx={{ borderBottom: 1, borderColor: "divider", backdropFilter: "blur(8px)" }}
     >
       <Toolbar sx={{ gap: 2.5, flexWrap: "wrap", py: 2 }}>
-        <RadarRoundedIcon color="primary" />
-        <Box sx={{ mr: 2 }}>
-          <Typography variant="subtitle1" fontWeight={700} lineHeight={1.1}>
-            Repo Radar
-          </Typography>
-          <Typography variant="caption" color="text.secondary">
-            Search, track, and monitor GitHub repositories
-          </Typography>
-        </Box>
+        <Stack
+          direction="row"
+          spacing={1}
+          alignItems="center"
+          onClick={goHome}
+          sx={{ cursor: "pointer", mr: 2 }}
+        >
+          <RadarRoundedIcon color="primary" />
+          <Box>
+            <Typography variant="subtitle1" fontWeight={700} lineHeight={1.1}>
+              Repo Radar
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              Search, track, and monitor GitHub repositories
+            </Typography>
+          </Box>
+        </Stack>
         <Box sx={{ flex: 1, minWidth: 220 }}>
           <SearchBar value={inputValue} onChange={setInputValue} />
         </Box>

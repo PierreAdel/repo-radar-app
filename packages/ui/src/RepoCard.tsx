@@ -3,18 +3,24 @@ import { formatCompactNumber, formatRelativeTime } from "@repo-radar/core";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import BookmarkRemoveOutlinedIcon from "@mui/icons-material/BookmarkRemoveOutlined";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
+import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import HistoryRoundedIcon from "@mui/icons-material/HistoryRounded";
+import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
+import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import type { KeyboardEvent, MouseEvent } from "react";
+import { useState } from "react";
 import {
   alpha,
   Avatar,
   Button,
   Card,
   CardContent,
+  Collapse,
   IconButton,
+  Link,
   Skeleton,
   Stack,
   Tooltip,
@@ -84,25 +90,62 @@ export function RepoCard({
     return null;
   }
 
-  const openRepo = () => window.open(repo.htmlUrl, "_blank", "noopener,noreferrer");
+  return (
+    <RepoCardContent
+      variant={variant}
+      repo={repo}
+      isTracked={isTracked}
+      isLoading={isLoading}
+      onTrack={onTrack}
+      onUntrack={onUntrack}
+      onRefresh={onRefresh}
+    />
+  );
+}
+
+interface RepoCardContentProps {
+  variant: "result" | "tracked";
+  repo: GithubRepo;
+  isTracked?: boolean;
+  isLoading?: boolean;
+  onTrack?: () => void;
+  onUntrack?: () => void;
+  onRefresh?: () => void;
+}
+
+function RepoCardContent({
+  variant,
+  repo,
+  isTracked,
+  isLoading,
+  onTrack,
+  onUntrack,
+  onRefresh,
+}: RepoCardContentProps) {
+  const [expanded, setExpanded] = useState(false);
+
+  const toggleExpanded = () => setExpanded((value) => !value);
 
   const stopThen = (handler?: () => void) => (event: MouseEvent) => {
     event.stopPropagation();
     handler?.();
   };
 
+  const hasDetails = Boolean(repo.language || repo.license || repo.homepage || repo.description);
+
   return (
     <Card
-      onClick={openRepo}
+      onClick={toggleExpanded}
       onKeyDown={(event: KeyboardEvent) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          openRepo();
+          toggleExpanded();
         }
       }}
-      role="link"
+      role="button"
       tabIndex={0}
-      aria-label={`Open ${repo.fullName} on GitHub`}
+      aria-expanded={expanded}
+      aria-label={`${expanded ? "Collapse" : "Expand"} details for ${repo.fullName}`}
       sx={{
         p: 2,
         cursor: "pointer",
@@ -149,7 +192,7 @@ export function RepoCard({
               </Stack>
             </Stack>
           </Stack>
-          <Stack direction="row" spacing={0.5}>
+          <Stack direction="row" spacing={0.5} alignItems="center">
             {variant === "tracked" && onRefresh ? (
               <Tooltip title="Refresh">
                 <IconButton size="small" onClick={stopThen(onRefresh)} disabled={isLoading}>
@@ -170,8 +213,55 @@ export function RepoCard({
                 </IconButton>
               </Tooltip>
             )}
+            <Tooltip title="Open on GitHub">
+              <IconButton
+                size="small"
+                onClick={stopThen(() => window.open(repo.htmlUrl, "_blank", "noopener,noreferrer"))}
+              >
+                <OpenInNewRoundedIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            {hasDetails ? (
+              <ExpandMoreRoundedIcon
+                fontSize="small"
+                sx={{
+                  color: "text.secondary",
+                  transition: "transform 0.15s ease",
+                  transform: expanded ? "rotate(180deg)" : "none",
+                }}
+              />
+            ) : null}
           </Stack>
         </Stack>
+        <Collapse in={expanded} unmountOnExit>
+          <Stack spacing={1} sx={{ mt: 1.5, pt: 1.5, borderTop: 1, borderColor: "divider" }}>
+            <Typography variant="body2" color="text.secondary">
+              {repo.description ?? "No description provided."}
+            </Typography>
+            <Stack direction="row" spacing={0.75} alignItems="center">
+              <LanguageRoundedIcon fontSize="small" sx={{ color: "text.secondary" }} />
+              <Typography variant="caption">{repo.language ?? "No language detected"}</Typography>
+            </Stack>
+            <Typography variant="caption" color="text.secondary">
+              License: {repo.license ?? "None"}
+            </Typography>
+            {repo.homepage ? (
+              <Link
+                href={repo.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(event) => event.stopPropagation()}
+                variant="caption"
+              >
+                {repo.homepage}
+              </Link>
+            ) : (
+              <Typography variant="caption" color="text.secondary">
+                No homepage set
+              </Typography>
+            )}
+          </Stack>
+        </Collapse>
       </CardContent>
     </Card>
   );

@@ -1,5 +1,6 @@
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import { InputAdornment, TextField } from "@mui/material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
 
 export interface SearchBarProps {
   value: string;
@@ -19,6 +20,13 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
           startAdornment: (
             <InputAdornment position="start">
               <SearchRoundedIcon fontSize="small" />
+            </InputAdornment>
+          ),
+          endAdornment: value.length > 0 && (
+            <InputAdornment position="end">
+              <IconButton size="small" aria-label="Clear search" onClick={() => onChange("")}>
+                <ClearRoundedIcon fontSize="small" />
+              </IconButton>
             </InputAdornment>
           ),
         },
