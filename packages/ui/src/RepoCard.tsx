@@ -177,6 +177,7 @@ function RepoCardContent({
               direction="row"
               spacing={2}
               alignItems="center"
+              useFlexGap
               sx={{ mt: 0.5, flexWrap: "wrap", rowGap: 0.5 }}
             >
               <Stack direction="row" spacing={0.5} alignItems="center">
