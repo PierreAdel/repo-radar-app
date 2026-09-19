@@ -10,6 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 const MIN_QUERY_LENGTH = 2;
+const MAX_RESULTS = 1000; // GitHub Search API's documented result cap.
 
 export function useRepoSearch() {
   const [inputValue, setInputValue] = useState("");
@@ -29,7 +30,7 @@ export function useRepoSearch() {
   );
 
   const items = data?.items ?? [];
-  const hasMore = !skip && items.length < (data?.totalCount ?? 0);
+  const hasMore = !skip && items.length < Math.min(data?.totalCount ?? 0, MAX_RESULTS);
 
   return {
     inputValue,
