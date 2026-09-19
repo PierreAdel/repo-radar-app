@@ -29,7 +29,7 @@ export function Header() {
       elevation={0}
       sx={{ borderBottom: 1, borderColor: "divider", backdropFilter: "blur(8px)" }}
     >
-      <Toolbar sx={{ gap: 2, flexWrap: "wrap", py: 1.5 }}>
+      <Toolbar sx={{ gap: 2.5, flexWrap: "wrap", py: 2 }}>
         <RadarRoundedIcon color="primary" />
         <Box sx={{ mr: 2 }}>
           <Typography variant="subtitle1" fontWeight={700} lineHeight={1.1}>

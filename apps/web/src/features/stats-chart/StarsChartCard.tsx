@@ -1,3 +1,4 @@
+import { Card, CardContent, Typography } from "@mui/material";
 import { StarsBarChart } from "@repo-radar/ui";
 import { useTrackedRepoCacheEntries } from "../tracked-repos/useTrackedRepoCacheEntries";
 
@@ -14,5 +15,14 @@ export function StarsChartCard() {
     return null;
   }
 
-  return <StarsBarChart data={data} />;
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+          Stars over time
+        </Typography>
+        <StarsBarChart data={data} />
+      </CardContent>
+    </Card>
+  );
 }

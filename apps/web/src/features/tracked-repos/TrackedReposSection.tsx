@@ -89,7 +89,7 @@ export function TrackedReposSection() {
         sx={{
           display: "grid",
           gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
-          gap: 2,
+          gap: 3,
         }}
       >
         {visibleFullNames.map((fullName) => (

@@ -8,6 +8,7 @@ import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import {
+  alpha,
   Avatar,
   Button,
   Card,
@@ -42,7 +43,7 @@ export function RepoCard({
 }: RepoCardProps) {
   if (isLoading && !repo) {
     return (
-      <Card variant="outlined" sx={{ p: 2 }}>
+      <Card sx={{ p: 2 }}>
         <Stack direction="row" spacing={1.5} alignItems="center">
           <Skeleton variant="circular" width={40} height={40} />
           <Stack sx={{ flex: 1 }} spacing={0.5}>
@@ -57,8 +58,11 @@ export function RepoCard({
   if (error) {
     return (
       <Card
-        variant="outlined"
-        sx={{ p: 2, borderColor: "error.main", bgcolor: "error.main", opacity: 0.9 }}
+        sx={{
+          p: 2,
+          bgcolor: (theme) =>
+            alpha(theme.palette.error.main, theme.palette.mode === "dark" ? 0.16 : 0.08),
+        }}
       >
         <Stack direction="row" spacing={1.5} alignItems="center">
           <ReportProblemRoundedIcon color="error" />
@@ -80,7 +84,7 @@ export function RepoCard({
   }
 
   return (
-    <Card variant="outlined" sx={{ p: 2 }}>
+    <Card sx={{ p: 2 }}>
       <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
         <Stack direction="row" spacing={1.5} alignItems="flex-start">
           <Avatar src={repo.ownerAvatarUrl} alt={repo.ownerLogin} sx={{ width: 40, height: 40 }} />
