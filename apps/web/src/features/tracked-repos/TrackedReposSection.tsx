@@ -10,19 +10,44 @@ import {
 } from "@mui/material";
 import { EmptyState } from "@repo-radar/ui";
 import { selectTrackedFullNames } from "@repo-radar/core";
+import { useSearchParams } from "react-router";
 import { useAppSelector } from "../../app/hooks";
 import { TrackedRepoCard } from "./TrackedRepoCard";
 import { useTrackedRepoCacheEntries } from "./useTrackedRepoCacheEntries";
 
 type SortKey = "stars" | "lastCommit" | "name";
 
+const SORT_KEYS: readonly SortKey[] = ["stars", "lastCommit", "name"];
+const DEFAULT_SORT_KEY: SortKey = "stars";
 const PAGE_SIZE = 6;
+
+function isSortKey(value: string | null): value is SortKey {
+  return SORT_KEYS.includes(value as SortKey);
+}
 
 export function TrackedReposSection() {
   const trackedFullNames = useAppSelector(selectTrackedFullNames);
   const entries = useTrackedRepoCacheEntries();
-  const [sortKey, setSortKey] = useState<SortKey>("stars");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sortParam = searchParams.get("sort");
+  const sortKey: SortKey = isSortKey(sortParam) ? sortParam : DEFAULT_SORT_KEY;
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  const handleSortChange = (event: SelectChangeEvent) => {
+    const next = event.target.value as SortKey;
+    setSearchParams(
+      (prev) => {
+        const nextParams = new URLSearchParams(prev);
+        if (next === DEFAULT_SORT_KEY) {
+          nextParams.delete("sort");
+        } else {
+          nextParams.set("sort", next);
+        }
+        return nextParams;
+      },
+      { replace: true },
+    );
+  };
 
   const sortedFullNames = useMemo(() => {
     const entryByFullName = new Map(entries.map((entry) => [entry.fullName, entry]));
@@ -54,11 +79,7 @@ export function TrackedReposSection() {
     <Stack spacing={2}>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
         <Typography variant="h6">Tracked repos</Typography>
-        <Select
-          size="small"
-          value={sortKey}
-          onChange={(event: SelectChangeEvent) => setSortKey(event.target.value as SortKey)}
-        >
+        <Select size="small" value={sortKey} onChange={handleSortChange}>
           <MenuItem value="stars">Stars</MenuItem>
           <MenuItem value="lastCommit">Last commit</MenuItem>
           <MenuItem value="name">Name</MenuItem>
