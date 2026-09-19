@@ -1,26 +1,22 @@
+import { Navigate } from "react-router";
 import { Button, Stack, Typography } from "@mui/material";
 import { RepoCard } from "@repo-radar/ui";
-import type { useRepoSearch } from "./useRepoSearch";
+import { MIN_QUERY_LENGTH, useRepoSearch } from "./useRepoSearch";
 
-export interface SearchResultsSectionProps {
-  search: ReturnType<typeof useRepoSearch>;
-}
+export function SearchResultsSection() {
+  const { query, items, isLoading, error, hasMore, loadMore, isTracked, onTrack, onUntrack } =
+    useRepoSearch();
 
-export function SearchResultsSection({ search }: SearchResultsSectionProps) {
-  const {
-    debouncedQuery,
-    items,
-    isLoading,
-    error,
-    hasMore,
-    loadMore,
-    isTracked,
-    onTrack,
-    onUntrack,
-  } = search;
+  if (query.length === 0) {
+    return <Navigate to="/" replace />;
+  }
 
-  if (!debouncedQuery) {
-    return null;
+  if (query.length < MIN_QUERY_LENGTH) {
+    return (
+      <Typography color="text.secondary">
+        Type at least {MIN_QUERY_LENGTH} characters to search.
+      </Typography>
+    );
   }
 
   if (isLoading) {
@@ -40,7 +36,7 @@ export function SearchResultsSection({ search }: SearchResultsSectionProps) {
   if (items.length === 0) {
     return (
       <Typography color="text.secondary">
-        No repositories found for &ldquo;{debouncedQuery}&rdquo;.
+        No repositories found for &ldquo;{query}&rdquo;.
       </Typography>
     );
   }

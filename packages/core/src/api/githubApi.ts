@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { GithubRepo, SearchReposResult } from "../types/repo";
+import { mergeSearchResults } from "./mergeSearchResults";
 
 interface SearchArgs {
   query: string;
@@ -16,7 +17,7 @@ export const githubApi = createApi({
       // Cache by search text only, so subsequent pages merge into the same entry.
       serializeQueryArgs: ({ queryArgs }) => queryArgs.query,
       merge: (cache, incoming) => {
-        cache.items.push(...incoming.items);
+        cache.items = mergeSearchResults(cache.items, incoming);
         cache.totalCount = incoming.totalCount;
       },
       forceRefetch: ({ currentArg, previousArg }) => currentArg?.page !== previousArg?.page,
