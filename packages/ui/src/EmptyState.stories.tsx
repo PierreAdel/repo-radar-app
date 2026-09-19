@@ -7,7 +7,13 @@ const meta: Meta<typeof EmptyState> = {
   title: "Repo Radar/EmptyState",
   component: EmptyState,
   parameters: { layout: "padded" },
-  decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],
+  decorators: [
+    (Story) => (
+      <div style={{ width: 420 }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

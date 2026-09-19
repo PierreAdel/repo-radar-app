@@ -15,7 +15,14 @@ export function EmptyState({ icon, title, description, actionLabel, onAction }: 
       alignItems="center"
       justifyContent="center"
       spacing={1.5}
-      sx={{ py: 6, px: 2, textAlign: "center", border: "1px dashed", borderColor: "divider", borderRadius: 3 }}
+      sx={{
+        py: 6,
+        px: 2,
+        textAlign: "center",
+        border: "1px dashed",
+        borderColor: "divider",
+        borderRadius: 3,
+      }}
     >
       {icon}
       <Typography variant="subtitle1" fontWeight={600}>

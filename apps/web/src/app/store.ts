@@ -1,5 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { githubApi, persistenceMiddleware, themeReducer, trackedReposReducer } from "@repo-radar/core";
+import {
+  githubApi,
+  persistenceMiddleware,
+  themeReducer,
+  trackedReposReducer,
+} from "@repo-radar/core";
 
 export const store = configureStore({
   reducer: {

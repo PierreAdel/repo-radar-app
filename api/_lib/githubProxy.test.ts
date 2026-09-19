@@ -75,7 +75,11 @@ describe("githubProxy", () => {
 
     const result = await getRepository("owner/missing");
 
-    expect(result).toEqual({ ok: false, status: 404, body: { status: 404, message: "Repository not found." } });
+    expect(result).toEqual({
+      ok: false,
+      status: 404,
+      body: { status: 404, message: "Repository not found." },
+    });
   });
 
   it("normalizes a 403 rate-limit error", async () => {

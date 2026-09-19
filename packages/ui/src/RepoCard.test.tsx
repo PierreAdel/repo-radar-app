@@ -24,7 +24,13 @@ describe("RepoCard", () => {
 
   it("renders an error state with a retry action", async () => {
     const onRefresh = vi.fn();
-    render(<RepoCard variant="tracked" error={{ status: 404, message: "Repository not found." }} onRefresh={onRefresh} />);
+    render(
+      <RepoCard
+        variant="tracked"
+        error={{ status: 404, message: "Repository not found." }}
+        onRefresh={onRefresh}
+      />,
+    );
 
     expect(screen.getByText("Repository not found.")).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Retry" }));

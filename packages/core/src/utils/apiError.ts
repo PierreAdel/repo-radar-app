@@ -2,7 +2,9 @@ import type { SerializedError } from "@reduxjs/toolkit";
 import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import type { ApiError } from "../types/repo";
 
-export function toApiError(error: FetchBaseQueryError | SerializedError | undefined): ApiError | undefined {
+export function toApiError(
+  error: FetchBaseQueryError | SerializedError | undefined,
+): ApiError | undefined {
   if (!error) {
     return undefined;
   }
@@ -14,7 +16,10 @@ export function toApiError(error: FetchBaseQueryError | SerializedError | undefi
         message: String((data as { message: unknown }).message),
       };
     }
-    return { status: typeof error.status === "number" ? error.status : 0, message: "Request failed." };
+    return {
+      status: typeof error.status === "number" ? error.status : 0,
+      message: "Request failed.",
+    };
   }
   return { status: 0, message: error.message ?? "Unknown error." };
 }

@@ -5,9 +5,7 @@ export function createAppTheme(mode: PaletteMode): Theme {
     palette: {
       mode,
       primary: { main: "#7c5cfc" },
-      ...(mode === "dark"
-        ? { background: { default: "#0b0b10", paper: "#15151d" } }
-        : {}),
+      ...(mode === "dark" ? { background: { default: "#0b0b10", paper: "#15151d" } } : {}),
     },
     shape: { borderRadius: 12 },
   });

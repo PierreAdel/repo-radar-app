@@ -1,8 +1,7 @@
 import type { ApiError, GithubRepo, SearchReposResult } from "../types/repo.js";
 
 export type ProxyResult<T> =
-  | { ok: true; status: number; body: T }
-  | { ok: false; status: number; body: ApiError };
+  { ok: true; status: number; body: T } | { ok: false; status: number; body: ApiError };
 
 interface RawGithubRepo {
   id: number;

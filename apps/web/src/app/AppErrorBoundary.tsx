@@ -25,14 +25,20 @@ export class AppErrorBoundary extends Component<Props, State> {
   };
 
   private handleReport = () => {
-    const details = this.state.error ? `${this.state.error.name}: ${this.state.error.message}` : "Unknown error";
+    const details = this.state.error
+      ? `${this.state.error.name}: ${this.state.error.message}`
+      : "Unknown error";
     void navigator.clipboard?.writeText(details);
   };
 
   render() {
     if (this.state.error) {
       return (
-        <ErrorFallback onRetry={this.handleRetry} onReport={this.handleReport} details={this.state.error.message} />
+        <ErrorFallback
+          onRetry={this.handleRetry}
+          onReport={this.handleReport}
+          details={this.state.error.message}
+        />
       );
     }
     return this.props.children;

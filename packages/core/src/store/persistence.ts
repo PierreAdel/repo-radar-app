@@ -1,4 +1,7 @@
-export function loadFromStorage<T>(key: string, isValid: (value: unknown) => value is T): T | undefined {
+export function loadFromStorage<T>(
+  key: string,
+  isValid: (value: unknown) => value is T,
+): T | undefined {
   if (typeof window === "undefined") {
     return undefined;
   }
