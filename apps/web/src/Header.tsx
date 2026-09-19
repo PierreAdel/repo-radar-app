@@ -6,16 +6,13 @@ import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography } from "@
 import { githubApi, selectThemeMode, selectTrackedFullNames, toggleTheme } from "@repo-radar/core";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { SearchBar } from "./features/search/SearchBar";
+import { useSearchBox } from "./features/search/useSearchBox";
 
-export interface HeaderProps {
-  searchValue: string;
-  onSearchChange: (value: string) => void;
-}
-
-export function Header({ searchValue, onSearchChange }: HeaderProps) {
+export function Header() {
   const dispatch = useAppDispatch();
   const trackedFullNames = useAppSelector(selectTrackedFullNames);
   const themeMode = useAppSelector(selectThemeMode);
+  const { inputValue, setInputValue } = useSearchBox();
 
   const handleRefreshAll = () => {
     dispatch(
@@ -43,7 +40,7 @@ export function Header({ searchValue, onSearchChange }: HeaderProps) {
           </Typography>
         </Box>
         <Box sx={{ flex: 1, minWidth: 220 }}>
-          <SearchBar value={searchValue} onChange={onSearchChange} />
+          <SearchBar value={inputValue} onChange={setInputValue} />
         </Box>
         <Button
           variant="contained"
