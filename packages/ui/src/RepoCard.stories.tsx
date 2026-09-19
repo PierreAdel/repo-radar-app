@@ -26,7 +26,13 @@ const meta: Meta<typeof RepoCard> = {
     onUntrack: fn(),
     onRefresh: fn(),
   },
-  decorators: [(Story) => <div style={{ maxWidth: 480 }}><Story /></div>],
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: 480 }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

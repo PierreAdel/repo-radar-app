@@ -30,7 +30,16 @@ export interface RepoCardProps {
   onRefresh?: () => void;
 }
 
-export function RepoCard({ variant, repo, isTracked, isLoading, error, onTrack, onUntrack, onRefresh }: RepoCardProps) {
+export function RepoCard({
+  variant,
+  repo,
+  isTracked,
+  isLoading,
+  error,
+  onTrack,
+  onUntrack,
+  onRefresh,
+}: RepoCardProps) {
   if (isLoading && !repo) {
     return (
       <Card variant="outlined" sx={{ p: 2 }}>
@@ -47,7 +56,10 @@ export function RepoCard({ variant, repo, isTracked, isLoading, error, onTrack, 
 
   if (error) {
     return (
-      <Card variant="outlined" sx={{ p: 2, borderColor: "error.main", bgcolor: "error.main", opacity: 0.9 }}>
+      <Card
+        variant="outlined"
+        sx={{ p: 2, borderColor: "error.main", bgcolor: "error.main", opacity: 0.9 }}
+      >
         <Stack direction="row" spacing={1.5} alignItems="center">
           <ReportProblemRoundedIcon color="error" />
           <Typography variant="body2" sx={{ flex: 1 }}>
@@ -84,11 +96,15 @@ export function RepoCard({ variant, repo, isTracked, isLoading, error, onTrack, 
             <Stack direction="row" spacing={2} alignItems="center" sx={{ mt: 0.5 }}>
               <Stack direction="row" spacing={0.5} alignItems="center">
                 <StarBorderRoundedIcon fontSize="small" />
-                <Typography variant="caption">{formatCompactNumber(repo.stargazersCount)}</Typography>
+                <Typography variant="caption">
+                  {formatCompactNumber(repo.stargazersCount)}
+                </Typography>
               </Stack>
               <Stack direction="row" spacing={0.5} alignItems="center">
                 <ErrorOutlineRoundedIcon fontSize="small" />
-                <Typography variant="caption">{formatCompactNumber(repo.openIssuesCount)}</Typography>
+                <Typography variant="caption">
+                  {formatCompactNumber(repo.openIssuesCount)}
+                </Typography>
               </Stack>
               <Stack direction="row" spacing={0.5} alignItems="center">
                 <HistoryRoundedIcon fontSize="small" />

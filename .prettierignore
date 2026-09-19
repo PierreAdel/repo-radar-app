@@ -1,0 +1,9 @@
+node_modules
+dist
+.turbo
+.vercel
+coverage
+storybook-static
+pnpm-lock.yaml
+graphify-out
+.claude/skills

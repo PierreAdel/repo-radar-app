@@ -19,7 +19,9 @@ export function Header({ searchValue, onSearchChange }: HeaderProps) {
 
   const handleRefreshAll = () => {
     dispatch(
-      githubApi.util.invalidateTags(trackedFullNames.map((fullName) => ({ type: "Repo" as const, id: fullName }))),
+      githubApi.util.invalidateTags(
+        trackedFullNames.map((fullName) => ({ type: "Repo" as const, id: fullName })),
+      ),
     );
   };
 

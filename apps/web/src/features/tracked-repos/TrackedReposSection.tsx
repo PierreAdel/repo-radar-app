@@ -1,5 +1,13 @@
 import { useMemo, useState } from "react";
-import { Box, Button, MenuItem, Select, Stack, Typography, type SelectChangeEvent } from "@mui/material";
+import {
+  Box,
+  Button,
+  MenuItem,
+  Select,
+  Stack,
+  Typography,
+  type SelectChangeEvent,
+} from "@mui/material";
 import { EmptyState } from "@repo-radar/ui";
 import { selectTrackedFullNames } from "@repo-radar/core";
 import { useAppSelector } from "../../app/hooks";

@@ -7,7 +7,17 @@ export interface SearchResultsSectionProps {
 }
 
 export function SearchResultsSection({ search }: SearchResultsSectionProps) {
-  const { debouncedQuery, items, isLoading, error, hasMore, loadMore, isTracked, onTrack, onUntrack } = search;
+  const {
+    debouncedQuery,
+    items,
+    isLoading,
+    error,
+    hasMore,
+    loadMore,
+    isTracked,
+    onTrack,
+    onUntrack,
+  } = search;
 
   if (!debouncedQuery) {
     return null;
@@ -29,7 +39,9 @@ export function SearchResultsSection({ search }: SearchResultsSectionProps) {
 
   if (items.length === 0) {
     return (
-      <Typography color="text.secondary">No repositories found for &ldquo;{debouncedQuery}&rdquo;.</Typography>
+      <Typography color="text.secondary">
+        No repositories found for &ldquo;{debouncedQuery}&rdquo;.
+      </Typography>
     );
   }
 

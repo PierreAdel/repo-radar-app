@@ -5,7 +5,13 @@ const meta: Meta<typeof StarsBarChart> = {
   title: "Repo Radar/StarsBarChart",
   component: StarsBarChart,
   parameters: { layout: "padded" },
-  decorators: [(Story) => <div style={{ width: 560 }}><Story /></div>],
+  decorators: [
+    (Story) => (
+      <div style={{ width: 560 }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

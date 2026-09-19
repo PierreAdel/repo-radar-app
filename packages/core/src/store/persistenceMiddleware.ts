@@ -1,6 +1,11 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { saveToStorage } from "./persistence";
-import { trackRepo, untrackRepo, selectTrackedFullNames, TRACKED_REPOS_STORAGE_KEY } from "./trackedReposSlice";
+import {
+  trackRepo,
+  untrackRepo,
+  selectTrackedFullNames,
+  TRACKED_REPOS_STORAGE_KEY,
+} from "./trackedReposSlice";
 import { toggleTheme, setTheme, selectThemeMode, THEME_STORAGE_KEY } from "./themeSlice";
 
 export const persistenceMiddleware = createListenerMiddleware();

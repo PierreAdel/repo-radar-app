@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { trackedReposReducer, trackRepo, untrackRepo, type TrackedReposState } from "./trackedReposSlice";
+import {
+  trackedReposReducer,
+  trackRepo,
+  untrackRepo,
+  type TrackedReposState,
+} from "./trackedReposSlice";
 
 describe("trackedReposSlice", () => {
   it("tracks a new repo", () => {
