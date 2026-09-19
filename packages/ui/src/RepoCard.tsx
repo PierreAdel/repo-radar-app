@@ -173,7 +173,12 @@ function RepoCardContent({
                 {repo.description}
               </Typography>
             ) : null}
-            <Stack direction="row" spacing={2} alignItems="center" sx={{ mt: 0.5 }}>
+            <Stack
+              direction="row"
+              spacing={2}
+              alignItems="center"
+              sx={{ mt: 0.5, flexWrap: "wrap", rowGap: 0.5 }}
+            >
               <Stack direction="row" spacing={0.5} alignItems="center">
                 <StarBorderRoundedIcon fontSize="small" />
                 <Typography variant="caption">
