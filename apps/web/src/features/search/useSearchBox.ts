@@ -14,9 +14,6 @@ export function useSearchBox() {
   const [inputValue, setInputValue] = useState(urlQuery);
   const debouncedValue = useDebouncedValue(inputValue, DEBOUNCE_MS).trim();
 
-  // Tracks the query text WE last pushed, so the two effects below can tell
-  // "URL changed because we navigated" apart from "URL changed via back/forward
-  // or a deep link" — without that, they'd fight each other in a loop.
   const lastPushedQuery = useRef(urlQuery);
   const wasOnSearchRoute = useRef(onSearchRoute);
 
@@ -24,14 +21,6 @@ export function useSearchBox() {
     wasOnSearchRoute.current = onSearchRoute;
   }, [onSearchRoute]);
 
-  // Sync FROM the URL (back/forward, deep link) takes priority over syncing
-  // TO the URL (debounced typing) — both branches live in one effect so that
-  // an external navigation is never second-guessed by a same-commit read of
-  // a debouncedValue that hasn't caught up yet (it lags inputValue by up to
-  // DEBOUNCE_MS). Without this, the two directions raced: right after
-  // landing on "/" via the back button, this effect would see the still-stale
-  // debouncedValue disagree with the just-updated ref and re-navigate forward,
-  // undoing the back — self-correcting only once the debounce timer caught up.
   useEffect(() => {
     if (urlQuery !== lastPushedQuery.current) {
       lastPushedQuery.current = urlQuery;
