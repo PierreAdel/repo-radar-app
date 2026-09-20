@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   ".github/workflows/ci.yml": {
-    "mtime": 1789929100.508948,
-    "seen": 1789929101.0398269,
-    "ast_hash": "767bd84f6f6eca0748f91dd092c0adca",
+    "mtime": 1789930732.8612869,
+    "seen": 1789930928.1635,
+    "ast_hash": "dc41ebd4e9382dc0324cf8d31a99912e",
     "semantic_hash": ""
   },
   "README.md": {
@@ -804,9 +804,9 @@
     "semantic_hash": ""
   },
   "scripts/check-lighthouse-budget.mjs": {
-    "mtime": 1789924504.0148292,
-    "seen": 1789924517.436223,
-    "ast_hash": "3339b2d15cbdc00c58eb6cc03f154a93",
+    "mtime": 1789930915.0777962,
+    "seen": 1789930928.16349,
+    "ast_hash": "de9a5662da1949d0e3a784487295d0d0",
     "semantic_hash": ""
   },
   "load-tests/github-repo.js": {
@@ -825,6 +825,12 @@
     "mtime": 1789927655.3471758,
     "seen": 1789927832.549479,
     "ast_hash": "ff428c8ea8a7f3308cbf5d35cc1b1c3a",
+    "semantic_hash": ""
+  },
+  ".github/dependabot.yml": {
+    "mtime": 1789930707.4155571,
+    "seen": 1789930928.163499,
+    "ast_hash": "d75a3474f16b3c56870f222b7444b452",
     "semantic_hash": ""
   }
 }
