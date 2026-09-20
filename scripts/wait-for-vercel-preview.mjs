@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Polls the Vercel API for the deployment tied to a specific commit SHA, and
-// waits for it to reach READY. Used by CI to hand Lighthouse/k6 (Tasks 21-22)
-// a real, deployed preview URL instead of a local build — see
-// tasks/plan.md's "Decisions" section for why.
+// waits for it to reach READY. Used by CI to hand Lighthouse a real, deployed
+// preview URL instead of a local build. (k6 load tests hit GitHub's API
+// directly now, not a preview deployment - see load-tests/*.js.)
 //
 // Required env: VERCEL_TOKEN, VERCEL_PROJECT_ID, VERCEL_ORG_ID
 // Optional env: GIT_SHA (defaults to the most recent deployment if unset),

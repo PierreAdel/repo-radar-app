@@ -1,12 +1,19 @@
-// Stress test for GET /api/github/repo. Run with:
-//   BASE_URL=https://your-preview.vercel.app k6 run load-tests/github-repo.js
+// Stress test for GitHub's repo-lookup API directly (not through our
+// /api/github/repo proxy) - see github-search.js's header comment for why
+// (dedicated testing token, isolated from production's rate-limit budget).
+// Run with:
+//   GITHUB_TOKEN_TESTING=xxx k6 run load-tests/github-repo.js
 //
-// See github-search.js's header comment - same real-GitHub-API-quota caveat
-// applies here, kept deliberately light for the same reason.
+// This hits the core REST API (5000 req/hr authenticated), not the search
+// endpoint's stricter 30/min limit, so it can run free-running VUs rather
+// than github-search.js's paced executor - still kept deliberately light.
 import http from "k6/http";
 import { check, sleep } from "k6";
 
-const BASE_URL = __ENV.BASE_URL || "http://localhost:5173";
+const token = __ENV.GITHUB_TOKEN_TESTING;
+if (!token) {
+  throw new Error("GITHUB_TOKEN_TESTING env var is required");
+}
 
 // Real, small, well-known repos so every request is a realistic cache-miss
 // against GitHub's API rather than one repeated identical lookup.
@@ -35,13 +42,20 @@ export const options = {
 
 export default function () {
   const fullName = REPOS[Math.floor(Math.random() * REPOS.length)];
-  const res = http.get(`${BASE_URL}/api/github/repo?fullName=${encodeURIComponent(fullName)}`);
+  const res = http.get(`https://api.github.com/repos/${fullName}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  });
 
   check(res, {
     "status is 200": (r) => r.status === 200,
-    "body has fullName": (r) => {
+    "not rate-limited": (r) => r.status !== 403 && r.status !== 429,
+    "body has full_name": (r) => {
       try {
-        return typeof JSON.parse(r.body).fullName === "string";
+        return typeof JSON.parse(r.body).full_name === "string";
       } catch {
         return false;
       }

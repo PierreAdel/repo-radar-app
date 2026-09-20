@@ -558,32 +558,50 @@ for `scripts/**/*.mjs` — nothing previously configured Node globals
 
 ---
 
-### Task 22: k6 stress tests for the API routes
+### Task 22: k6 stress tests for the GitHub API
 
 **Acceptance criteria:**
 
 - [x] `k6` installed (`brew install k6`)
-- [x] Scripts for `api/github/search` and `api/github/repo` covering sustained concurrent load (10 VUs, ~70s each, randomized queries/repos so requests aren't identical)
+- [x] Scripts covering sustained concurrent load, randomized queries/repos so requests aren't identical
 - [x] Manual-trigger CI job (`stress-test.yml`, `workflow_dispatch` only — not run on push/PR, per CONSTRAINTS.md)
 
-**Verification:** ran both scripts locally against a real dev server (real GitHub API calls via the proxy) — all checks passed, thresholds met
+**Verification:** ran both scripts locally against the real `api.github.com` with a fake token — confirmed real HTTP round-trips (401, correctly _not_ flagged as rate-limited) proving the request/header structure is right; can't verify a real 200 without the actual `TESTING_GITHUB_TOKEN` value, which isn't available locally
 
-**Deliberately kept light:** both endpoints proxy to the real GitHub API using
-this deployment's real `GITHUB_TOKEN`, shared with actual users — a heavy
-stress run would burn into the app's real rate-limit budget, not just test
-robustness. Documented in both scripts' header comments so a future deeper
-run is a deliberate choice, not the CI default.
+**Revised 2026-09-20, after Task 20/21 had already shipped:** originally these
+scripts hit `api/github/search`/`api/github/repo` (our own proxy) through a
+resolved Vercel preview URL, same as Lighthouse. Changed to call
+`api.github.com` directly instead, authenticated with a dedicated
+`TESTING_GITHUB_TOKEN` — isolates stress-test traffic from the app's real
+`GITHUB_TOKEN` and its production rate-limit budget entirely, rather than
+just "being deliberately light" about sharing it. See CONSTRAINTS.md's
+"Stress/load scope note" for the full reasoning. `stress-test.yml`
+simplified accordingly — no longer needs pnpm/Node or the Vercel-preview
+polling step, just k6 directly.
+
+**Note:** GitHub's search endpoint has its own stricter limit (30 req/min
+authenticated, separate from the 5000/hr core REST limit) — `github-search.js`
+uses a `constant-arrival-rate` executor paced at 20/min to stay safely under
+it, while `github-repo.js` (core REST, repo lookups) can use free-running VUs.
+
+**Note:** the token turned out to be named `TESTING_GITHUB_TOKEN` (not
+`GITHUB_TOKEN_TESTING`) and scoped to the `Preview`/`Production` GitHub
+Environments (Vercel's integration auto-created these and mirrors its own
+env vars into them) rather than a plain repo secret — `gh secret list`
+didn't show it at all until checked via `gh api repos/.../environments/Preview/secrets`.
+The workflow job needs `environment: Preview` declared, or
+`secrets.TESTING_GITHUB_TOKEN` resolves to nothing even with the right name.
 
 **Note:** local smoke-testing hit an unrelated macOS quirk — k6 resolves
 `localhost` to IPv4 (`127.0.0.1`) specifically, but Vite's dev server was only
 listening on the IPv6 loopback here, so requests got `connection refused`
 despite `curl http://localhost:...` working fine (curl/browsers try both).
-Used `http://[::1]:PORT` to smoke-test locally. Irrelevant in CI, which hits a
-real public Vercel URL by DNS name, not localhost.
+Used `http://[::1]:PORT` to smoke-test the earlier proxy-based version
+locally. No longer relevant now that these scripts hit a public DNS name.
 
-**Dependencies:** Task 20
+**Dependencies:** Task 20 (for the pattern; no longer a runtime dependency)
 
-**Files likely touched:** `load-tests/github-search.js`, `load-tests/github-repo.js`, `.github/workflows/stress-test.yml`, `package.json`, `eslint.config.js`
+**Files likely touched:** `load-tests/github-search.js`, `load-tests/github-repo.js`, `.github/workflows/stress-test.yml`, `package.json`, `eslint.config.js`, `scripts/wait-for-vercel-preview.mjs` (comment only), `CONSTRAINTS.md`
 
 **Estimated scope:** Medium
 
