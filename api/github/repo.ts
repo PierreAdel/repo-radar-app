@@ -1,3 +1,4 @@
+import { isValidRepoFullName } from "@repo-radar/core";
 import { withErrorReporting } from "../_lib/withErrorReporting";
 import { getRepository } from "../_lib/githubProxy";
 
@@ -5,6 +6,10 @@ export default withErrorReporting("Unexpected error fetching repository.", async
   const fullName = typeof req.query.fullName === "string" ? req.query.fullName : "";
   if (!fullName) {
     res.status(400).json({ status: 400, message: "Missing fullName query param." });
+    return;
+  }
+  if (!isValidRepoFullName(fullName)) {
+    res.status(400).json({ status: 400, message: "Invalid fullName query param." });
     return;
   }
 

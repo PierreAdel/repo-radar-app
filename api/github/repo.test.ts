@@ -31,6 +31,19 @@ describe("api/github/repo", () => {
     });
   });
 
+  it("400s when fullName is not a valid owner/repo pair", async () => {
+    const res = mockResponse();
+
+    await handler(mockRequest({ fullName: "../rate_limit" }), res);
+
+    expect(getRepositoryMock).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      status: 400,
+      message: "Invalid fullName query param.",
+    });
+  });
+
   it("passes fullName and the GitHub token through, forwarding the proxy's status/body", async () => {
     getRepositoryMock.mockResolvedValueOnce({
       status: 200,
