@@ -582,9 +582,9 @@
     "semantic_hash": ""
   },
   "CONSTRAINTS.md": {
-    "mtime": 1789925590.602633,
-    "seen": 1789927583.548716,
-    "ast_hash": "4b16b34d7ad9a4bfd55208e132d5ef49",
+    "mtime": 1789927921.024694,
+    "seen": 1789928454.2042398,
+    "ast_hash": "ce2299147d5f56c655c838e3494dc1f3",
     "semantic_hash": ""
   },
   "tasks/plan.md": {
@@ -594,9 +594,9 @@
     "semantic_hash": ""
   },
   "tasks/todo.md": {
-    "mtime": 1789925345.2975383,
-    "seen": 1789925380.179023,
-    "ast_hash": "e4422d454dcd0b5b2eb89391b4a64073",
+    "mtime": 1789928029.3191347,
+    "seen": 1789928454.204244,
+    "ast_hash": "5ca5acbc579171ac3bf6311ba5ddec2b",
     "semantic_hash": ""
   },
   "apps/web/src/App.test.tsx": {
@@ -798,9 +798,9 @@
     "semantic_hash": ""
   },
   "scripts/wait-for-vercel-preview.mjs": {
-    "mtime": 1789927830.6880124,
-    "seen": 1789927832.54947,
-    "ast_hash": "50adc0746e30859dcf35261de343cabb",
+    "mtime": 1789928901.591386,
+    "seen": 1789928908.9167202,
+    "ast_hash": "5385f84cf720ac1e0d94582409efd8bc",
     "semantic_hash": ""
   },
   "scripts/check-lighthouse-budget.mjs": {

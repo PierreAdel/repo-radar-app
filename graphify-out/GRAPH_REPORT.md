@@ -1,7 +1,7 @@
 # Graph Report - repo-radar-app  (2026-09-20)
 
 ## Corpus Check
-- 132 files · ~35,114 words
+- 132 files · ~35,410 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 5, .graphify-bak 1, .example 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `438575f6`
+- Built from commit: `25135a35`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

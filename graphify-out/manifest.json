@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   ".github/workflows/ci.yml": {
-    "mtime": 1789925564.2307103,
-    "seen": 1789927583.548715,
-    "ast_hash": "ab5850024de9e99a011b5f85f905ef65",
+    "mtime": 1789929100.508948,
+    "seen": 1789929101.0398269,
+    "ast_hash": "767bd84f6f6eca0748f91dd092c0adca",
     "semantic_hash": ""
   },
   "README.md": {
@@ -582,9 +582,9 @@
     "semantic_hash": ""
   },
   "CONSTRAINTS.md": {
-    "mtime": 1789927877.3872561,
-    "seen": 1789927877.7089658,
-    "ast_hash": "e5a4f61a474b72c0a0d7e71bf6d203a8",
+    "mtime": 1789927921.024694,
+    "seen": 1789928454.2042398,
+    "ast_hash": "ce2299147d5f56c655c838e3494dc1f3",
     "semantic_hash": ""
   },
   "tasks/plan.md": {
@@ -594,9 +594,9 @@
     "semantic_hash": ""
   },
   "tasks/todo.md": {
-    "mtime": 1789925345.2975383,
-    "seen": 1789925380.179023,
-    "ast_hash": "e4422d454dcd0b5b2eb89391b4a64073",
+    "mtime": 1789928029.3191347,
+    "seen": 1789928454.204244,
+    "ast_hash": "5ca5acbc579171ac3bf6311ba5ddec2b",
     "semantic_hash": ""
   },
   "apps/web/src/App.test.tsx": {
@@ -798,8 +798,8 @@
     "semantic_hash": ""
   },
   "scripts/wait-for-vercel-preview.mjs": {
-    "mtime": 1789927861.6167912,
-    "seen": 1789927877.708956,
+    "mtime": 1789929512.3050804,
+    "seen": 1789929514.596986,
     "ast_hash": "709ef91cbc51fce0096fdb7902a86900",
     "semantic_hash": ""
   },

@@ -3273,7 +3273,7 @@
       "node_kind": "heading",
       "norm_label": "checkpoint: complete",
       "source_file": "tasks/todo.md",
-      "source_location": "L643"
+      "source_location": "L661"
     },
     {
       "id": "tasks_todo_checkpoint_e2e_a11y",
@@ -3357,7 +3357,7 @@
       "node_kind": "heading",
       "norm_label": "phase 5: ratchet the bar",
       "source_file": "tasks/todo.md",
-      "source_location": "L623"
+      "source_location": "L641"
     },
     {
       "id": "tasks_todo_task_13_integration_search_flow",
@@ -3468,14 +3468,14 @@
       "source_location": "L530"
     },
     {
-      "id": "tasks_todo_task_22_k6_stress_tests_for_the_api_routes",
-      "label": "Task 22: k6 stress tests for the API routes",
+      "id": "tasks_todo_task_22_k6_stress_tests_for_the_github_api",
+      "label": "Task 22: k6 stress tests for the GitHub API",
       "_origin": "ast",
       "community": 22,
       "community_name": "Todo: Testing Quality Bar",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "task 22: k6 stress tests for the api routes",
+      "norm_label": "task 22: k6 stress tests for the github api",
       "source_file": "tasks/todo.md",
       "source_location": "L561"
     },
@@ -3489,7 +3489,7 @@
       "node_kind": "heading",
       "norm_label": "task 23: large-data playwright test",
       "source_file": "tasks/todo.md",
-      "source_location": "L592"
+      "source_location": "L610"
     },
     {
       "id": "tasks_todo_task_24_flip_coverage_from_warn_to_block",
@@ -3501,7 +3501,7 @@
       "node_kind": "heading",
       "norm_label": "task 24: flip coverage from warn to block",
       "source_file": "tasks/todo.md",
-      "source_location": "L625"
+      "source_location": "L643"
     },
     {
       "id": "tasks_todo_task_2_packages_core_remaining_unit_coverage",
@@ -5883,7 +5883,7 @@
       "node_kind": "heading",
       "norm_label": "exceptions",
       "source_file": "CONSTRAINTS.md",
-      "source_location": "L46"
+      "source_location": "L56"
     },
     {
       "id": "constraints_floor_always_enforced_no_setup_required",
@@ -5907,7 +5907,7 @@
       "node_kind": "heading",
       "norm_label": "measured, not yet enforced (baseline, 2026-09-20)",
       "source_file": "CONSTRAINTS.md",
-      "source_location": "L35"
+      "source_location": "L45"
     },
     {
       "id": "constraints_notes_on_scope",
@@ -5919,7 +5919,7 @@
       "node_kind": "heading",
       "norm_label": "notes on scope",
       "source_file": "CONSTRAINTS.md",
-      "source_location": "L52"
+      "source_location": "L62"
     },
     {
       "id": "apps_web_package_scripts",
@@ -19491,18 +19491,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "CONSTRAINTS.md",
-      "source_location": "L35",
-      "weight": 1.0
-    },
-    {
-      "source": "constraints_constraints",
-      "target": "constraints_exceptions",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CONSTRAINTS.md",
-      "source_location": "L46",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -19518,13 +19507,24 @@
     },
     {
       "source": "constraints_constraints",
+      "target": "constraints_exceptions",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CONSTRAINTS.md",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "constraints_constraints",
       "target": "constraints_notes_on_scope",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "CONSTRAINTS.md",
-      "source_location": "L52",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -22389,7 +22389,7 @@
     },
     {
       "source": "tasks_todo_phase_4_performance_stress_large_data",
-      "target": "tasks_todo_task_22_k6_stress_tests_for_the_api_routes",
+      "target": "tasks_todo_task_22_k6_stress_tests_for_the_github_api",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22406,7 +22406,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L592",
+      "source_location": "L610",
       "weight": 1.0
     },
     {
@@ -22417,7 +22417,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L625",
+      "source_location": "L643",
       "weight": 1.0
     },
     {
@@ -22505,7 +22505,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L623",
+      "source_location": "L641",
       "weight": 1.0
     },
     {
@@ -22516,7 +22516,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L643",
+      "source_location": "L661",
       "weight": 1.0
     },
     {
@@ -23569,7 +23569,7 @@
       "confidence_score": 0.95,
       "context": "StarsChartCard",
       "source_file": "tasks/todo.md",
-      "source_location": "L610",
+      "source_location": "L628",
       "weight": 1.0
     },
     {
@@ -23767,5 +23767,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "438575f6cb39a2d989b507ccb481727272d08de8"
+  "built_at_commit": "25135a354776b43188c2ad693284756e185b1d1e"
 }
