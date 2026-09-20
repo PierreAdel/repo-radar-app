@@ -65,10 +65,6 @@ jobs:
   e2e:
     name: E2E + accessibility (Playwright)
     runs-on: ubuntu-latest
-    # Non-blocking while this job settles in CI (browser install time, first
-    # runs on GitHub's runners) — see CONSTRAINTS.md's E2E/Accessibility rows.
-    # Flip to blocking once it's been green for a while.
-    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -94,10 +90,6 @@ jobs:
   lighthouse:
     name: Performance budget (Lighthouse)
     runs-on: ubuntu-latest
-    # Needs the Vercel preview for this commit to exist and be READY, and the
-    # budget itself is a target to work toward, not a merge gate yet - see
-    # CONSTRAINTS.md's Performance row.
-    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
