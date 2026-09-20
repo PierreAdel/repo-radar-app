@@ -109,12 +109,12 @@ exports[`Header > matches its snapshot 1`] = `
         class="MuiStack-root css-kdc3n8-MuiStack-root"
       >
         <span
-          aria-label="Refresh all"
           class=""
           data-mui-internal-clone-element="true"
           style="display: contents;"
         >
           <button
+            aria-label="Refresh all"
             class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-1u2umrh-MuiButtonBase-root-MuiIconButton-root"
             disabled=""
             tabindex="-1"

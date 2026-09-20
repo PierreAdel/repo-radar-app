@@ -17,6 +17,7 @@
     "test:coverage": "turbo run test:coverage && vitest run --coverage",
     "check:fast": "pnpm typecheck && eslint .",
     "check:task": "pnpm check:fast && pnpm test:coverage",
+    "e2e": "playwright test",
     "storybook": "turbo run storybook --filter=@repo-radar/ui",
     "build-storybook": "turbo run build-storybook --filter=@repo-radar/ui",
     "format": "prettier --write .",
@@ -33,7 +34,9 @@
     ]
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^9.13.0",
+    "@playwright/test": "^1.63.0",
     "@types/node": "^22.9.0",
     "@vercel/node": "^13.0.1",
     "@vitest/coverage-v8": "4.1.11",

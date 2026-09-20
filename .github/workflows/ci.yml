@@ -61,3 +61,32 @@ jobs:
 
       - name: Build Storybook
         run: pnpm build-storybook
+
+  e2e:
+    name: E2E + accessibility (Playwright)
+    runs-on: ubuntu-latest
+    # Non-blocking while this job settles in CI (browser install time, first
+    # runs on GitHub's runners) — see CONSTRAINTS.md's E2E/Accessibility rows.
+    # Flip to blocking once it's been green for a while.
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run e2e tests
+        run: pnpm e2e

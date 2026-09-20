@@ -90,7 +90,7 @@ export function TrackedRepoControls() {
           size="small"
           value={sortKey}
           onChange={handleSortChange}
-          aria-label="Sort tracked repos by"
+          SelectDisplayProps={{ "aria-label": "Sort tracked repos by" }}
           sx={{ flexShrink: 0, ml: { sm: "auto" } }}
         >
           <MenuItem value="stars" aria-label="Sort by stars">

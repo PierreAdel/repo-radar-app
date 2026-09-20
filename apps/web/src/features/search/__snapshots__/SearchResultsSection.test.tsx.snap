@@ -17,12 +17,8 @@ exports[`SearchResultsSection > matches its snapshot in the populated, non-virtu
         class="MuiBox-root css-0"
       >
         <div
-          aria-expanded="false"
-          aria-label="Expand details for owner/repo-1"
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1h9eewx-MuiPaper-root-MuiCard-root"
-          role="button"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-12i74dp-MuiPaper-root-MuiCard-root"
           style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
-          tabindex="0"
         >
           <div
             class="MuiCardContent-root css-154h7r6-MuiCardContent-root"
@@ -92,17 +88,25 @@ exports[`SearchResultsSection > matches its snapshot in the populated, non-virtu
                         />
                       </svg>
                     </button>
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-66gqco-MuiSvgIcon-root"
-                      data-testid="ExpandMoreRoundedIcon"
-                      focusable="false"
-                      viewBox="0 0 24 24"
+                    <button
+                      aria-expanded="false"
+                      aria-label="Expand details for owner/repo-1"
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
+                      tabindex="0"
+                      type="button"
                     >
-                      <path
-                        d="M15.88 9.29 12 13.17 8.12 9.29a.996.996 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0"
-                      />
-                    </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-66gqco-MuiSvgIcon-root"
+                        data-testid="ExpandMoreRoundedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M15.88 9.29 12 13.17 8.12 9.29a.996.996 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
                 <p
@@ -183,12 +187,8 @@ exports[`SearchResultsSection > matches its snapshot in the populated, non-virtu
         class="MuiBox-root css-0"
       >
         <div
-          aria-expanded="false"
-          aria-label="Expand details for owner/repo-2"
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1h9eewx-MuiPaper-root-MuiCard-root"
-          role="button"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-12i74dp-MuiPaper-root-MuiCard-root"
           style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
-          tabindex="0"
         >
           <div
             class="MuiCardContent-root css-154h7r6-MuiCardContent-root"
@@ -258,17 +258,25 @@ exports[`SearchResultsSection > matches its snapshot in the populated, non-virtu
                         />
                       </svg>
                     </button>
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-66gqco-MuiSvgIcon-root"
-                      data-testid="ExpandMoreRoundedIcon"
-                      focusable="false"
-                      viewBox="0 0 24 24"
+                    <button
+                      aria-expanded="false"
+                      aria-label="Expand details for owner/repo-2"
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
+                      tabindex="0"
+                      type="button"
                     >
-                      <path
-                        d="M15.88 9.29 12 13.17 8.12 9.29a.996.996 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0"
-                      />
-                    </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-66gqco-MuiSvgIcon-root"
+                        data-testid="ExpandMoreRoundedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M15.88 9.29 12 13.17 8.12 9.29a.996.996 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
                 <p

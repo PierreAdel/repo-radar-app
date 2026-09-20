@@ -4,6 +4,10 @@ dist
 .vercel
 coverage
 storybook-static
+test-results
+playwright-report
+blob-report
+playwright/.cache
 NOTES.md
 ARCHITECTURE-REVIEW.md
 *.log

@@ -358,16 +358,21 @@ package once the key bug above was fixed.
 
 **Acceptance criteria:**
 
-- [ ] `@playwright/test` installed, browsers installed (`playwright install`)
-- [ ] `playwright.config.ts` at repo root, pointed at `apps/web`'s dev/preview server
-- [ ] One smoke spec: app loads, key landmark is visible
-- [ ] CI job skeleton added (can be non-blocking initially)
+- [x] `@playwright/test` installed, Chromium browser installed
+- [x] `playwright.config.ts` at repo root — `webServer` auto-starts `apps/web`'s Vite dev server on port 5173
+- [x] One smoke spec: app loads, key landmark is visible
+- [x] CI job added (`e2e`, `continue-on-error: true` — non-blocking until proven stable)
 
-**Verification:** `pnpm exec playwright test` green locally
+**Verification:** `pnpm e2e` green locally (1/1 passing)
+
+**Note:** wrote `e2e/mockGithubApi.ts`, a shared Playwright route-mocking helper
+(`page.route("**/api/github/search**", ...)` etc.) so every e2e spec runs
+against canned responses instead of the real GitHub API — deterministic, no
+rate limits, no token needed.
 
 **Dependencies:** None (can run in parallel with Phase 0–2)
 
-**Files likely touched:** `playwright.config.ts`, `e2e/smoke.spec.ts`, `.github/workflows/ci.yml`, `package.json`
+**Files likely touched:** `playwright.config.ts`, `e2e/smoke.spec.ts`, `e2e/mockGithubApi.ts`, `.github/workflows/ci.yml`, `package.json`
 
 **Estimated scope:** Medium
 
@@ -377,9 +382,10 @@ package once the key bug above was fixed.
 
 **Acceptance criteria:**
 
-- [ ] Spec searches for a repo, sees results render
+- [x] Spec searches for a repo, sees results render
+- [x] Bonus: covers the no-results state too
 
-**Verification:** `pnpm exec playwright test e2e/search.spec.ts`
+**Verification:** `pnpm exec playwright test e2e/search.spec.ts` — 2/2 passing
 
 **Dependencies:** Task 15
 
@@ -393,10 +399,10 @@ package once the key bug above was fixed.
 
 **Acceptance criteria:**
 
-- [ ] Spec tracks a repo, reloads the page, confirms it's still tracked
-- [ ] Spec untracks it, confirms it's gone
+- [x] Spec tracks a repo, reloads the page, confirms it's still tracked
+- [x] Spec untracks it, confirms it's gone
 
-**Verification:** `pnpm exec playwright test e2e/track-repo.spec.ts`
+**Verification:** `pnpm exec playwright test e2e/track-repo.spec.ts` — 2/2 passing
 
 **Dependencies:** Task 15
 
@@ -410,9 +416,15 @@ package once the key bug above was fixed.
 
 **Acceptance criteria:**
 
-- [ ] Spec exercises the tracked-repo sort menu (labeled per the recent a11y pass) and confirms order changes
+- [x] Spec exercises the tracked-repo sort menu (labeled per the recent a11y pass) and confirms order changes
 
-**Verification:** `pnpm exec playwright test e2e/sort-filter.spec.ts`
+**Verification:** `pnpm exec playwright test e2e/sort-filter.spec.ts` — 1/1 passing
+
+**Note:** the shared `mockGithubApi` helper returns the same canned search
+results for every query (it doesn't filter by search text), so tracking two
+different repos via two separate searches made "Track" ambiguous (both cards
+render every time). Fixed by searching once and scoping each click to its own
+`<li>` via `hasText`.
 
 **Dependencies:** Task 15
 
@@ -426,24 +438,58 @@ package once the key bug above was fixed.
 
 **Acceptance criteria:**
 
-- [ ] `@axe-core/playwright` installed
-- [ ] Each of Tasks 16–18's specs gets a zero-critical/serious axe assertion at its key state
-- [ ] CI gate added per CONSTRAINTS.md's accessibility row
+- [x] `@axe-core/playwright` installed
+- [x] Each of Tasks 16–18's specs gets a zero-critical/serious axe assertion at its key state
+- [x] CI gate added (same `e2e` job as Task 15, non-blocking for now)
 
-**Verification:** `pnpm exec playwright test` still green with axe assertions included
+**Verification:** `pnpm e2e` green with axe assertions included — 6/6 passing
+
+**This found 3 real, pre-existing accessibility bugs**, not test issues — fixed all three:
+
+1. **Nested interactive controls** (`RepoCard.tsx`): the whole card was
+   `role="button"` (click-to-expand) while also containing Track/Untrack/
+   Refresh/Open-on-GitHub buttons inside it — axe's `nested-interactive` rule
+   (serious). Screen readers don't reliably announce interactive elements
+   nested inside another interactive element. Fixed by removing the
+   click-to-expand behavior from the outer `Card` entirely and moving it to
+   a dedicated `IconButton` wrapping the chevron (which already existed
+   visually, just wasn't a real button before).
+2. **Invalid `aria-label` on a role-less `<div>`** (`TrackedRepoControls.tsx`):
+   MUI's `<Select aria-label="...">` puts that attribute on the outer
+   `MuiInputBase-root` wrapper div, not the inner `role="combobox"` element —
+   axe's `aria-prohibited-attr` rule (serious), since `aria-label` isn't valid
+   on an element with no ARIA role. Fixed via MUI's `SelectDisplayProps`,
+   which targets the actual combobox element.
+3. **Same rule, different cause** (`Header.tsx`): the mobile "Refresh all"
+   button is disabled sometimes, and MUI Tooltip needs a non-disabled wrapper
+   `<span>` to keep receiving hover events for the tooltip — but Tooltip then
+   clones its `aria-label` onto that `<span>` instead of the button, and a
+   bare `<span>` isn't a valid `aria-label` target either. Fixed by giving the
+   `IconButton` its own explicit `aria-label`, and explicitly overriding the
+   span's inherited one back to `undefined` (MUI spreads `children.props`
+   last, so an explicit prop on the JSX wins over Tooltip's auto-injection).
+
+All three fixes changed only markup/prop-placement, not behavior — existing
+unit-test snapshots for `RepoCard`-adjacent components (`SearchResultsSection`,
+`TrackedRepoControls`) were regenerated to match (`vitest run -u`), and one
+`Header.test.tsx` assertion was loosened from `getByRole` to `getAllByRole`
+since the mobile button now has its own accessible name too (previously it
+had none, so only the desktop button was matched — this was a latent test gap
+the fix exposed, not a regression).
 
 **Dependencies:** Tasks 16, 17, 18
 
-**Files likely touched:** `e2e/search.spec.ts`, `e2e/track-repo.spec.ts`, `e2e/sort-filter.spec.ts`, `.github/workflows/ci.yml`
+**Files likely touched:** `e2e/search.spec.ts`, `e2e/track-repo.spec.ts`, `e2e/sort-filter.spec.ts`, `e2e/assertNoA11yViolations.ts`, `.github/workflows/ci.yml`, `packages/ui/src/RepoCard.tsx`, `apps/web/src/Header.tsx`, `apps/web/src/features/tracked-repos/TrackedRepoControls.tsx`
 
-**Estimated scope:** Small
+**Estimated scope:** Small (grew to Medium once real bugs were found)
 
 ---
 
 ## Checkpoint: E2E + a11y
 
-- [ ] `playwright test` green locally
-- [ ] Axe assertions pass on all 3 flows
+- [x] `playwright test` green locally — 6/6
+- [x] Axe assertions pass on all 3 flows (after fixing 3 real a11y bugs they found)
+- [x] Full workspace re-verified: 127 unit/integration tests + 6 e2e tests, typecheck and lint clean
 - [ ] Review with human before proceeding to Phase 4
 
 ---

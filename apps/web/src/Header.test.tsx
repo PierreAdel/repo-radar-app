@@ -52,7 +52,12 @@ describe("Header", () => {
 
   it("disables Refresh all when nothing is tracked", () => {
     renderHeader();
-    expect(screen.getByRole("button", { name: "Refresh all" })).toBeDisabled();
+    // Both a mobile IconButton and a desktop Button render "Refresh all" —
+    // CSS media queries pick which is visible, but jsdom doesn't apply CSS,
+    // so both exist in the accessibility tree at once.
+    for (const button of screen.getAllByRole("button", { name: "Refresh all" })) {
+      expect(button).toBeDisabled();
+    }
   });
 
   it("matches its snapshot", () => {

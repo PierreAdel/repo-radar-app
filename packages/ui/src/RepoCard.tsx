@@ -10,7 +10,7 @@ import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
-import type { KeyboardEvent, MouseEvent } from "react";
+import type { MouseEvent } from "react";
 import { useState } from "react";
 import {
   alpha,
@@ -135,34 +135,7 @@ function RepoCardContent({
   const hasDetails = Boolean(repo.language || repo.license || repo.homepage || repo.description);
 
   return (
-    <Card
-      onClick={toggleExpanded}
-      onKeyDown={(event: KeyboardEvent) => {
-        if (event.target !== event.currentTarget) return;
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          toggleExpanded();
-        }
-      }}
-      role="button"
-      tabIndex={0}
-      aria-expanded={expanded}
-      aria-label={`${expanded ? "Collapse" : "Expand"} details for ${repo.fullName}`}
-      sx={{
-        p: 2,
-        cursor: "pointer",
-        transition: "transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease",
-        "&:hover": {
-          transform: "translateY(-2px)",
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.mode === "dark" ? 0.08 : 0.04),
-          boxShadow: (theme) =>
-            theme.palette.mode === "dark"
-              ? "0 6px 22px rgba(0,0,0,0.55)"
-              : "0 6px 20px rgba(15,15,25,0.12)",
-        },
-      }}
-    >
+    <Card sx={{ p: 2 }}>
       <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
         <Stack direction="row" spacing={1.5} alignItems="flex-start">
           <Avatar src={repo.ownerAvatarUrl} alt={repo.ownerLogin} sx={{ width: 40, height: 40 }} />
@@ -228,14 +201,21 @@ function RepoCardContent({
                   </IconButton>
                 </Tooltip>
                 {hasDetails ? (
-                  <ExpandMoreRoundedIcon
-                    fontSize="small"
-                    sx={{
-                      color: "text.secondary",
-                      transition: "transform 0.15s ease",
-                      transform: expanded ? "rotate(180deg)" : "none",
-                    }}
-                  />
+                  <IconButton
+                    size="small"
+                    onClick={toggleExpanded}
+                    aria-expanded={expanded}
+                    aria-label={`${expanded ? "Collapse" : "Expand"} details for ${repo.fullName}`}
+                  >
+                    <ExpandMoreRoundedIcon
+                      fontSize="small"
+                      sx={{
+                        color: "text.secondary",
+                        transition: "transform 0.15s ease",
+                        transform: expanded ? "rotate(180deg)" : "none",
+                      }}
+                    />
+                  </IconButton>
                 ) : null}
               </Stack>
             </Stack>
