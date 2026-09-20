@@ -1,7 +1,80 @@
+import { useRef } from "react";
 import { Navigate } from "react-router";
-import { Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { RepoCard } from "@repo-radar/ui";
 import { MIN_QUERY_LENGTH, useRepoSearch } from "./useRepoSearch";
+
+const VIRTUALIZE_THRESHOLD = 20;
+const ESTIMATED_CARD_HEIGHT = 140;
+
+interface SearchResultsListProps {
+  items: ReturnType<typeof useRepoSearch>["items"];
+  isTracked: (fullName: string) => boolean;
+  onTrack: (fullName: string) => void;
+  onUntrack: (fullName: string) => void;
+}
+
+function PlainResultsList({ items, isTracked, onTrack, onUntrack }: SearchResultsListProps) {
+  return (
+    <Stack spacing={2}>
+      {items.map((repo) => (
+        <RepoCard
+          key={repo.id}
+          variant="result"
+          repo={repo}
+          isTracked={isTracked(repo.fullName)}
+          onTrack={() => onTrack(repo.fullName)}
+          onUntrack={() => onUntrack(repo.fullName)}
+        />
+      ))}
+    </Stack>
+  );
+}
+
+function VirtualizedResultsList({ items, isTracked, onTrack, onUntrack }: SearchResultsListProps) {
+  const parentRef = useRef<HTMLDivElement>(null);
+  const virtualizer = useVirtualizer({
+    count: items.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => ESTIMATED_CARD_HEIGHT,
+    overscan: 5,
+  });
+
+  return (
+    <Box ref={parentRef} sx={{ maxHeight: "70vh", overflowY: "auto" }}>
+      <Box sx={{ position: "relative", height: virtualizer.getTotalSize() }}>
+        {virtualizer.getVirtualItems().map((virtualRow) => {
+          const repo = items[virtualRow.index];
+          if (!repo) return null;
+          return (
+            <Box
+              key={repo.id}
+              data-index={virtualRow.index}
+              ref={virtualizer.measureElement}
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                pb: 2,
+                transform: `translateY(${virtualRow.start}px)`,
+              }}
+            >
+              <RepoCard
+                variant="result"
+                repo={repo}
+                isTracked={isTracked(repo.fullName)}
+                onTrack={() => onTrack(repo.fullName)}
+                onUntrack={() => onUntrack(repo.fullName)}
+              />
+            </Box>
+          );
+        })}
+      </Box>
+    </Box>
+  );
+}
 
 export function SearchResultsSection() {
   const { query, items, isLoading, error, hasMore, loadMore, isTracked, onTrack, onUntrack } =
@@ -41,21 +114,15 @@ export function SearchResultsSection() {
     );
   }
 
+  const ListComponent =
+    items.length >= VIRTUALIZE_THRESHOLD ? VirtualizedResultsList : PlainResultsList;
+
   return (
     <Stack spacing={2}>
       <Typography variant="subtitle2" color="text.secondary">
         Search results
       </Typography>
-      {items.map((repo) => (
-        <RepoCard
-          key={repo.id}
-          variant="result"
-          repo={repo}
-          isTracked={isTracked(repo.fullName)}
-          onTrack={() => onTrack(repo.fullName)}
-          onUntrack={() => onUntrack(repo.fullName)}
-        />
-      ))}
+      <ListComponent items={items} isTracked={isTracked} onTrack={onTrack} onUntrack={onUntrack} />
       {hasMore ? (
         <Button variant="outlined" onClick={loadMore}>
           Load more
