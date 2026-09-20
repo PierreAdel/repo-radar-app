@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      # Storybook's packages must all move together or the build breaks on
+      # version skew between them.
+      storybook:
+        patterns:
+          - "@storybook/*"
+          - "storybook"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
