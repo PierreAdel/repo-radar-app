@@ -14,3 +14,4 @@ export { persistenceMiddleware } from "./store/persistenceMiddleware";
 export { useDebouncedValue } from "./hooks/useDebouncedValue";
 export { formatCompactNumber, formatRelativeTime } from "./utils/format";
 export { toApiError } from "./utils/apiError";
+export { isValidRepoFullName, isSafeHttpUrl } from "./utils/validation";
