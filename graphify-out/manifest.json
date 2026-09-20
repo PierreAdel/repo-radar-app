@@ -126,9 +126,9 @@
     "semantic_hash": ""
   },
   "apps/web/vite.config.ts": {
-    "mtime": 1789932531.2817922,
-    "seen": 1789932540.414261,
-    "ast_hash": "b709b25722cf80d8630c9cb013a50a36",
+    "mtime": 1789933057.6386242,
+    "seen": 1789933059.6949592,
+    "ast_hash": "afe742a1486aee7048cc0450a0de212c",
     "semantic_hash": ""
   },
   "eslint.config.js": {
