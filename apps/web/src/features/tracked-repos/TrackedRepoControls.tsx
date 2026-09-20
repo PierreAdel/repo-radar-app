@@ -40,9 +40,11 @@ export function TrackedRepoControls() {
 
   return (
     <Stack spacing={2}>
-      <Typography variant="h6">Tracked repos</Typography>
+      <Typography variant="h6" component="h2">
+        Tracked repos
+      </Typography>
 
-      <Typography variant="body2" color="text.secondary">
+      <Typography id="tracked-repos-star-filter-label" variant="body2" color="text.secondary">
         Stars: {formatCompactNumber(starRange[0])} – {formatCompactNumber(starRange[1])}
       </Typography>
 
@@ -58,6 +60,7 @@ export function TrackedRepoControls() {
           value={starRange}
           min={0}
           max={maxStarBound}
+          aria-labelledby="tracked-repos-star-filter-label"
           onChange={(_event, value) => setStarRangeDraft(value as [number, number])}
           onChangeCommitted={(_event, value) => {
             const [min, max] = value as [number, number];
@@ -87,11 +90,18 @@ export function TrackedRepoControls() {
           size="small"
           value={sortKey}
           onChange={handleSortChange}
+          aria-label="Sort tracked repos by"
           sx={{ flexShrink: 0, ml: { sm: "auto" } }}
         >
-          <MenuItem value="stars">Stars</MenuItem>
-          <MenuItem value="lastCommit">Last commit</MenuItem>
-          <MenuItem value="name">Name</MenuItem>
+          <MenuItem value="stars" aria-label="Sort by stars">
+            Stars
+          </MenuItem>
+          <MenuItem value="lastCommit" aria-label="Sort by last commit">
+            Last commit
+          </MenuItem>
+          <MenuItem value="name" aria-label="Sort by name">
+            Name
+          </MenuItem>
         </Select>
       </Stack>
     </Stack>

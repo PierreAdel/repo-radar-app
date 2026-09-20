@@ -14,7 +14,7 @@ export function EmptyState({ icon, title, description, actionLabel, onAction }: 
     <Card sx={{ py: 6, px: 2 }}>
       <Stack alignItems="center" justifyContent="center" spacing={1.5} sx={{ textAlign: "center" }}>
         {icon}
-        <Typography variant="subtitle1" fontWeight={600}>
+        <Typography variant="subtitle1" component="h3" fontWeight={600}>
           {title}
         </Typography>
         {description ? (
