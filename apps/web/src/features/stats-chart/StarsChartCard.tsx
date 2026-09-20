@@ -1,14 +1,15 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import { StarsBarChart } from "@repo-radar/ui";
-import { useTrackedRepoCacheEntries } from "../tracked-repos/useTrackedRepoCacheEntries";
+import { useTrackedRepoView } from "../tracked-repos/useTrackedRepoView";
 
 export function StarsChartCard() {
-  const entries = useTrackedRepoCacheEntries();
-  const data = entries
-    .filter((entry) => entry.data)
-    .map((entry) => ({
-      label: entry.data!.fullName.split("/")[1] ?? entry.data!.fullName,
-      value: entry.data!.stargazersCount,
+  const { entryByFullName, sortedFullNames } = useTrackedRepoView();
+  const data = sortedFullNames
+    .map((fullName) => entryByFullName.get(fullName)?.data)
+    .filter((repo) => repo !== undefined)
+    .map((repo) => ({
+      label: repo.fullName.split("/")[1] ?? repo.fullName,
+      value: repo.stargazersCount,
     }));
 
   if (data.length === 0) {
