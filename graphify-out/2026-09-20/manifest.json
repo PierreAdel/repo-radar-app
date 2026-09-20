@@ -42,9 +42,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/Header.tsx": {
-    "mtime": 1789912927.984512,
-    "seen": 1789912930.815256,
-    "ast_hash": "97ae6a66564e8c07ee6c5c1252d1b26f",
+    "mtime": 1789923185.255335,
+    "seen": 1789923195.158926,
+    "ast_hash": "bcb58cdc654bd99578629d976fd0c1f4",
     "semantic_hash": ""
   },
   "apps/web/src/app/AppErrorBoundary.tsx": {
@@ -138,9 +138,9 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1789915882.9877577,
-    "seen": 1789915889.2216058,
-    "ast_hash": "e3c57979503fe214c4024d2377e8e6d7",
+    "mtime": 1789922985.1538253,
+    "seen": 1789923000.600144,
+    "ast_hash": "b496775c46dcc5c7c1d89d7a9d9e14a1",
     "semantic_hash": ""
   },
   "packages/core/package.json": {
@@ -168,10 +168,10 @@
     "semantic_hash": "eb738c0386e6b9cc98769f0ff7b9833e"
   },
   "packages/core/src/index.ts": {
-    "mtime": 1789907688.394951,
-    "seen": 1789912930.8152692,
-    "ast_hash": "17173b1760b3f4b61cb94b29c512db80",
-    "semantic_hash": "17173b1760b3f4b61cb94b29c512db80"
+    "mtime": 1789922400.4534605,
+    "seen": 1789922412.008845,
+    "ast_hash": "29341842caa7c41bdc60bbb87b84e3e0",
+    "semantic_hash": ""
   },
   "packages/core/src/store/persistence.test.ts": {
     "mtime": 1789907688.3953838,
@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "packages/ui/src/RepoCard.tsx": {
-    "mtime": 1789912927.9882367,
-    "seen": 1789912930.815279,
-    "ast_hash": "5615309fc5f1c175ca81a12de272649a",
+    "mtime": 1789923111.6571758,
+    "seen": 1789923115.987166,
+    "ast_hash": "995a79062ec48623f2dc26df68f401c2",
     "semantic_hash": ""
   },
   "packages/ui/src/StarsBarChart.stories.tsx": {
@@ -456,9 +456,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/tracked-repos/TrackedRepoControls.tsx": {
-    "mtime": 1789912927.9858263,
-    "seen": 1789912930.815261,
-    "ast_hash": "d61bea47dcfd675d6d44119f3589e39a",
+    "mtime": 1789923071.49775,
+    "seen": 1789923082.162672,
+    "ast_hash": "67f05abde891863048c198d3c8c1fceb",
     "semantic_hash": ""
   },
   "apps/web/src/features/tracked-repos/useTrackedRepoView.ts": {
@@ -594,9 +594,9 @@
     "semantic_hash": ""
   },
   "tasks/todo.md": {
-    "mtime": 1789922047.5959647,
-    "seen": 1789922084.6993668,
-    "ast_hash": "358b088fc0e48e2aece00eb938cdd597",
+    "mtime": 1789922448.2280767,
+    "seen": 1789922475.541356,
+    "ast_hash": "7250660159502dfda1396482738c0c66",
     "semantic_hash": ""
   },
   "apps/web/src/App.test.tsx": {
@@ -738,15 +738,69 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/search/searchFlow.integration.test.tsx": {
-    "mtime": 1789922271.5670784,
-    "seen": 1789922279.175649,
-    "ast_hash": "0b244c553929a90a2b9c6a154a0093fc",
+    "mtime": 1789922464.9717898,
+    "seen": 1789922475.5413089,
+    "ast_hash": "70fa6132bcef4997f497b4a7533a37c8",
     "semantic_hash": ""
   },
   "apps/web/src/features/tracked-repos/trackedRepoFlow.integration.test.tsx": {
-    "mtime": 1789922348.4309618,
-    "seen": 1789922355.6157062,
-    "ast_hash": "c85952c2d7258fba62e3386cb6ee0366",
+    "mtime": 1789922464.9853625,
+    "seen": 1789922475.541316,
+    "ast_hash": "966b2aedee92dddedf9da3299e80d34c",
+    "semantic_hash": ""
+  },
+  "e2e/mockGithubApi.ts": {
+    "mtime": 1789922625.5431273,
+    "seen": 1789922632.4522119,
+    "ast_hash": "944fdd0cf61f919ddaeda73018402a31",
+    "semantic_hash": ""
+  },
+  "e2e/smoke.spec.ts": {
+    "mtime": 1789922635.513317,
+    "seen": 1789922641.628211,
+    "ast_hash": "ae58c55531a1b9b24360acbb615a3cf7",
+    "semantic_hash": ""
+  },
+  "playwright.config.ts": {
+    "mtime": 1789922615.6096153,
+    "seen": 1789922632.452238,
+    "ast_hash": "02e83d146079a9ebe16be03215177018",
+    "semantic_hash": ""
+  },
+  "e2e/search.spec.ts": {
+    "mtime": 1789922998.1852384,
+    "seen": 1789923000.600142,
+    "ast_hash": "09255f19f3002a38a0a113f8bac4d4ec",
+    "semantic_hash": ""
+  },
+  "e2e/track-repo.spec.ts": {
+    "mtime": 1789923006.8760543,
+    "seen": 1789923008.976298,
+    "ast_hash": "75a1ed11a16f59b5bba1e4d6d97984ac",
+    "semantic_hash": ""
+  },
+  "e2e/sort-filter.spec.ts": {
+    "mtime": 1789923015.01501,
+    "seen": 1789923017.84768,
+    "ast_hash": "d12fba3ae6a6d3e63b2f8de230033889",
+    "semantic_hash": ""
+  },
+  "e2e/assertNoA11yViolations.ts": {
+    "mtime": 1789922990.6236389,
+    "seen": 1789923000.600141,
+    "ast_hash": "a7aa496c654648e780ed33de01496810",
+    "semantic_hash": ""
+  },
+  "test-results/.last-run.json": {
+    "mtime": 1789923204.7003033,
+    "seen": 1789923212.646585,
+    "ast_hash": "e2706e9499c8d45b15454a9cf08a56b3",
+    "semantic_hash": ""
+  },
+  "test-results/track-repo-tracking-a-repo-a3785--results-then-untracking-it-chromium/error-context.md": {
+    "mtime": 1789923204.5311604,
+    "seen": 1789923212.6465988,
+    "ast_hash": "0b76eccecde941267321ecabe30fce50",
     "semantic_hash": ""
   }
 }
