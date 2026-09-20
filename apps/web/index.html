@@ -3,10 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0b10" />
     <meta
       name="description"
       content="Search GitHub repositories, track your favorites, and monitor their stars, open issues, and commit activity over time."
     />
+    <link rel="canonical" href="https://repo-radar-app.vercel.app/" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Repo Radar" />
+    <meta property="og:title" content="Repo Radar" />
+    <meta
+      property="og:description"
+      content="Search GitHub repositories, track your favorites, and monitor their stars, open issues, and commit activity over time."
+    />
+    <meta property="og:url" content="https://repo-radar-app.vercel.app/" />
+    <meta property="og:image" content="https://repo-radar-app.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Repo Radar" />
+    <meta
+      name="twitter:description"
+      content="Search GitHub repositories, track your favorites, and monitor their stars, open issues, and commit activity over time."
+    />
+    <meta name="twitter:image" content="https://repo-radar-app.vercel.app/og-image.png" />
+
+    <!-- Every repo card renders a GitHub-hosted avatar - warming up this
+         connection ahead of time (DNS + TLS) shaves that latency off the
+         first image request instead of paying it when the JS discovers it. -->
+    <link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin />
+    <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
+
     <title>Repo Radar</title>
   </head>
   <body>
