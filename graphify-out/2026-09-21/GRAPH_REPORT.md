@@ -1,7 +1,7 @@
 # Graph Report - repo-radar-app  (2026-09-21)
 
 ## Corpus Check
-- 132 files · ~31,919 words
+- 132 files · ~31,916 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 5, .graphify-bak 1, .example 1)
 

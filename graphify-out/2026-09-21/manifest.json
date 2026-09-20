@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "packages/ui/src/RepoCard.tsx": {
-    "mtime": 1789939006.424902,
-    "seen": 1789939013.890015,
-    "ast_hash": "d69396b65ff4cda37e42c64edf26e5c4",
+    "mtime": 1789938878.4830503,
+    "seen": 1789938882.660504,
+    "ast_hash": "31874ccca3dea4812c31f513f4408626",
     "semantic_hash": ""
   },
   "packages/ui/src/StarsBarChart.stories.tsx": {

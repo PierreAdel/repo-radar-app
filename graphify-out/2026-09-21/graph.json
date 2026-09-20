@@ -538,6 +538,18 @@
       "source_location": "L18"
     },
     {
+      "id": "packages_ui_src_repocard_repocardcontent",
+      "label": "RepoCardContent()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 46,
+      "community_name": "RepoCard.stories.tsx",
+      "file_type": "code",
+      "norm_label": "repocardcontent()",
+      "source_file": "packages/ui/src/RepoCard.tsx",
+      "source_location": "L130"
+    },
+    {
       "id": "apps_web_src_app_app",
       "label": "App()",
       "_callable": true,
@@ -5224,17 +5236,6 @@
       "norm_label": "repocard",
       "source_file": "packages/ui/src/RepoCard.tsx",
       "source_location": "L41"
-    },
-    {
-      "id": "packages_ui_src_repocard_repocardcontent",
-      "label": "RepoCardContent",
-      "_origin": "ast",
-      "community": 46,
-      "community_name": "RepoCard.stories.tsx",
-      "file_type": "code",
-      "norm_label": "repocardcontent",
-      "source_file": "packages/ui/src/RepoCard.tsx",
-      "source_location": "L130"
     },
     {
       "id": "packages_ui_src_repocard_stories",
