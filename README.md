@@ -4,6 +4,8 @@
 
 Search GitHub repositories, track favorites, and monitor their latest stats.
 
+See [docs/FEATURES.md](docs/FEATURES.md) for a full walkthrough with screenshots.
+
 ## Stack
 
 - React 19 + TypeScript, Vite
