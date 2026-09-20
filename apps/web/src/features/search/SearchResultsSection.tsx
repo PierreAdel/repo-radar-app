@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Navigate } from "react-router";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Stack, Typography } from "@mui/material";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { RepoCard } from "@repo-radar/ui";
 import { MIN_QUERY_LENGTH, useRepoSearch } from "./useRepoSearch";
@@ -77,8 +77,18 @@ function VirtualizedResultsList({ items, isTracked, onTrack, onUntrack }: Search
 }
 
 export function SearchResultsSection() {
-  const { query, items, isLoading, error, hasMore, loadMore, isTracked, onTrack, onUntrack } =
-    useRepoSearch();
+  const {
+    query,
+    items,
+    isLoading,
+    isLoadingMore,
+    error,
+    hasMore,
+    loadMore,
+    isTracked,
+    onTrack,
+    onUntrack,
+  } = useRepoSearch();
 
   if (query.length === 0) {
     return <Navigate to="/" replace />;
@@ -124,8 +134,13 @@ export function SearchResultsSection() {
       </Typography>
       <ListComponent items={items} isTracked={isTracked} onTrack={onTrack} onUntrack={onUntrack} />
       {hasMore ? (
-        <Button variant="outlined" onClick={loadMore}>
-          Load more
+        <Button
+          variant="outlined"
+          onClick={loadMore}
+          disabled={isLoadingMore}
+          startIcon={isLoadingMore ? <CircularProgress size={16} /> : null}
+        >
+          {isLoadingMore ? "Loading…" : "Load more"}
         </Button>
       ) : null}
     </Stack>
