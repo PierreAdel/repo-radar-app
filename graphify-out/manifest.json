@@ -30,9 +30,9 @@
     "semantic_hash": ""
   },
   "apps/web/package.json": {
-    "mtime": 1789916180.7910924,
-    "seen": 1789916183.138189,
-    "ast_hash": "9b019bcaeff22e96a82b5a5f507aea2d",
+    "mtime": 1789931991.881514,
+    "seen": 1789932005.154411,
+    "ast_hash": "3567f2368790345dca9143c36e3a4876",
     "semantic_hash": ""
   },
   "apps/web/src/App.tsx": {
@@ -126,10 +126,10 @@
     "semantic_hash": ""
   },
   "apps/web/vite.config.ts": {
-    "mtime": 1789907688.3928022,
-    "seen": 1789912930.815265,
-    "ast_hash": "5b5f1b1bffb44d5256b071421139131b",
-    "semantic_hash": "5b5f1b1bffb44d5256b071421139131b"
+    "mtime": 1789933057.6386242,
+    "seen": 1789933059.6949592,
+    "ast_hash": "afe742a1486aee7048cc0450a0de212c",
+    "semantic_hash": ""
   },
   "eslint.config.js": {
     "mtime": 1789925265.6858432,
@@ -138,8 +138,8 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1789925229.799345,
-    "seen": 1789925242.254349,
+    "mtime": 1789932016.9647222,
+    "seen": 1789932030.301145,
     "ast_hash": "49582038650e84156e2c6473cc6a5568",
     "semantic_hash": ""
   },
