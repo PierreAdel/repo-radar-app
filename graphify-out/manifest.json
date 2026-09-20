@@ -18,8 +18,8 @@
     "semantic_hash": ""
   },
   "api/github/repo.ts": {
-    "mtime": 1789935017.7748675,
-    "seen": 1789935019.415309,
+    "mtime": 1789936106.0818908,
+    "seen": 1789936121.63613,
     "ast_hash": "35e72efeece7f83e861f20cb173c4ba4",
     "semantic_hash": ""
   },
@@ -36,14 +36,14 @@
     "semantic_hash": ""
   },
   "apps/web/src/App.tsx": {
-    "mtime": 1789912927.9842746,
-    "seen": 1789912930.815255,
-    "ast_hash": "b0e75e3e8f4470a461e45ebdd9cca1ec",
+    "mtime": 1789937989.0188677,
+    "seen": 1789937998.325973,
+    "ast_hash": "7c98308b46659bc24fbe93f37a0cd703",
     "semantic_hash": ""
   },
   "apps/web/src/Header.tsx": {
-    "mtime": 1789923246.4593823,
-    "seen": 1789923255.877826,
+    "mtime": 1789937232.7690723,
+    "seen": 1789937251.608491,
     "ast_hash": "6863ae0f07fb801186115220098af666",
     "semantic_hash": ""
   },
@@ -102,9 +102,9 @@
     "semantic_hash": "c271bb958ad6c9da962504e2c454569b"
   },
   "apps/web/src/features/tracked-repos/TrackedReposSection.tsx": {
-    "mtime": 1789912927.9862216,
-    "seen": 1789912930.8152618,
-    "ast_hash": "912a66c2f9ccdea1b92c3f556b9b0a59",
+    "mtime": 1789937146.0839486,
+    "seen": 1789937153.234097,
+    "ast_hash": "bb4663644911480731a8e10d94e1add1",
     "semantic_hash": ""
   },
   "apps/web/src/features/tracked-repos/useTrackedRepoCacheEntries.ts": {
@@ -168,8 +168,8 @@
     "semantic_hash": "eb738c0386e6b9cc98769f0ff7b9833e"
   },
   "packages/core/src/index.ts": {
-    "mtime": 1789935003.9224544,
-    "seen": 1789935009.86341,
+    "mtime": 1789936106.0914319,
+    "seen": 1789936121.636162,
     "ast_hash": "ea20adcd15cd615f1de0e9048e9714e8",
     "semantic_hash": ""
   },
@@ -312,15 +312,15 @@
     "semantic_hash": ""
   },
   "packages/ui/src/RepoCard.test.tsx": {
-    "mtime": 1789935114.7476037,
-    "seen": 1789935120.6411579,
+    "mtime": 1789936106.092839,
+    "seen": 1789936121.6361768,
     "ast_hash": "eb2c962554f46baa1fe2be3f498e9748",
     "semantic_hash": ""
   },
   "packages/ui/src/RepoCard.tsx": {
-    "mtime": 1789935104.3642046,
-    "seen": 1789935111.482759,
-    "ast_hash": "26d3b4696eda72efe9936939f25a0b30",
+    "mtime": 1789937925.7205567,
+    "seen": 1789937935.5985432,
+    "ast_hash": "0054e6e7217eb1b7420ac032bd385832",
     "semantic_hash": ""
   },
   "packages/ui/src/StarsBarChart.stories.tsx": {
@@ -330,9 +330,9 @@
     "semantic_hash": ""
   },
   "packages/ui/src/StarsBarChart.tsx": {
-    "mtime": 1789912927.98862,
-    "seen": 1789912930.815281,
-    "ast_hash": "c518e6f86c8224487268fc96a1b296ae",
+    "mtime": 1789937423.1947832,
+    "seen": 1789937425.1457899,
+    "ast_hash": "1a70a7563fdbdb73d8eef374c502f9da",
     "semantic_hash": ""
   },
   "packages/ui/src/index.ts": {
@@ -384,8 +384,8 @@
     "semantic_hash": ""
   },
   "vercel.json": {
-    "mtime": 1789935121.6143126,
-    "seen": 1789935130.500318,
+    "mtime": 1789936106.0934484,
+    "seen": 1789936121.6361852,
     "ast_hash": "6098d75abad36109cc6aef1874f374b3",
     "semantic_hash": ""
   },
@@ -587,18 +587,6 @@
     "ast_hash": "ce2299147d5f56c655c838e3494dc1f3",
     "semantic_hash": ""
   },
-  "tasks/plan.md": {
-    "mtime": 1789916145.0319717,
-    "seen": 1789916158.6942332,
-    "ast_hash": "0082f7ba40e54a5826daeb1b33ff2e1e",
-    "semantic_hash": ""
-  },
-  "tasks/todo.md": {
-    "mtime": 1789928029.3191347,
-    "seen": 1789928454.204244,
-    "ast_hash": "5ca5acbc579171ac3bf6311ba5ddec2b",
-    "semantic_hash": ""
-  },
   "apps/web/src/App.test.tsx": {
     "mtime": 1789914966.515817,
     "seen": 1789914967.944223,
@@ -648,8 +636,8 @@
     "semantic_hash": ""
   },
   "api/github/repo.test.ts": {
-    "mtime": 1789935086.6440175,
-    "seen": 1789935102.442602,
+    "mtime": 1789936106.0815287,
+    "seen": 1789936121.63613,
     "ast_hash": "9459b067ae7fe6e0e745fff771630b9b",
     "semantic_hash": ""
   },
@@ -834,14 +822,14 @@
     "semantic_hash": ""
   },
   "packages/core/src/utils/validation.ts": {
-    "mtime": 1789935620.2409594,
-    "seen": 1789935629.981517,
+    "mtime": 1789936106.092399,
+    "seen": 1789936121.63617,
     "ast_hash": "de4adf62b5c32d842f793e36cf3c1958",
     "semantic_hash": ""
   },
   "packages/core/src/utils/validation.test.ts": {
-    "mtime": 1789935303.0425634,
-    "seen": 1789935307.400125,
+    "mtime": 1789936106.0918298,
+    "seen": 1789936121.63617,
     "ast_hash": "d47b7e2085a898516c1ac81289f5307b",
     "semantic_hash": ""
   }
