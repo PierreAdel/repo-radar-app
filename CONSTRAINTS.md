@@ -34,12 +34,12 @@ left indefinitely as a number with no mechanism.
 
 ## Measured, not yet enforced (baseline, 2026-09-20)
 
-| Workspace       | Lines covered                                                     | Direction     |
-| --------------- | ----------------------------------------------------------------- | ------------- |
-| `api/`          | 91.5% (43/47)                                                     | must not fall |
-| `packages/core` | 92.6% (75/81)                                                     | must not fall |
-| `packages/ui`   | 80.4% (41/51)                                                     | must not fall |
-| `apps/web`      | 40.6% (103/254) — infra just stood up (Task 1), single smoke test | must not fall |
+| Workspace       | Lines covered   | Direction     |
+| --------------- | --------------- | ------------- |
+| `api/`          | 91.5% (43/47)   | must not fall |
+| `packages/core` | 92.6% (75/81)   | must not fall |
+| `packages/ui`   | 80.4% (41/51)   | must not fall |
+| `apps/web`      | 89.4% (227/254) | must not fall |
 
 Ratchet tolerance: 0.5% (absorbs drift when an unrelated file moves the number).
 

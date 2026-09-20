@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TrackedReposSection > matches its snapshot in the plain-grid state 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-f4yevk"
+    role="list"
+  >
+    <div
+      class="MuiBox-root css-1tyx9qz"
+      role="listitem"
+    >
+      <div>
+        card:
+        a/a
+      </div>
+    </div>
+  </div>
+</div>
+`;

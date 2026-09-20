@@ -1,0 +1,62 @@
+import { render, screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import { describe, expect, it } from "vitest";
+import { MemoryRouter, useLocation } from "react-router";
+import { Provider } from "react-redux";
+import { setTheme } from "@repo-radar/core";
+import { store } from "./app/store";
+import { Header } from "./Header";
+
+function LocationProbe() {
+  const location = useLocation();
+  return <div data-testid="location">{location.pathname}</div>;
+}
+
+function renderHeader(initialEntries = ["/"]) {
+  return render(
+    <MemoryRouter initialEntries={initialEntries}>
+      <Provider store={store}>
+        <Header />
+        <LocationProbe />
+      </Provider>
+    </MemoryRouter>,
+  );
+}
+
+describe("Header", () => {
+  it("renders the brand and search box", () => {
+    renderHeader();
+    expect(
+      screen.getByRole("button", { name: /repo radar.*go to dashboard/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/search github repositories/i)).toBeInTheDocument();
+  });
+
+  it("navigates home when the brand is clicked", async () => {
+    renderHeader(["/search?q=react"]);
+    expect(screen.getByTestId("location")).toHaveTextContent("/search");
+
+    await userEvent.click(screen.getByRole("button", { name: /repo radar.*go to dashboard/i }));
+
+    expect(screen.getByTestId("location")).toHaveTextContent("/");
+  });
+
+  it("toggles the theme mode when the theme button is clicked", async () => {
+    store.dispatch(setTheme("dark"));
+    renderHeader();
+
+    await userEvent.click(screen.getByRole("button", { name: /switch to light theme/i }));
+
+    expect(store.getState().theme.mode).toBe("light");
+  });
+
+  it("disables Refresh all when nothing is tracked", () => {
+    renderHeader();
+    expect(screen.getByRole("button", { name: "Refresh all" })).toBeDisabled();
+  });
+
+  it("matches its snapshot", () => {
+    const { container } = renderHeader();
+    expect(container.querySelector("header")).toMatchSnapshot();
+  });
+});
