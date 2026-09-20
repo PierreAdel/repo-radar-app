@@ -7,3 +7,4 @@ export { EmptyState } from "./EmptyState";
 export type { EmptyStateProps } from "./EmptyState";
 export { ErrorFallback } from "./ErrorFallback";
 export type { ErrorFallbackProps } from "./ErrorFallback";
+export { OfflineBanner } from "./OfflineBanner";
