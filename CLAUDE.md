@@ -1,3 +1,7 @@
+## Quality bar
+
+Read CONSTRAINTS.md before writing code. Do not weaken it to make a change pass.
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.

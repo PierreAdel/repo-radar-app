@@ -10,9 +10,11 @@ export default tseslint.config(
     ignores: [
       "**/dist/**",
       "**/.turbo/**",
+      "**/.vercel/**",
       "**/coverage/**",
       "**/node_modules/**",
       "**/storybook-static/**",
+      "graphify-out/**",
     ],
   },
   js.configs.recommended,
