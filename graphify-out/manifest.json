@@ -114,8 +114,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/main.tsx": {
-    "mtime": 1789907688.3925607,
-    "seen": 1789912930.815263,
+    "mtime": 1789944210.7524457,
+    "seen": 1789944223.0481632,
     "ast_hash": "c56b2cb837ca779ad86a8e84ba5b2b03",
     "semantic_hash": ""
   },
@@ -126,8 +126,8 @@
     "semantic_hash": ""
   },
   "apps/web/vite.config.ts": {
-    "mtime": 1789942553.8365219,
-    "seen": 1789942810.5026329,
+    "mtime": 1789944210.7527893,
+    "seen": 1789944223.0481641,
     "ast_hash": "9b193bb6502b36082573683b141ed8fd",
     "semantic_hash": ""
   },
@@ -402,15 +402,15 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789942843.5134957,
-    "seen": 1789942895.5779982,
+    "mtime": 1789943277.6619234,
+    "seen": 1789944223.04821,
     "ast_hash": "a424280363381ed3d1e8bf852424849d",
     "semantic_hash": ""
   },
   "apps/web/index.html": {
-    "mtime": 1789940790.5551913,
-    "seen": 1789940809.3231869,
-    "ast_hash": "e137bfce2db780e054a28035bf34c399",
+    "mtime": 1789944482.723538,
+    "seen": 1789944960.217377,
+    "ast_hash": "1d883e2d32307bfdd3925ee10f8d27c6",
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
@@ -894,27 +894,69 @@
     "semantic_hash": ""
   },
   ".release-please-manifest.json": {
-    "mtime": 1789942797.200764,
-    "seen": 1789942810.5026,
+    "mtime": 1789943277.660354,
+    "seen": 1789944223.0481331,
     "ast_hash": "2f5e01e9c28cac4d3704bf0e9608602c",
     "semantic_hash": ""
   },
   "release-please-config.json": {
-    "mtime": 1789942794.7108076,
-    "seen": 1789942810.5026639,
+    "mtime": 1789943277.6767514,
+    "seen": 1789944223.048198,
     "ast_hash": "3e730443d8b9e83ffe90646b36cf7782",
     "semantic_hash": ""
   },
   ".github/workflows/release-please.yml": {
-    "mtime": 1789942809.2797463,
-    "seen": 1789942895.577995,
+    "mtime": 1789943277.6596375,
+    "seen": 1789944223.0482078,
     "ast_hash": "7620a80a30ccc1f20386f84224afaf57",
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1789942850.056595,
-    "seen": 1789942895.577996,
+    "mtime": 1789943277.6612003,
+    "seen": 1789944223.048209,
     "ast_hash": "844260c6cf8df2b3bbf5f6265ff4ffca",
+    "semantic_hash": ""
+  },
+  "apps/web/public/favicon.svg": {
+    "mtime": 1789944355.3119066,
+    "seen": 1789944372.2247071,
+    "ast_hash": "cc4a057ecd77258c8fca39448993df80",
+    "semantic_hash": ""
+  },
+  "scripts/generate-icons.mjs": {
+    "mtime": 1789944446.2023928,
+    "seen": 1789944461.339066,
+    "ast_hash": "c78a28b425af83b7f98af53848be86bf",
+    "semantic_hash": ""
+  },
+  "apps/web/public/apple-touch-icon.png": {
+    "mtime": 1789944449.8500798,
+    "seen": 1789944461.339082,
+    "ast_hash": "abec37b83a0d47057016dd9a5de9d89d",
+    "semantic_hash": ""
+  },
+  "apps/web/public/favicon-32.png": {
+    "mtime": 1789944449.789551,
+    "seen": 1789944461.339082,
+    "ast_hash": "a236126cda6599e48d7d871e6b180ae2",
+    "semantic_hash": ""
+  },
+  "apps/web/public/icon-512.png": {
+    "mtime": 1789944449.9091208,
+    "seen": 1789944461.3390841,
+    "ast_hash": "4a90ce28f464def2260d55ffd80133a5",
+    "semantic_hash": ""
+  },
+  "scripts/og-image-template.html": {
+    "mtime": 1789944929.393431,
+    "seen": 1789944960.217379,
+    "ast_hash": "6f8c7e6a01b62060f422a91f93a8add7",
+    "semantic_hash": ""
+  },
+  "apps/web/public/og-image.png": {
+    "mtime": 1789944450.033762,
+    "seen": 1789944461.3390841,
+    "ast_hash": "50ba8490e1f10be4468270f21c6e84ec",
     "semantic_hash": ""
   }
 }
