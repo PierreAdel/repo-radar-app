@@ -6,6 +6,7 @@ export {
   untrackRepo,
   selectTrackedFullNames,
   selectIsTracked,
+  TRACKED_REPOS_STORAGE_KEY,
 } from "./store/trackedReposSlice";
 export { themeReducer, toggleTheme, setTheme, selectThemeMode } from "./store/themeSlice";
 export type { ThemeMode } from "./store/themeSlice";

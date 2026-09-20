@@ -305,10 +305,16 @@ here; task exists as a record of the decision.
 
 **Acceptance criteria:**
 
-- [ ] Test drives `SearchBar` → `useRepoSearch` → `@repo-radar/core` `githubApi` → `SearchResultsSection`, with only the network boundary (fetch) mocked
-- [ ] Covers success and error-from-API paths end to end through the component tree
+- [x] Test drives real `Header` (SearchBar + useSearchBox) → URL → real `SearchResultsSection` (useRepoSearch) → real `githubApi`, with only `fetch`/`Request` mocked at the network boundary
+- [x] Covers success and error-from-API paths end to end through the component tree
 
-**Verification:** `pnpm --filter @repo-radar/web test:coverage`
+**Verification:** `pnpm --filter web test:coverage` — 2/2 passing, ~1s real time
+
+**Note:** mixing `vi.useFakeTimers()` with `userEvent.type()` hung the same way
+Task 7's `waitFor` combo did (`userEvent`'s own internal delays get faked too,
+and never got advanced). Used real timers throughout instead — slower
+(~400ms debounce actually elapses) but reliable, and arguably more honest for
+an integration test.
 
 **Dependencies:** Task 8
 
@@ -322,14 +328,25 @@ here; task exists as a record of the decision.
 
 **Acceptance criteria:**
 
-- [ ] Test drives `TrackedRepoControls` → store dispatch → `persistence` → `TrackedReposSection` re-render, with only `localStorage` mocked
-- [ ] Covers track, untrack, and persistence-survives-reload
+- [x] Test drives real `TrackedReposSection` (useTrackedRepoView) → store dispatch (`trackRepo`/`untrackRepo`) → real `persistenceMiddleware` → real jsdom `localStorage`, with only `fetch`/`Request` mocked
+- [x] Covers track, untrack, and persistence-survives-reload
 
-**Verification:** `pnpm --filter @repo-radar/web test:coverage`
+**Verification:** `pnpm --filter web test:coverage` — 3/3 passing
+
+**Note:** `TRACKED_REPOS_STORAGE_KEY` was exported from `trackedReposSlice.ts`
+but never re-exported from `@repo-radar/core`'s barrel (`index.ts`) — a test
+importing it got `undefined` silently (Vite/esbuild doesn't validate named
+imports the way `tsc` does, so this didn't error, it just read `localStorage`
+under the key `"undefined"`). Added it to the barrel — small, legitimate
+addition, it was already a stable public export one level down. The
+persistence-survives-reload sub-test uses `vi.resetModules()` to force
+`trackedReposSlice`'s module-load-time `loadFromStorage()` read to actually
+re-run, simulating a page reload; this reliably re-evaluates the workspace
+package once the key bug above was fixed.
 
 **Dependencies:** Task 10
 
-**Files likely touched:** `apps/web/src/features/tracked-repos/trackedRepoFlow.integration.test.tsx`
+**Files likely touched:** `apps/web/src/features/tracked-repos/trackedRepoFlow.integration.test.tsx`, `packages/core/src/index.ts`
 
 **Estimated scope:** Medium
 
