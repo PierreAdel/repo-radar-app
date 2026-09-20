@@ -11,7 +11,6 @@ ARCHITECTURE-REVIEW.md
 .env.local
 .env.*.local
 !.env.example
-.env*
 # Graphify generated knowledge graph
 graphify-out/
 graph.json
