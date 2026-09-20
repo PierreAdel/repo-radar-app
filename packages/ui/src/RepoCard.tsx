@@ -62,7 +62,6 @@ export const RepoCard = memo(function RepoCard({
                 <Skeleton variant="circular" width={28} height={28} />
               </Stack>
             </Stack>
-            <Skeleton variant="text" width="90%" />
             <Skeleton variant="text" width="70%" />
             <Stack direction="row" spacing={2} sx={{ pt: 0.5 }}>
               <Skeleton variant="text" width={40} />

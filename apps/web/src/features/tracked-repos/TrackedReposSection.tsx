@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { memo, useCallback, useMemo, useRef } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { EmptyState } from "@repo-radar/ui";
@@ -6,16 +6,28 @@ import { TrackedRepoCard } from "./TrackedRepoCard";
 import { useTrackedRepoView } from "./useTrackedRepoView";
 
 const VIRTUALIZE_THRESHOLD = 20;
-const ESTIMATED_ROW_HEIGHT = 180;
+// A single-card row with a typical description measures ~154px
+// (130px card + the row's own GRID_GAP bottom padding); measureElement
+// corrects any drift after mount, this just keeps the initial estimate
+// close so there's less to correct.
+const ESTIMATED_ROW_HEIGHT = 160;
 const GRID_GAP = 3;
 
-function GridListItem({ fullName }: { fullName: string }) {
+const gridListItemSx = { display: "flex", minWidth: 0 } as const;
+const plainGridTemplateColumns = {
+  xs: "minmax(0, 1fr)",
+  sm: "repeat(2, minmax(0, 1fr))",
+  md: "repeat(3, minmax(0, 1fr))",
+} as const;
+const estimateRowSize = () => ESTIMATED_ROW_HEIGHT;
+
+const GridListItem = memo(function GridListItem({ fullName }: { fullName: string }) {
   return (
-    <Box role="listitem" sx={{ display: "flex", minWidth: 0 }}>
+    <Box role="listitem" sx={gridListItemSx}>
       <TrackedRepoCard fullName={fullName} />
     </Box>
   );
-}
+});
 
 export function TrackedReposSection() {
   const { trackedFullNames, sortedFullNames, clearFilters } = useTrackedRepoView();
@@ -33,12 +45,28 @@ export function TrackedReposSection() {
   }, [sortedFullNames, columns]);
 
   const parentRef = useRef<HTMLDivElement>(null);
+  const getScrollElement = useCallback(() => parentRef.current, []);
   const virtualizer = useVirtualizer({
     count: rows.length,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => ESTIMATED_ROW_HEIGHT,
+    getScrollElement,
+    estimateSize: estimateRowSize,
     overscan: 3,
   });
+
+  const rowSx = useMemo(
+    () =>
+      ({
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        pb: GRID_GAP,
+        display: "grid",
+        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+        gap: GRID_GAP,
+      }) as const,
+    [columns],
+  );
 
   if (trackedFullNames.length === 0) {
     return (
@@ -68,11 +96,7 @@ export function TrackedReposSection() {
         role="list"
         sx={{
           display: "grid",
-          gridTemplateColumns: {
-            xs: "minmax(0, 1fr)",
-            sm: "repeat(2, minmax(0, 1fr))",
-            md: "repeat(3, minmax(0, 1fr))",
-          },
+          gridTemplateColumns: plainGridTemplateColumns,
           gap: GRID_GAP,
         }}
       >
@@ -94,17 +118,7 @@ export function TrackedReposSection() {
               key={virtualRow.index}
               data-index={virtualRow.index}
               ref={virtualizer.measureElement}
-              sx={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                pb: GRID_GAP,
-                transform: `translateY(${virtualRow.start}px)`,
-                display: "grid",
-                gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-                gap: GRID_GAP,
-              }}
+              sx={{ ...rowSx, transform: `translateY(${virtualRow.start}px)` }}
             >
               {rowFullNames.map((fullName) => (
                 <GridListItem key={fullName} fullName={fullName} />
