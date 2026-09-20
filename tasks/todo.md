@@ -508,15 +508,20 @@ generate or commit a token; the human creates it out-of-band.
 
 **Acceptance criteria:**
 
-- [ ] `VERCEL_TOKEN`, `VERCEL_PROJECT_ID`, `VERCEL_ORG_ID` confirmed present in repo secrets (human-provided)
-- [ ] CI step polls `GET https://api.vercel.com/v6/deployments?projectId=...` filtered to the current branch/SHA, waits for `READY` state, extracts `.url`
-- [ ] URL exposed as a job output Tasks 21–22 can consume
+- [x] `VERCEL_TOKEN`, `VERCEL_PROJECT_ID`, `VERCEL_ORG_ID` confirmed present in repo secrets (human-provided 2026-09-20, set via `gh secret set`)
+- [x] `scripts/wait-for-vercel-preview.mjs` polls `GET https://api.vercel.com/v6/deployments?projectId=...&teamId=...`, filters to `meta.githubCommitSha === GIT_SHA`, waits for `readyState === "READY"`, prints the URL
+- [x] URL exposed as a job output (`steps.preview.outputs.url` / `steps.target.outputs.url`) Tasks 21–22 consume
 
-**Verification:** Manual — CI job logs show a reachable `*.vercel.app` URL for the branch under test
+**Verification:** tested directly against the real Vercel API (not just CI) — returned a real, live `*.vercel.app` URL on the first call
+
+**Note:** the token was shared in plaintext in chat — flagged to the user as
+something worth rotating in the Vercel dashboard, even though it's now stored
+as an encrypted GitHub secret and was never echoed in any command output or
+committed anywhere.
 
 **Dependencies:** Task 15 (reuses the same CI job); human-provided secrets
 
-**Files likely touched:** `.github/workflows/ci.yml`
+**Files likely touched:** `.github/workflows/ci.yml`, `scripts/wait-for-vercel-preview.mjs`
 
 **Estimated scope:** Small
 
@@ -526,14 +531,28 @@ generate or commit a token; the human creates it out-of-band.
 
 **Acceptance criteria:**
 
-- [ ] `lighthouse` installed as devDependency
-- [ ] CI step runs against the URL from Task 20, asserts LCP ≤2500ms, CLS ≤0.1 per CONSTRAINTS.md
+- [x] `lighthouse` installed as devDependency
+- [x] CI step (`lighthouse` job) runs against the URL from Task 20, asserts LCP ≤2500ms, CLS ≤0.1 per CONSTRAINTS.md (non-blocking `continue-on-error` for now, same as `e2e`)
 
-**Verification:** CI job output shows the Lighthouse JSON report and pass/fail
+**Verification:** ran `scripts/check-lighthouse-budget.mjs` directly against the real Vercel preview — mechanics confirmed working (report generated, budgets checked, correct exit code)
+
+**Real finding, not a script bug:** the actual deployed preview measures
+**3600ms LCP** against the 2500ms budget. Flagged to the user; not fixed here
+— this task was to wire up the check, not to do the performance work it
+surfaces. The non-blocking CI job means this won't fail builds yet.
+
+**Note:** `lighthouse`'s Node API needs an actual Chrome binary via
+`chrome-launcher`, not a Playwright `Browser` object (`browser.wsEndpoint` is
+a Puppeteer API, not Playwright's) — resolved Playwright's already-installed
+Chromium path via `createRequire` chained through `@playwright/test`'s own
+module context (robust to pnpm's store layout, unlike hardcoding the
+`.pnpm/...` path). Also had to add a `globals.node` block to `eslint.config.js`
+for `scripts/**/*.mjs` — nothing previously configured Node globals
+(`process`, `fetch`, etc.) for plain Node scripts outside the workspaces.
 
 **Dependencies:** Task 20
 
-**Files likely touched:** `.github/workflows/ci.yml`, `package.json`
+**Files likely touched:** `.github/workflows/ci.yml`, `package.json`, `scripts/check-lighthouse-budget.mjs`, `eslint.config.js`
 
 **Estimated scope:** Medium
 
@@ -543,15 +562,28 @@ generate or commit a token; the human creates it out-of-band.
 
 **Acceptance criteria:**
 
-- [ ] `k6` installed (brew, or documented alternative for non-macOS contributors)
-- [ ] Scripts for `api/github/search` and `api/github/repo` covering sustained concurrent load
-- [ ] Manual-trigger CI job (not PR-blocking yet, per CONSTRAINTS.md)
+- [x] `k6` installed (`brew install k6`)
+- [x] Scripts for `api/github/search` and `api/github/repo` covering sustained concurrent load (10 VUs, ~70s each, randomized queries/repos so requests aren't identical)
+- [x] Manual-trigger CI job (`stress-test.yml`, `workflow_dispatch` only — not run on push/PR, per CONSTRAINTS.md)
 
-**Verification:** `k6 run` locally against Task 20's URL, review error-rate output
+**Verification:** ran both scripts locally against a real dev server (real GitHub API calls via the proxy) — all checks passed, thresholds met
+
+**Deliberately kept light:** both endpoints proxy to the real GitHub API using
+this deployment's real `GITHUB_TOKEN`, shared with actual users — a heavy
+stress run would burn into the app's real rate-limit budget, not just test
+robustness. Documented in both scripts' header comments so a future deeper
+run is a deliberate choice, not the CI default.
+
+**Note:** local smoke-testing hit an unrelated macOS quirk — k6 resolves
+`localhost` to IPv4 (`127.0.0.1`) specifically, but Vite's dev server was only
+listening on the IPv6 loopback here, so requests got `connection refused`
+despite `curl http://localhost:...` working fine (curl/browsers try both).
+Used `http://[::1]:PORT` to smoke-test locally. Irrelevant in CI, which hits a
+real public Vercel URL by DNS name, not localhost.
 
 **Dependencies:** Task 20
 
-**Files likely touched:** `load-tests/github-search.js`, `load-tests/github-repo.js`, `.github/workflows/ci.yml`
+**Files likely touched:** `load-tests/github-search.js`, `load-tests/github-repo.js`, `.github/workflows/stress-test.yml`, `package.json`, `eslint.config.js`
 
 **Estimated scope:** Medium
 
@@ -561,14 +593,28 @@ generate or commit a token; the human creates it out-of-band.
 
 **Acceptance criteria:**
 
-- [ ] Fixture seeds 1000+ tracked repos into the persisted store
-- [ ] Spec asserts the list renders, stays virtualized (only a viewport's worth of DOM nodes), and stays interactive
+- [x] Fixture seeds 1200 tracked repos into the persisted store (via `page.addInitScript` writing localStorage before the app boots)
+- [x] Spec asserts the list renders, stays virtualized (mounted DOM nodes stay under 50, not 1200), and stays interactive (scrolling mounts different rows)
 
-**Verification:** `pnpm exec playwright test e2e/large-data.spec.ts`
+**Verification:** `pnpm exec playwright test e2e/large-data.spec.ts` — stable across 3 consecutive runs
+
+**Note:** two real gotchas, not obvious from the source alone:
+
+1. `[data-index]` isn't unique to the tracked-repos virtualizer — MUI's chart
+   component uses it too elsewhere on the same dashboard page. An unscoped
+   `page.locator('[data-index]')` silently matched the chart first, so
+   "did scrolling change the mounted rows" never moved. Scoped the locator to
+   the list container itself.
+2. Adding this spec to the suite shifted worker-parallelism timing enough to
+   expose a **pre-existing** ambiguity in `track-repo.spec.ts`: once a repo is
+   tracked, `StarsChartCard`'s accessible chart description text also contains
+   the repo's full name, so `getByText("facebook/react")` intermittently
+   matched two elements depending on whether the chart had rendered yet.
+   Fixed by targeting the repo card's heading role instead of loose text.
 
 **Dependencies:** Task 15
 
-**Files likely touched:** `e2e/large-data.spec.ts`, `e2e/fixtures/large-repo-list.ts`
+**Files likely touched:** `e2e/large-data.spec.ts`, `e2e/track-repo.spec.ts` (selector fix)
 
 **Estimated scope:** Medium
 

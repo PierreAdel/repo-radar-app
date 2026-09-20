@@ -17,7 +17,10 @@ test("tracking a repo from search results, then untracking it", async ({ page })
   await page.getByPlaceholder(/search github repositories/i).fill("");
   await page.waitForURL("/");
   await expect(page.getByText("No tracked repositories yet")).toHaveCount(0);
-  await expect(page.getByText("facebook/react")).toBeVisible();
+  // Not getByText: once tracked, StarsChartCard's accessible chart
+  // description also contains "facebook/react" as plain text. The card
+  // heading is the unambiguous target.
+  await expect(page.getByRole("heading", { name: "facebook/react" })).toBeVisible();
   await assertNoA11yViolations(page);
 
   await page.getByRole("button", { name: /^untrack$/i }).click();
@@ -34,5 +37,5 @@ test("a tracked repo survives a reload", async ({ page }) => {
 
   await page.reload();
 
-  await expect(page.getByText("facebook/react")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "facebook/react" })).toBeVisible();
 });

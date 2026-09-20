@@ -90,3 +90,51 @@ jobs:
 
       - name: Run e2e tests
         run: pnpm e2e
+
+  lighthouse:
+    name: Performance budget (Lighthouse)
+    runs-on: ubuntu-latest
+    # Needs the Vercel preview for this commit to exist and be READY, and the
+    # budget itself is a target to work toward, not a merge gate yet - see
+    # CONSTRAINTS.md's Performance row.
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install chromium
+
+      - name: Wait for Vercel preview deployment
+        id: preview
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          GIT_SHA: ${{ github.sha }}
+        run: |
+          URL=$(node scripts/wait-for-vercel-preview.mjs)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      - name: Check Lighthouse budget
+        run: node scripts/check-lighthouse-budget.mjs "${{ steps.preview.outputs.url }}"
+
+      - name: Upload Lighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: lighthouse-report.json
+          if-no-files-found: ignore

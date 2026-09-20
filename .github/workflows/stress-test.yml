@@ -1,0 +1,59 @@
+name: Stress test (k6)
+
+# Manual-trigger only, not run on every push/PR - see CONSTRAINTS.md's
+# "Stress / load (API)" row. These endpoints proxy to the real GitHub API
+# using this deployment's real GITHUB_TOKEN, shared with real users, so
+# running this automatically on every push would burn into the app's actual
+# rate-limit budget for no reason. Run it deliberately when you actually want
+# a read on how api/github/search and api/github/repo hold up under load.
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "URL to test against (defaults to the latest READY Vercel deployment for this branch)"
+        required: false
+        type: string
+
+jobs:
+  stress-test:
+    name: k6 load test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Resolve target URL
+        id: target
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          GIT_SHA: ${{ github.sha }}
+        run: |
+          if [ -n "${{ inputs.base_url }}" ]; then
+            URL="${{ inputs.base_url }}"
+          else
+            URL=$(node scripts/wait-for-vercel-preview.mjs)
+          fi
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Run search load test
+        run: k6 run -e BASE_URL="${{ steps.target.outputs.url }}" load-tests/github-search.js
+
+      - name: Run repo load test
+        run: k6 run -e BASE_URL="${{ steps.target.outputs.url }}" load-tests/github-repo.js
