@@ -46,6 +46,7 @@
     "vitest": "^2.1.8"
   },
   "dependencies": {
-    "@repo-radar/core": "workspace:^"
+    "@repo-radar/core": "workspace:^",
+    "@sentry/node": "^10.75.0"
   }
 }

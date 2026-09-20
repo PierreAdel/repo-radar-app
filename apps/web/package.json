@@ -19,6 +19,7 @@
     "@reduxjs/toolkit": "^2.3.0",
     "@repo-radar/core": "workspace:*",
     "@repo-radar/ui": "workspace:*",
+    "@sentry/react": "^10.75.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.1.2",
