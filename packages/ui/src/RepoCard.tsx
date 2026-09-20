@@ -11,7 +11,7 @@ import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import type { MouseEvent } from "react";
-import { useState } from "react";
+import { memo, useState } from "react";
 import {
   alpha,
   Avatar,
@@ -38,7 +38,7 @@ export interface RepoCardProps {
   onRefresh?: () => void;
 }
 
-export function RepoCard({
+export const RepoCard = memo(function RepoCard({
   variant,
   repo,
   isTracked,
@@ -116,7 +116,7 @@ export function RepoCard({
       onRefresh={onRefresh}
     />
   );
-}
+});
 
 interface RepoCardContentProps {
   variant: "result" | "tracked";
@@ -128,7 +128,7 @@ interface RepoCardContentProps {
   onRefresh?: () => void;
 }
 
-function RepoCardContent({
+const RepoCardContent = memo(function RepoCardContent({
   variant,
   repo,
   isTracked,
@@ -317,4 +317,4 @@ function RepoCardContent({
       </CardContent>
     </Card>
   );
-}
+});
