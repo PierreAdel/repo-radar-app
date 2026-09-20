@@ -402,14 +402,14 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789943277.6619234,
-    "seen": 1789944223.04821,
-    "ast_hash": "a424280363381ed3d1e8bf852424849d",
+    "mtime": 1789946789.9957838,
+    "seen": 1789946808.150669,
+    "ast_hash": "6c283168f16123ebe1ad350366a1544d",
     "semantic_hash": ""
   },
   "apps/web/index.html": {
-    "mtime": 1789944482.723538,
-    "seen": 1789944960.217377,
+    "mtime": 1789945235.3496757,
+    "seen": 1789945249.9683042,
     "ast_hash": "1d883e2d32307bfdd3925ee10f8d27c6",
     "semantic_hash": ""
   },
@@ -918,45 +918,93 @@
     "semantic_hash": ""
   },
   "apps/web/public/favicon.svg": {
-    "mtime": 1789944355.3119066,
-    "seen": 1789944372.2247071,
+    "mtime": 1789945235.3506079,
+    "seen": 1789945249.968307,
     "ast_hash": "cc4a057ecd77258c8fca39448993df80",
     "semantic_hash": ""
   },
   "scripts/generate-icons.mjs": {
-    "mtime": 1789944446.2023928,
-    "seen": 1789944461.339066,
+    "mtime": 1789945235.3611462,
+    "seen": 1789945249.968291,
     "ast_hash": "c78a28b425af83b7f98af53848be86bf",
     "semantic_hash": ""
   },
   "apps/web/public/apple-touch-icon.png": {
-    "mtime": 1789944449.8500798,
-    "seen": 1789944461.339082,
+    "mtime": 1789945235.350067,
+    "seen": 1789945249.9683058,
     "ast_hash": "abec37b83a0d47057016dd9a5de9d89d",
     "semantic_hash": ""
   },
   "apps/web/public/favicon-32.png": {
-    "mtime": 1789944449.789551,
-    "seen": 1789944461.339082,
+    "mtime": 1789945235.350301,
+    "seen": 1789945249.968307,
     "ast_hash": "a236126cda6599e48d7d871e6b180ae2",
     "semantic_hash": ""
   },
   "apps/web/public/icon-512.png": {
-    "mtime": 1789944449.9091208,
-    "seen": 1789944461.3390841,
+    "mtime": 1789945235.3513167,
+    "seen": 1789945249.968308,
     "ast_hash": "4a90ce28f464def2260d55ffd80133a5",
     "semantic_hash": ""
   },
   "scripts/og-image-template.html": {
-    "mtime": 1789944929.393431,
-    "seen": 1789944960.217379,
+    "mtime": 1789945235.3613257,
+    "seen": 1789945249.9683058,
     "ast_hash": "6f8c7e6a01b62060f422a91f93a8add7",
     "semantic_hash": ""
   },
   "apps/web/public/og-image.png": {
-    "mtime": 1789944450.033762,
-    "seen": 1789944461.3390841,
+    "mtime": 1789945235.352891,
+    "seen": 1789945249.968308,
     "ast_hash": "50ba8490e1f10be4468270f21c6e84ec",
+    "semantic_hash": ""
+  },
+  "docs/screenshots/dashboard-desktop-dark.png": {
+    "mtime": 1789946639.6453514,
+    "seen": 1789946654.048169,
+    "ast_hash": "3fac4fa8d39eebc808c6f58bc759cfe0",
+    "semantic_hash": ""
+  },
+  "docs/screenshots/dashboard-desktop-light.png": {
+    "mtime": 1789946642.7811997,
+    "seen": 1789946654.04817,
+    "ast_hash": "94f545376dc69518774d227f911b82a4",
+    "semantic_hash": ""
+  },
+  "docs/screenshots/dashboard-mobile-dark.png": {
+    "mtime": 1789946641.0446146,
+    "seen": 1789946654.04817,
+    "ast_hash": "0aad19976bed458823eae5379296f1bc",
+    "semantic_hash": ""
+  },
+  "docs/screenshots/offline-banner-desktop.png": {
+    "mtime": 1789946650.2781816,
+    "seen": 1789946654.048171,
+    "ast_hash": "c3b8ffe2d3932706b2252c82191bba03",
+    "semantic_hash": ""
+  },
+  "docs/screenshots/repo-card-expanded-desktop.png": {
+    "mtime": 1789946644.640812,
+    "seen": 1789946654.048171,
+    "ast_hash": "ff40a541ff9228769db060b185ecee6e",
+    "semantic_hash": ""
+  },
+  "docs/screenshots/search-results-desktop.png": {
+    "mtime": 1789946646.6598742,
+    "seen": 1789946654.048172,
+    "ast_hash": "2ba589b6545a778a71dd3917d848121a",
+    "semantic_hash": ""
+  },
+  "docs/screenshots/search-results-mobile.png": {
+    "mtime": 1789946648.6594818,
+    "seen": 1789946654.048172,
+    "ast_hash": "98728ddefb8ffee9ee1f96d8d1a9d016",
+    "semantic_hash": ""
+  },
+  "docs/FEATURES.md": {
+    "mtime": 1789946801.504082,
+    "seen": 1789946808.150671,
+    "ast_hash": "dcc8f0d3a0bb3d9db48cc905d85abc3b",
     "semantic_hash": ""
   }
 }
