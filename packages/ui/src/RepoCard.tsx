@@ -1,5 +1,5 @@
 import type { ApiError, GithubRepo } from "@repo-radar/core";
-import { formatCompactNumber, formatRelativeTime } from "@repo-radar/core";
+import { formatCompactNumber, formatRelativeTime, isSafeHttpUrl } from "@repo-radar/core";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import BookmarkRemoveOutlinedIcon from "@mui/icons-material/BookmarkRemoveOutlined";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
@@ -273,15 +273,21 @@ function RepoCardContent({
               License: {repo.license ?? "None"}
             </Typography>
             {repo.homepage ? (
-              <Link
-                href={repo.homepage}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(event) => event.stopPropagation()}
-                variant="caption"
-              >
-                {repo.homepage}
-              </Link>
+              isSafeHttpUrl(repo.homepage) ? (
+                <Link
+                  href={repo.homepage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(event) => event.stopPropagation()}
+                  variant="caption"
+                >
+                  {repo.homepage}
+                </Link>
+              ) : (
+                <Typography variant="caption" color="text.secondary">
+                  {repo.homepage}
+                </Typography>
+              )
             ) : (
               <Typography variant="caption" color="text.secondary">
                 No homepage set
