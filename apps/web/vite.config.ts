@@ -84,9 +84,7 @@ export default defineConfig(({ mode }) => {
         output: {
           // Splits the previously-monolithic main chunk into vendor groups
           // that change at different rates, so a deploy that only touches
-          // app code doesn't invalidate the browser's cache of React, MUI,
-          // etc. too. Groups picked by measuring apps/web/dist/assets/index-*.js
-          // with ANALYZE=1.
+          // app code doesn't invalidate the browser's cache of React.
           manualChunks(id) {
             if (
               !id.includes("node_modules") ||
