@@ -9,6 +9,14 @@ const VIRTUALIZE_THRESHOLD = 20;
 const ESTIMATED_ROW_HEIGHT = 180;
 const GRID_GAP = 3;
 
+function GridListItem({ fullName }: { fullName: string }) {
+  return (
+    <Box role="listitem" sx={{ display: "flex", minWidth: 0 }}>
+      <TrackedRepoCard fullName={fullName} />
+    </Box>
+  );
+}
+
 export function TrackedReposSection() {
   const { trackedFullNames, sortedFullNames, clearFilters } = useTrackedRepoView();
   const theme = useTheme();
@@ -65,9 +73,7 @@ export function TrackedReposSection() {
         }}
       >
         {sortedFullNames.map((fullName) => (
-          <Box role="listitem" key={fullName}>
-            <TrackedRepoCard fullName={fullName} />
-          </Box>
+          <GridListItem key={fullName} fullName={fullName} />
         ))}
       </Box>
     );
@@ -97,9 +103,7 @@ export function TrackedReposSection() {
               }}
             >
               {rowFullNames.map((fullName) => (
-                <Box role="listitem" key={fullName}>
-                  <TrackedRepoCard fullName={fullName} />
-                </Box>
+                <GridListItem key={fullName} fullName={fullName} />
               ))}
             </Box>
           );
