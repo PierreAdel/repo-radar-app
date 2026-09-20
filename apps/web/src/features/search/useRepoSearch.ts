@@ -22,7 +22,10 @@ export function useRepoSearch() {
   const page = Math.max(1, Number(searchParams.get("page")) || 1);
 
   const skip = query.length < MIN_QUERY_LENGTH;
-  const { data, isLoading, error } = useSearchRepositoriesQuery({ query, page }, { skip });
+  const { data, isLoading, isFetching, error } = useSearchRepositoriesQuery(
+    { query, page },
+    { skip },
+  );
 
   const items = data?.items ?? [];
   const hasMore = !skip && items.length < Math.min(data?.totalCount ?? 0, MAX_RESULTS);
@@ -42,6 +45,7 @@ export function useRepoSearch() {
     query,
     items,
     isLoading: isLoading && page === 1,
+    isLoadingMore: isFetching && page > 1,
     error: toApiError(error),
     hasMore,
     loadMore,

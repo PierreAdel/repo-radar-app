@@ -1,14 +1,36 @@
-import { useState } from "react";
-import { Box, Button, Stack } from "@mui/material";
+import { useMemo, useRef } from "react";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { EmptyState } from "@repo-radar/ui";
 import { TrackedRepoCard } from "./TrackedRepoCard";
 import { useTrackedRepoView } from "./useTrackedRepoView";
 
-const PAGE_SIZE = 6;
+const VIRTUALIZE_THRESHOLD = 20;
+const ESTIMATED_ROW_HEIGHT = 180;
+const GRID_GAP = 3;
 
 export function TrackedReposSection() {
   const { trackedFullNames, sortedFullNames, clearFilters } = useTrackedRepoView();
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const columns = isMd ? 3 : isSm ? 2 : 1;
+
+  const rows = useMemo(() => {
+    const chunked: string[][] = [];
+    for (let i = 0; i < sortedFullNames.length; i += columns) {
+      chunked.push(sortedFullNames.slice(i, i + columns));
+    }
+    return chunked;
+  }, [sortedFullNames, columns]);
+
+  const parentRef = useRef<HTMLDivElement>(null);
+  const virtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => ESTIMATED_ROW_HEIGHT,
+    overscan: 3,
+  });
 
   if (trackedFullNames.length === 0) {
     return (
@@ -30,26 +52,52 @@ export function TrackedReposSection() {
     );
   }
 
-  const visibleFullNames = sortedFullNames.slice(0, visibleCount);
-
-  return (
-    <Stack spacing={2}>
+  if (sortedFullNames.length < VIRTUALIZE_THRESHOLD) {
+    return (
       <Box
         sx={{
           display: "grid",
           gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
-          gap: 3,
+          gap: GRID_GAP,
         }}
       >
-        {visibleFullNames.map((fullName) => (
+        {sortedFullNames.map((fullName) => (
           <TrackedRepoCard key={fullName} fullName={fullName} />
         ))}
       </Box>
-      {visibleCount < sortedFullNames.length ? (
-        <Button variant="outlined" onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}>
-          Load more
-        </Button>
-      ) : null}
-    </Stack>
+    );
+  }
+
+  return (
+    <Box ref={parentRef} sx={{ maxHeight: "75vh", overflowY: "auto" }}>
+      <Box sx={{ position: "relative", height: virtualizer.getTotalSize() }}>
+        {virtualizer.getVirtualItems().map((virtualRow) => {
+          const rowFullNames = rows[virtualRow.index];
+          if (!rowFullNames) return null;
+          return (
+            <Box
+              key={virtualRow.index}
+              data-index={virtualRow.index}
+              ref={virtualizer.measureElement}
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                pb: GRID_GAP,
+                transform: `translateY(${virtualRow.start}px)`,
+                display: "grid",
+                gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                gap: GRID_GAP,
+              }}
+            >
+              {rowFullNames.map((fullName) => (
+                <TrackedRepoCard key={fullName} fullName={fullName} />
+              ))}
+            </Box>
+          );
+        })}
+      </Box>
+    </Box>
   );
 }
