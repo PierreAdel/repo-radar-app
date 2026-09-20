@@ -10,7 +10,8 @@ import {
   type SelectChangeEvent,
 } from "@mui/material";
 import { formatCompactNumber } from "@repo-radar/core";
-import { type SortKey, useTrackedRepoView } from "./useTrackedRepoView";
+import { type SortKey } from "./trackedRepoSort";
+import { useTrackedRepoView } from "./useTrackedRepoView";
 
 export function TrackedRepoControls() {
   const {
