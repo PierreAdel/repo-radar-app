@@ -115,7 +115,7 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          GIT_SHA: ${{ github.sha }}
+          GIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           URL=$(node scripts/wait-for-vercel-preview.mjs)
           echo "url=$URL" >> "$GITHUB_OUTPUT"
