@@ -94,6 +94,7 @@ export function SearchResultsSection() {
     isLoading,
     isLoadingMore,
     error,
+    onRetry,
     hasMore,
     loadMore,
     isTracked,
@@ -123,8 +124,11 @@ export function SearchResultsSection() {
     );
   }
 
-  if (error) {
-    return <RepoCard variant="result" error={error} />;
+  // A "Load more" failure still has page 1's items in the cache (RTK Query
+  // keeps the last successful data around on a refetch error) - only replace
+  // the whole section with the error card when there's nothing to show yet.
+  if (error && items.length === 0) {
+    return <RepoCard variant="result" error={error} onRefresh={onRetry} />;
   }
 
   if (items.length === 0) {
@@ -144,7 +148,16 @@ export function SearchResultsSection() {
         Search results
       </Typography>
       <ListComponent items={items} isTracked={isTracked} onTrack={onTrack} onUntrack={onUntrack} />
-      {hasMore ? (
+      {error ? (
+        <Stack direction="row" spacing={1.5} alignItems="center" role="alert">
+          <Typography variant="body2" color="error" sx={{ flex: 1 }}>
+            {error.message}
+          </Typography>
+          <Button variant="outlined" size="small" onClick={onRetry}>
+            Retry
+          </Button>
+        </Stack>
+      ) : hasMore ? (
         <Button
           variant="outlined"
           onClick={loadMore}

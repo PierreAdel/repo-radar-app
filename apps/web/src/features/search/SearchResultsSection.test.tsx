@@ -20,6 +20,7 @@ function baseResult(overrides: Partial<ReturnType<typeof useRepoSearch>> = {}) {
     isLoading: false,
     isLoadingMore: false,
     error: undefined,
+    onRetry: vi.fn(),
     hasMore: false,
     loadMore: vi.fn(),
     isTracked: () => false,
@@ -72,9 +73,32 @@ describe("SearchResultsSection", () => {
     expect(container.querySelectorAll(".MuiSkeleton-root").length).toBeGreaterThan(0);
   });
 
-  it("shows an error state", () => {
-    renderAtSearchWith(baseResult({ error: { status: 500, message: "GitHub is down." } }));
+  it("shows an error state with a working retry button", async () => {
+    const onRetry = vi.fn();
+    renderAtSearchWith(baseResult({ error: { status: 500, message: "GitHub is down." }, onRetry }));
     expect(screen.getByText("GitHub is down.")).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Retry" }));
+    expect(onRetry).toHaveBeenCalledOnce();
+  });
+
+  it("keeps existing results visible when a 'Load more' page fails, with an inline retry", async () => {
+    const onRetry = vi.fn();
+    renderAtSearchWith(
+      baseResult({
+        items: [repo(1), repo(2)],
+        error: { status: 500, message: "GitHub is down." },
+        onRetry,
+      }),
+    );
+
+    expect(screen.getByText("owner/repo-1")).toBeInTheDocument();
+    expect(screen.getByText("owner/repo-2")).toBeInTheDocument();
+    expect(screen.getByText("GitHub is down.")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Load more" })).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Retry" }));
+    expect(onRetry).toHaveBeenCalledOnce();
   });
 
   it("shows a not-found message with no results", () => {
