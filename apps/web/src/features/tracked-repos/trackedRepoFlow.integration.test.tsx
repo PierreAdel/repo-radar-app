@@ -3,7 +3,15 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router";
-import { TRACKED_REPOS_STORAGE_KEY } from "@repo-radar/core";
+import { Provider } from "react-redux";
+import {
+  githubApi,
+  persistenceMiddleware,
+  trackedReposReducer,
+  trackRepo,
+  TRACKED_REPOS_STORAGE_KEY,
+} from "@repo-radar/core";
+import { TrackedReposSection } from "./TrackedReposSection";
 
 // Real store + real persistenceMiddleware + real localStorage (jsdom provides
 // a working one; no need to mock it), only the network boundary mocked, same
@@ -42,29 +50,25 @@ function repoBody(fullName: string) {
   };
 }
 
-async function importFresh() {
-  // The tracked-repos slice reads localStorage into its initialState once, at
-  // module load — the same way a real page load re-reads it. Reset the module
-  // registry so each "reload" actually re-executes that read, instead of
-  // reusing whatever the previous test's in-memory store already had.
-  vi.resetModules();
-  const core = await import("@repo-radar/core");
-  const { TrackedReposSection } = await import("./TrackedReposSection");
-  return { core, TrackedReposSection };
-}
-
-function makeStore(core: Awaited<ReturnType<typeof importFresh>>["core"]) {
+function makeStore() {
   return configureStore({
     reducer: {
-      [core.githubApi.reducerPath]: core.githubApi.reducer,
-      trackedRepos: core.trackedReposReducer,
+      [githubApi.reducerPath]: githubApi.reducer,
+      trackedRepos: trackedReposReducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(
-        core.githubApi.middleware,
-        core.persistenceMiddleware.middleware,
-      ),
+      getDefaultMiddleware().concat(githubApi.middleware, persistenceMiddleware.middleware),
   });
+}
+
+function renderSection(store: ReturnType<typeof makeStore>) {
+  return render(
+    <MemoryRouter>
+      <Provider store={store}>
+        <TrackedReposSection />
+      </Provider>
+    </MemoryRouter>,
+  );
 }
 
 describe("track-repo flow (integration)", () => {
@@ -74,42 +78,26 @@ describe("track-repo flow (integration)", () => {
   });
 
   it("tracking a repo persists it and renders its card", async () => {
-    const { core, TrackedReposSection } = await importFresh();
-    const store = makeStore(core);
+    const store = makeStore();
     fetchMock.mockReturnValueOnce(jsonResponse(repoBody("octocat/hello-world")));
 
-    const { Provider } = await import("react-redux");
-    render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <TrackedReposSection />
-        </Provider>
-      </MemoryRouter>,
-    );
+    renderSection(store);
     expect(screen.getByText("No tracked repositories yet")).toBeInTheDocument();
 
-    store.dispatch(core.trackRepo("octocat/hello-world"));
+    store.dispatch(trackRepo("octocat/hello-world"));
 
     await waitFor(() => expect(screen.getByText("octocat/hello-world")).toBeInTheDocument());
-    expect(JSON.parse(window.localStorage.getItem(core.TRACKED_REPOS_STORAGE_KEY)!)).toEqual([
+    expect(JSON.parse(window.localStorage.getItem(TRACKED_REPOS_STORAGE_KEY)!)).toEqual([
       "octocat/hello-world",
     ]);
   });
 
   it("untracking removes the card and updates storage", async () => {
-    const { core, TrackedReposSection } = await importFresh();
-    const store = makeStore(core);
+    const store = makeStore();
     fetchMock.mockReturnValueOnce(jsonResponse(repoBody("octocat/hello-world")));
 
-    const { Provider } = await import("react-redux");
-    render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <TrackedReposSection />
-        </Provider>
-      </MemoryRouter>,
-    );
-    store.dispatch(core.trackRepo("octocat/hello-world"));
+    renderSection(store);
+    store.dispatch(trackRepo("octocat/hello-world"));
     await waitFor(() => expect(screen.getByText("octocat/hello-world")).toBeInTheDocument());
 
     await userEvent.click(screen.getByRole("button", { name: /untrack/i }));
@@ -117,28 +105,45 @@ describe("track-repo flow (integration)", () => {
     await waitFor(() =>
       expect(screen.getByText("No tracked repositories yet")).toBeInTheDocument(),
     );
-    expect(JSON.parse(window.localStorage.getItem(core.TRACKED_REPOS_STORAGE_KEY)!)).toEqual([]);
+    expect(JSON.parse(window.localStorage.getItem(TRACKED_REPOS_STORAGE_KEY)!)).toEqual([]);
   });
 
+  // Unlike the two tests above, this one needs trackedReposSlice's
+  // initialState to actually re-read localStorage - which only happens at
+  // module load - so it pays for a full module reset + re-import instead of
+  // reusing the file's shared top-level import. Under a loaded/parallel test
+  // run that module re-execution plus the render+fetch round trip can run
+  // close to the default 5s test timeout, so it gets its own explicit budget.
   it("survives a simulated reload: a fresh store picks up what was persisted", async () => {
     window.localStorage.setItem(TRACKED_REPOS_STORAGE_KEY, JSON.stringify(["octocat/hello-world"]));
 
-    // Re-importing forces trackedReposSlice's initialState to re-read
-    // localStorage, the same way a real page reload would.
-    const { core, TrackedReposSection } = await importFresh();
-    const store = makeStore(core);
+    vi.resetModules();
+    const core = await import("@repo-radar/core");
+    const { TrackedReposSection: FreshTrackedReposSection } = await import("./TrackedReposSection");
+    const { Provider: FreshProvider } = await import("react-redux");
+
+    const store = configureStore({
+      reducer: {
+        [core.githubApi.reducerPath]: core.githubApi.reducer,
+        trackedRepos: core.trackedReposReducer,
+      },
+      middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(
+          core.githubApi.middleware,
+          core.persistenceMiddleware.middleware,
+        ),
+    });
     fetchMock.mockReturnValueOnce(jsonResponse(repoBody("octocat/hello-world")));
 
-    const { Provider } = await import("react-redux");
     render(
       <MemoryRouter>
-        <Provider store={store}>
-          <TrackedReposSection />
-        </Provider>
+        <FreshProvider store={store}>
+          <FreshTrackedReposSection />
+        </FreshProvider>
       </MemoryRouter>,
     );
 
     expect(store.getState().trackedRepos.fullNames).toEqual(["octocat/hello-world"]);
     await waitFor(() => expect(screen.getByText("octocat/hello-world")).toBeInTheDocument());
-  });
+  }, 15000);
 });
