@@ -78,8 +78,14 @@ export function Header() {
           </Box>
           <Stack direction="row" spacing={1} alignItems="center">
             <Tooltip title="Refresh all">
-              <span style={{ display: "contents" }}>
+              {/* MUI clones its aria-label onto this wrapper span (needed so the
+                  tooltip still triggers when the real button is disabled) — but a
+                  span has no role, so that aria-label is itself invalid ARIA usage.
+                  The IconButton below carries its own aria-label instead; this
+                  explicit override stops Tooltip from also placing one here. */}
+              <span aria-label={undefined} style={{ display: "contents" }}>
                 <IconButton
+                  aria-label="Refresh all"
                   sx={{ display: { xs: "inline-flex", md: "none" } }}
                   onClick={handleRefreshAll}
                   disabled={trackedFullNames.length === 0}

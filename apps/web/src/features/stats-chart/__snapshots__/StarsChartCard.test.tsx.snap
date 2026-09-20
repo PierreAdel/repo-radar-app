@@ -1,0 +1,224 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StarsChartCard > matches its snapshot 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1j74uew-MuiPaper-root-MuiCard-root"
+    style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+  >
+    <div
+      class="MuiCardContent-root css-1lt5qva-MuiCardContent-root"
+    >
+      <h2
+        class="MuiTypography-root MuiTypography-h6 css-iq29cq-MuiTypography-root"
+      >
+        Stars by repo
+      </h2>
+      <div
+        class="MuiStack-root css-jfdv4h-MuiStack-root"
+      >
+        <div
+          aria-hidden="true"
+          class="MuiBox-root css-0"
+        >
+          <div
+            class="css-u9z205-MuiResponsiveChart-container"
+          >
+            <svg
+              class="css-1evyvmv-MuiChartsSurface-root"
+              height="260"
+              viewBox="0 0 100 260"
+              width="100"
+            >
+              <title />
+              <desc />
+              <defs />
+              <g
+                class="MuiChartsGrid-root css-g2sgfh-MuiChartsGrid-root"
+              >
+                <line
+                  class="MuiChartsGrid-line MuiChartsGrid-horizontalLine css-195sd4n-MuiChartsGrid-line"
+                  x1="56"
+                  x2="56"
+                  y1="210"
+                  y2="210"
+                />
+                <line
+                  class="MuiChartsGrid-line MuiChartsGrid-horizontalLine css-195sd4n-MuiChartsGrid-line"
+                  x1="56"
+                  x2="56"
+                  y1="130"
+                  y2="130"
+                />
+                <line
+                  class="MuiChartsGrid-line MuiChartsGrid-horizontalLine css-195sd4n-MuiChartsGrid-line"
+                  x1="56"
+                  x2="56"
+                  y1="50"
+                  y2="50"
+                />
+              </g>
+              <g
+                clip-path="url(#_r_4_-clip-path)"
+              >
+                <clippath
+                  id="_r_5__auto-generated-id-0_0_0"
+                >
+                  <rect
+                    style="height: 0px; width: 0px; clip-path: inset(0px round 0px 0px 0px 0px); transform: translate3d(56px,210px,0);"
+                  />
+                </clippath>
+                <g
+                  clip-path="url(#_r_5__auto-generated-id-0_0_0)"
+                >
+                  <rect
+                    class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
+                    cursor="unset"
+                    style="height: 0px; width: 0px; transform: translate3d(56px,210px,0);"
+                  />
+                </g>
+              </g>
+              <g
+                class="MuiChartsAxis-root MuiChartsAxis-directionX MuiChartsAxis-bottom css-1x2wln8-MuiChartsAxis-root-MuiChartsXAxis-root"
+                transform="translate(0, 210)"
+              >
+                <line
+                  class="MuiChartsAxis-line"
+                  x1="56"
+                  x2="56"
+                />
+                <g
+                  class="MuiChartsAxis-tickContainer"
+                  transform="translate(56, 0)"
+                >
+                  <line
+                    class="MuiChartsAxis-tick"
+                    y2="6"
+                  />
+                  <text
+                    class="MuiChartsAxis-tickLabel"
+                    dominant-baseline="hanging"
+                    style="font-size: 12px;"
+                    text-anchor="middle"
+                    x="0"
+                    y="9"
+                  >
+                    <tspan
+                      dominant-baseline="hanging"
+                      dy="0px"
+                      x="0"
+                    >
+                      a
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+              <g
+                class="MuiChartsAxis-root MuiChartsAxis-directionY MuiChartsAxis-left css-175e1i1-MuiChartsAxis-root-MuiChartsYAxis-root"
+                transform="translate(56, 0)"
+              >
+                <line
+                  class="MuiChartsAxis-line"
+                  stroke-linecap="square"
+                  y1="50"
+                  y2="210"
+                />
+                <g
+                  class="MuiChartsAxis-tickContainer"
+                  transform="translate(0, 210)"
+                >
+                  <line
+                    class="MuiChartsAxis-tick"
+                    x2="-6"
+                  />
+                  <text
+                    class="MuiChartsAxis-tickLabel"
+                    dominant-baseline="central"
+                    style="font-size: 12px;"
+                    text-anchor="end"
+                    x="-8"
+                    y="0"
+                  >
+                    <tspan
+                      dominant-baseline="central"
+                      dy="0px"
+                      x="-8"
+                    >
+                      0
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  class="MuiChartsAxis-tickContainer"
+                  transform="translate(0, 130)"
+                >
+                  <line
+                    class="MuiChartsAxis-tick"
+                    x2="-6"
+                  />
+                  <text
+                    class="MuiChartsAxis-tickLabel"
+                    dominant-baseline="central"
+                    style="font-size: 12px;"
+                    text-anchor="end"
+                    x="-8"
+                    y="0"
+                  >
+                    <tspan
+                      dominant-baseline="central"
+                      dy="0px"
+                      x="-8"
+                    >
+                      5
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  class="MuiChartsAxis-tickContainer"
+                  transform="translate(0, 50)"
+                >
+                  <line
+                    class="MuiChartsAxis-tick"
+                    x2="-6"
+                  />
+                  <text
+                    class="MuiChartsAxis-tickLabel"
+                    dominant-baseline="central"
+                    style="font-size: 12px;"
+                    text-anchor="end"
+                    x="-8"
+                    y="0"
+                  >
+                    <tspan
+                      dominant-baseline="central"
+                      dy="0px"
+                      x="-8"
+                    >
+                      10
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+              <clippath
+                id="_r_4_-clip-path"
+              >
+                <rect
+                  height="160"
+                  width="0"
+                  x="56"
+                  y="50"
+                />
+              </clippath>
+            </svg>
+          </div>
+        </div>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1xb0p9z-MuiTypography-root"
+        >
+          a/a: 10 stars
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

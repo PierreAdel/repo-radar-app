@@ -1,0 +1,36 @@
+name: Stress test (k6)
+
+# Manual-trigger only, not run on every push/PR - see CONSTRAINTS.md's
+# "Stress / load (API)" row. Hits GitHub's API directly using a dedicated
+# testing token, isolated from the app's real GITHUB_TOKEN and its
+# production rate-limit budget - see load-tests/*.js for why.
+#
+# The token is TESTING_GITHUB_TOKEN, scoped to the "Preview" GitHub
+# Environment (Vercel's integration created Preview/Production environments
+# and mirrors its own env vars into them) - not a plain repo secret, so this
+# job must declare `environment:` or secrets.TESTING_GITHUB_TOKEN resolves
+# to nothing even with the right name.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  stress-test:
+    name: k6 load test
+    runs-on: ubuntu-latest
+    environment: Preview
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Run search load test
+        env:
+          GITHUB_TOKEN_TESTING: ${{ secrets.TESTING_GITHUB_TOKEN }}
+        run: k6 run load-tests/github-search.js
+
+      - name: Run repo load test
+        env:
+          GITHUB_TOKEN_TESTING: ${{ secrets.TESTING_GITHUB_TOKEN }}
+        run: k6 run load-tests/github-repo.js

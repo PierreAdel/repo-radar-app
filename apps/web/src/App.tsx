@@ -1,16 +1,21 @@
 import { Suspense, lazy, useEffect, useRef } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router";
 import { CircularProgress, Container, Link, Stack, Typography } from "@mui/material";
+import { OfflineBanner } from "@repo-radar/ui";
 import { Header } from "./Header";
 import { TrackedRepoControls } from "./features/tracked-repos/TrackedRepoControls";
 import { TrackedReposSection } from "./features/tracked-repos/TrackedReposSection";
+import { useOnlineStatus } from "./app/useOnlineStatus";
 
+// MUI's sx treats bare numbers for width/height as fractions (1 -> "100%"),
+// not px, so these need explicit units or the "1x1px" box becomes full-size
+// and inflates the page's scrollable area even though it stays invisible.
 const visuallyHidden = {
   position: "absolute",
-  width: 1,
-  height: 1,
+  width: "1px",
+  height: "1px",
   padding: 0,
-  margin: -1,
+  margin: "-1px",
   overflow: "hidden",
   clip: "rect(0, 0, 0, 0)",
   whiteSpace: "nowrap",
@@ -53,6 +58,7 @@ function App() {
   const location = useLocation();
   const mainRef = useRef<HTMLElement>(null);
   const isFirstRender = useRef(true);
+  const isOnline = useOnlineStatus();
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -84,6 +90,7 @@ function App() {
       >
         Skip to main content
       </Link>
+      {isOnline ? null : <OfflineBanner />}
       <Header />
       <Container
         component="main"

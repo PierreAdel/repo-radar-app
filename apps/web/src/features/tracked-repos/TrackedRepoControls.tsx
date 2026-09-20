@@ -10,7 +10,8 @@ import {
   type SelectChangeEvent,
 } from "@mui/material";
 import { formatCompactNumber } from "@repo-radar/core";
-import { type SortKey, useTrackedRepoView } from "./useTrackedRepoView";
+import { type SortKey } from "./trackedRepoSort";
+import { useTrackedRepoView } from "./useTrackedRepoView";
 
 export function TrackedRepoControls() {
   const {
@@ -90,7 +91,7 @@ export function TrackedRepoControls() {
           size="small"
           value={sortKey}
           onChange={handleSortChange}
-          aria-label="Sort tracked repos by"
+          SelectDisplayProps={{ "aria-label": "Sort tracked repos by" }}
           sx={{ flexShrink: 0, ml: { sm: "auto" } }}
         >
           <MenuItem value="stars" aria-label="Sort by stars">
