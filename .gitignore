@@ -11,9 +11,12 @@ ARCHITECTURE-REVIEW.md
 .env.local
 .env.*.local
 !.env.example
-# Graphify generated knowledge graph
-graphify-out/
-graph.json
+# Graphify generated knowledge graph (graphify-out/ itself is committed so the
+# team shares one map; only local-machine-specific outputs are excluded)
+graphify-out/**/cost.json
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/needs_update
 # Personal Claude Code hook config (machine-specific paths)
 .claude/settings.json
 SPEC.md
