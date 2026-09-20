@@ -28,11 +28,11 @@ const chrome = await chromeLauncher.launch({
 });
 
 try {
-  const runnerResult = await lighthouse(
-    url,
-    { port: chrome.port, output: "json", logLevel: "error" },
-    undefined,
-  );
+  const runnerResult = await lighthouse(url, {
+    port: chrome.port,
+    output: "json",
+    logLevel: "error",
+  });
 
   await writeFile("lighthouse-report.json", runnerResult.report);
 
