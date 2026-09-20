@@ -26,18 +26,26 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
+      # jsdom 30 (used by the vitest suites) ships an undici that calls a webidl API missing
+      # from Node 20's runtime — "webidl.util.markAsUncloneable is not a function" — so this
+      # needs a newer Node than the package's "engines": ">=20" floor. 22 is the current LTS.
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
-      # Not --frozen-lockfile: this repo's history was assembled as a sequence of incremental
-      # PRs, and a single lockfile is committed as a whole rather than re-resolved per PR, so a
-      # strict frozen check would reject perfectly valid intermediate commits. A plain install
-      # still fails on genuinely broken dependency state, just without that extra rigidity.
+      # --no-frozen-lockfile: pnpm auto-enables frozen-lockfile whenever it detects a CI
+      # environment, regardless of which install flags are passed, so this has to be explicit.
+      # This repo's history was assembled as a sequence of incremental PRs, and the lockfile is
+      # committed as a whole rather than re-resolved per PR, so a strict frozen check would
+      # reject perfectly valid intermediate commits. A plain install still fails on genuinely
+      # broken dependency state, just without that extra rigidity.
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Format check
+        run: pnpm format:check
 
       - name: Lint
         run: pnpm lint
@@ -50,3 +58,6 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Build Storybook
+        run: pnpm build-storybook

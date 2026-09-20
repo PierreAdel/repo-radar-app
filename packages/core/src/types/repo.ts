@@ -9,4 +9,17 @@ export interface GithubRepo {
   pushedAt: string;
   ownerLogin: string;
   ownerAvatarUrl: string;
+  language?: string | null;
+  license?: string;
+  homepage?: string;
+}
+
+export interface SearchReposResult {
+  items: GithubRepo[];
+  totalCount: number;
+}
+
+export interface ApiError {
+  status: number;
+  message: string;
 }

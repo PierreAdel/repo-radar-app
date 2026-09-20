@@ -3,7 +3,17 @@ dist
 .turbo
 .vercel
 coverage
+storybook-static
+NOTES.md
+ARCHITECTURE-REVIEW.md
 *.log
 .env
+.env.local
 .env.*.local
 !.env.example
+# Graphify generated knowledge graph
+graphify-out/
+graph.json
+# Personal Claude Code hook config (machine-specific paths)
+.claude/settings.json
+SPEC.md

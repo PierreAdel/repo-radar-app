@@ -1,19 +1,20 @@
+import "./instrumentation";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { BrowserRouter } from "react-router";
+import { AppErrorBoundary } from "./app/AppErrorBoundary";
 import { store } from "./app/store";
-import App from "./App";
-
-const theme = createTheme();
+import { ThemedApp } from "./app/ThemedApp";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppErrorBoundary>
+          <ThemedApp />
+        </AppErrorBoundary>
+      </Provider>
+    </BrowserRouter>
   </StrictMode>,
 );
