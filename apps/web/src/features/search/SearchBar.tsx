@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
@@ -10,6 +11,15 @@ export interface SearchBarProps {
 }
 
 export function SearchBar({ value, onChange }: SearchBarProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClear = () => {
+    onChange("");
+    // The clear button unmounts once the value is empty - without this the
+    // browser would drop focus to <body>, silently stranding keyboard users.
+    inputRef.current?.focus();
+  };
+
   return (
     <TextField
       fullWidth
@@ -17,6 +27,8 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
       placeholder="Search GitHub repositories…"
       value={value}
       onChange={(event) => onChange(event.target.value.slice(0, MAX_SEARCH_QUERY_LENGTH))}
+      inputRef={inputRef}
+      aria-label="Search GitHub repositories"
       slotProps={{
         htmlInput: { maxLength: MAX_SEARCH_QUERY_LENGTH },
         input: {
@@ -27,7 +39,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
           ),
           endAdornment: value.length > 0 && (
             <InputAdornment position="end">
-              <IconButton size="small" aria-label="Clear search" onClick={() => onChange("")}>
+              <IconButton size="small" aria-label="Clear search" onClick={handleClear}>
                 <ClearRoundedIcon fontSize="small" />
               </IconButton>
             </InputAdornment>

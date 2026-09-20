@@ -1,10 +1,22 @@
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-import { IconButton, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Box, IconButton, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { useState } from "react";
 import { formatCompactNumber } from "@repo-radar/core";
+
+const visuallyHidden = {
+  position: "absolute",
+  width: 1,
+  height: 1,
+  padding: 0,
+  margin: -1,
+  overflow: "hidden",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  border: 0,
+} as const;
 
 export interface StarsBarChartDatum {
   label: string;
@@ -42,23 +54,28 @@ export function StarsBarChart({ data, height = 260 }: StarsBarChartProps) {
 
   return (
     <Stack spacing={1}>
-      <BarChart
-        height={height}
-        series={[
-          {
-            data: pageData.map((d) => d.value),
-            label: "Stars",
-            color: theme.palette.primary.main,
-            valueFormatter: (value: number | null) => formatCompactNumber(value ?? 0),
-          },
-        ]}
-        xAxis={[categoryAxis]}
-        yAxis={[valueAxis]}
-        borderRadius={6}
-        grid={{ horizontal: true }}
-        margin={isSmallScreen ? { left: 44, right: 0 } : { left: 56 }}
-        slotProps={{ legend: { hidden: true } }}
-      />
+      <Box aria-hidden="true">
+        <BarChart
+          height={height}
+          series={[
+            {
+              data: pageData.map((d) => d.value),
+              label: "Stars",
+              color: theme.palette.primary.main,
+              valueFormatter: (value: number | null) => formatCompactNumber(value ?? 0),
+            },
+          ]}
+          xAxis={[categoryAxis]}
+          yAxis={[valueAxis]}
+          borderRadius={6}
+          grid={{ horizontal: true }}
+          margin={isSmallScreen ? { left: 44, right: 0 } : { left: 56 }}
+          slotProps={{ legend: { hidden: true } }}
+        />
+      </Box>
+      <Typography component="p" sx={visuallyHidden}>
+        {pageData.map((d) => `${d.label}: ${formatCompactNumber(d.value)} stars`).join("; ")}
+      </Typography>
       {pageCount > 1 ? (
         <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
           <IconButton
@@ -69,7 +86,7 @@ export function StarsBarChart({ data, height = 260 }: StarsBarChartProps) {
           >
             <ChevronLeftRoundedIcon fontSize="small" />
           </IconButton>
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" color="text.secondary" role="status" aria-live="polite">
             {currentPage + 1} / {pageCount}
           </Typography>
           <IconButton

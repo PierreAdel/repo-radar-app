@@ -4,7 +4,7 @@ export function createAppTheme(mode: PaletteMode): Theme {
   return createTheme({
     palette: {
       mode,
-      primary: { main: "#7c5cfc" },
+      primary: { main: "#7248e0" },
       ...(mode === "dark" ? { background: { default: "#0b0b10", paper: "#15151d" } } : {}),
     },
     shape: { borderRadius: 12 },

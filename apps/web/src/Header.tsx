@@ -6,6 +6,7 @@ import {
   AppBar,
   Box,
   Button,
+  ButtonBase,
   Container,
   IconButton,
   Stack,
@@ -51,27 +52,27 @@ export function Header() {
           maxWidth="lg"
           sx={{ display: "flex", alignItems: "center", gap: 2.5, flexWrap: "wrap" }}
         >
-          <Stack
-            direction="row"
-            spacing={1}
-            alignItems="center"
+          <ButtonBase
             onClick={goHome}
-            sx={{ cursor: "pointer", mr: 2 }}
+            aria-label="Repo Radar — go to dashboard"
+            sx={{ mr: 2, borderRadius: 1, p: 0.5 }}
           >
-            <RadarRoundedIcon color="primary" />
-            <Box>
-              <Typography variant="subtitle1" fontWeight={700} lineHeight={1.1}>
-                Repo Radar
-              </Typography>
-              <Typography
-                variant="caption"
-                color="text.secondary"
-                sx={{ display: { xs: "none", md: "block" } }}
-              >
-                Search, track, and monitor GitHub repositories
-              </Typography>
-            </Box>
-          </Stack>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <RadarRoundedIcon color="primary" />
+              <Box sx={{ textAlign: "left" }}>
+                <Typography variant="subtitle1" fontWeight={700} lineHeight={1.1}>
+                  Repo Radar
+                </Typography>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  sx={{ display: { xs: "none", md: "block" } }}
+                >
+                  Search, track, and monitor GitHub repositories
+                </Typography>
+              </Box>
+            </Stack>
+          </ButtonBase>
           <Box sx={{ flex: 1, minWidth: 220 }}>
             <SearchBar value={inputValue} onChange={setInputValue} />
           </Box>

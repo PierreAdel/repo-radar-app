@@ -43,18 +43,21 @@ export function TrackedReposSection() {
 
   if (sortedFullNames.length === 0) {
     return (
-      <EmptyState
-        title="No tracked repos match these filters"
-        description="Try widening the star range or activity dates."
-        actionLabel="Clear filter"
-        onAction={clearFilters}
-      />
+      <Box role="status" aria-live="polite">
+        <EmptyState
+          title="No tracked repos match these filters"
+          description="Try widening the star range or activity dates."
+          actionLabel="Clear filter"
+          onAction={clearFilters}
+        />
+      </Box>
     );
   }
 
   if (sortedFullNames.length < VIRTUALIZE_THRESHOLD) {
     return (
       <Box
+        role="list"
         sx={{
           display: "grid",
           gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
@@ -62,7 +65,9 @@ export function TrackedReposSection() {
         }}
       >
         {sortedFullNames.map((fullName) => (
-          <TrackedRepoCard key={fullName} fullName={fullName} />
+          <Box role="listitem" key={fullName}>
+            <TrackedRepoCard fullName={fullName} />
+          </Box>
         ))}
       </Box>
     );
@@ -70,7 +75,7 @@ export function TrackedReposSection() {
 
   return (
     <Box ref={parentRef} sx={{ maxHeight: "75vh", overflowY: "auto" }}>
-      <Box sx={{ position: "relative", height: virtualizer.getTotalSize() }}>
+      <Box role="list" sx={{ position: "relative", height: virtualizer.getTotalSize() }}>
         {virtualizer.getVirtualItems().map((virtualRow) => {
           const rowFullNames = rows[virtualRow.index];
           if (!rowFullNames) return null;
@@ -92,7 +97,9 @@ export function TrackedReposSection() {
               }}
             >
               {rowFullNames.map((fullName) => (
-                <TrackedRepoCard key={fullName} fullName={fullName} />
+                <Box role="listitem" key={fullName}>
+                  <TrackedRepoCard fullName={fullName} />
+                </Box>
               ))}
             </Box>
           );

@@ -65,6 +65,7 @@ export function RepoCard({
   if (error) {
     return (
       <Card
+        role="alert"
         sx={{
           p: 2,
           bgcolor: (theme) =>
@@ -137,6 +138,7 @@ function RepoCardContent({
     <Card
       onClick={toggleExpanded}
       onKeyDown={(event: KeyboardEvent) => {
+        if (event.target !== event.currentTarget) return;
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
           toggleExpanded();
@@ -178,6 +180,7 @@ function RepoCardContent({
             >
               <Typography
                 variant="subtitle2"
+                component="h3"
                 noWrap
                 title={repo.fullName}
                 sx={{ flex: 1, minWidth: 0 }}

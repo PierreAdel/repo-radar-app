@@ -17,16 +17,17 @@ interface SearchResultsListProps {
 
 function PlainResultsList({ items, isTracked, onTrack, onUntrack }: SearchResultsListProps) {
   return (
-    <Stack spacing={2}>
+    <Stack component="ul" spacing={2} sx={{ listStyle: "none", m: 0, p: 0 }}>
       {items.map((repo) => (
-        <RepoCard
-          key={repo.id}
-          variant="result"
-          repo={repo}
-          isTracked={isTracked(repo.fullName)}
-          onTrack={() => onTrack(repo.fullName)}
-          onUntrack={() => onUntrack(repo.fullName)}
-        />
+        <Box component="li" key={repo.id}>
+          <RepoCard
+            variant="result"
+            repo={repo}
+            isTracked={isTracked(repo.fullName)}
+            onTrack={() => onTrack(repo.fullName)}
+            onUntrack={() => onUntrack(repo.fullName)}
+          />
+        </Box>
       ))}
     </Stack>
   );
@@ -43,12 +44,22 @@ function VirtualizedResultsList({ items, isTracked, onTrack, onUntrack }: Search
 
   return (
     <Box ref={parentRef} sx={{ maxHeight: "70vh", overflowY: "auto" }}>
-      <Box sx={{ position: "relative", height: virtualizer.getTotalSize() }}>
+      <Box
+        component="ul"
+        sx={{
+          position: "relative",
+          height: virtualizer.getTotalSize(),
+          listStyle: "none",
+          m: 0,
+          p: 0,
+        }}
+      >
         {virtualizer.getVirtualItems().map((virtualRow) => {
           const repo = items[virtualRow.index];
           if (!repo) return null;
           return (
             <Box
+              component="li"
               key={repo.id}
               data-index={virtualRow.index}
               ref={virtualizer.measureElement}
@@ -96,7 +107,7 @@ export function SearchResultsSection() {
 
   if (query.length < MIN_QUERY_LENGTH) {
     return (
-      <Typography color="text.secondary">
+      <Typography color="text.secondary" role="status">
         Type at least {MIN_QUERY_LENGTH} characters to search.
       </Typography>
     );
@@ -104,7 +115,7 @@ export function SearchResultsSection() {
 
   if (isLoading) {
     return (
-      <Stack spacing={2}>
+      <Stack spacing={2} role="status" aria-live="polite" aria-label="Loading search results">
         {Array.from({ length: 4 }, (_, index) => (
           <RepoCard key={index} variant="result" isLoading />
         ))}
@@ -118,7 +129,7 @@ export function SearchResultsSection() {
 
   if (items.length === 0) {
     return (
-      <Typography color="text.secondary">
+      <Typography color="text.secondary" role="status">
         No repositories found for &ldquo;{query}&rdquo;.
       </Typography>
     );
@@ -129,7 +140,7 @@ export function SearchResultsSection() {
 
   return (
     <Stack spacing={2}>
-      <Typography variant="subtitle2" color="text.secondary">
+      <Typography variant="subtitle2" component="h1" color="text.secondary">
         Search results
       </Typography>
       <ListComponent items={items} isTracked={isTracked} onTrack={onTrack} onUntrack={onUntrack} />
