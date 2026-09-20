@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "node",
+  "bootstrap-sha": "3b727188b43f1acc71860594521340a13e42a4b1",
+  "packages": {
+    ".": {
+      "package-name": "repo-radar-app",
+      "changelog-path": "CHANGELOG.md"
+    }
+  }
+}
