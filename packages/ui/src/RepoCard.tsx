@@ -68,6 +68,7 @@ export function RepoCard({
         role="alert"
         sx={{
           p: 2,
+          width: "100%",
           bgcolor: (theme) =>
             alpha(theme.palette.error.main, theme.palette.mode === "dark" ? 0.16 : 0.08),
         }}
@@ -135,7 +136,7 @@ function RepoCardContent({
   const hasDetails = Boolean(repo.language || repo.license || repo.homepage || repo.description);
 
   return (
-    <Card sx={{ p: 2 }}>
+    <Card sx={{ p: 2, width: "100%" }}>
       <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
         <Stack direction="row" spacing={1.5} alignItems="flex-start">
           <Avatar src={repo.ownerAvatarUrl} alt={repo.ownerLogin} sx={{ width: 40, height: 40 }} />
@@ -280,11 +281,16 @@ function RepoCardContent({
                   rel="noopener noreferrer"
                   onClick={(event) => event.stopPropagation()}
                   variant="caption"
+                  sx={{ wordBreak: "break-all" }}
                 >
                   {repo.homepage}
                 </Link>
               ) : (
-                <Typography variant="caption" color="text.secondary">
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  sx={{ wordBreak: "break-all" }}
+                >
                   {repo.homepage}
                 </Typography>
               )

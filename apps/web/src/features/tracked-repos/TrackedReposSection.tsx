@@ -68,7 +68,11 @@ export function TrackedReposSection() {
         role="list"
         sx={{
           display: "grid",
-          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
+          gridTemplateColumns: {
+            xs: "minmax(0, 1fr)",
+            sm: "repeat(2, minmax(0, 1fr))",
+            md: "repeat(3, minmax(0, 1fr))",
+          },
           gap: GRID_GAP,
         }}
       >
@@ -98,7 +102,7 @@ export function TrackedReposSection() {
                 pb: GRID_GAP,
                 transform: `translateY(${virtualRow.start}px)`,
                 display: "grid",
-                gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
                 gap: GRID_GAP,
               }}
             >
