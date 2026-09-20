@@ -18,9 +18,9 @@
     "semantic_hash": ""
   },
   "api/github/repo.ts": {
-    "mtime": 1789909268.2419183,
-    "seen": 1789912930.815253,
-    "ast_hash": "ac20aab773c76d3fcb66ce26bf954bc3",
+    "mtime": 1789935017.7748675,
+    "seen": 1789935019.415309,
+    "ast_hash": "35e72efeece7f83e861f20cb173c4ba4",
     "semantic_hash": ""
   },
   "api/github/search.ts": {
@@ -30,8 +30,8 @@
     "semantic_hash": ""
   },
   "apps/web/package.json": {
-    "mtime": 1789931991.881514,
-    "seen": 1789932005.154411,
+    "mtime": 1789933694.2510357,
+    "seen": 1789935009.8633778,
     "ast_hash": "3567f2368790345dca9143c36e3a4876",
     "semantic_hash": ""
   },
@@ -126,9 +126,9 @@
     "semantic_hash": ""
   },
   "apps/web/vite.config.ts": {
-    "mtime": 1789932531.2817922,
-    "seen": 1789932540.414261,
-    "ast_hash": "b709b25722cf80d8630c9cb013a50a36",
+    "mtime": 1789933694.2513347,
+    "seen": 1789935009.863399,
+    "ast_hash": "9b193bb6502b36082573683b141ed8fd",
     "semantic_hash": ""
   },
   "eslint.config.js": {
@@ -168,9 +168,9 @@
     "semantic_hash": "eb738c0386e6b9cc98769f0ff7b9833e"
   },
   "packages/core/src/index.ts": {
-    "mtime": 1789922400.4534605,
-    "seen": 1789922412.008845,
-    "ast_hash": "29341842caa7c41bdc60bbb87b84e3e0",
+    "mtime": 1789935003.9224544,
+    "seen": 1789935009.86341,
+    "ast_hash": "ea20adcd15cd615f1de0e9048e9714e8",
     "semantic_hash": ""
   },
   "packages/core/src/store/persistence.test.ts": {
@@ -312,15 +312,15 @@
     "semantic_hash": ""
   },
   "packages/ui/src/RepoCard.test.tsx": {
-    "mtime": 1789907688.400514,
-    "seen": 1789912930.815279,
-    "ast_hash": "1d4dbb888038381f68df5f300dd8ad10",
+    "mtime": 1789935114.7476037,
+    "seen": 1789935120.6411579,
+    "ast_hash": "eb2c962554f46baa1fe2be3f498e9748",
     "semantic_hash": ""
   },
   "packages/ui/src/RepoCard.tsx": {
-    "mtime": 1789923111.6571758,
-    "seen": 1789923115.987166,
-    "ast_hash": "995a79062ec48623f2dc26df68f401c2",
+    "mtime": 1789935104.3642046,
+    "seen": 1789935111.482759,
+    "ast_hash": "26d3b4696eda72efe9936939f25a0b30",
     "semantic_hash": ""
   },
   "packages/ui/src/StarsBarChart.stories.tsx": {
@@ -384,9 +384,9 @@
     "semantic_hash": ""
   },
   "vercel.json": {
-    "mtime": 1789908027.8697934,
-    "seen": 1789912930.815285,
-    "ast_hash": "9cd03e41aecacae0501b3108f27cd74d",
+    "mtime": 1789935121.6143126,
+    "seen": 1789935130.500318,
+    "ast_hash": "6098d75abad36109cc6aef1874f374b3",
     "semantic_hash": ""
   },
   "vitest.config.ts": {
@@ -648,9 +648,9 @@
     "semantic_hash": ""
   },
   "api/github/repo.test.ts": {
-    "mtime": 1789916146.01742,
-    "seen": 1789916158.6941838,
-    "ast_hash": "63d424a7806575b290eda827372dd10e",
+    "mtime": 1789935086.6440175,
+    "seen": 1789935102.442602,
+    "ast_hash": "9459b067ae7fe6e0e745fff771630b9b",
     "semantic_hash": ""
   },
   "api/github/search.test.ts": {
@@ -831,6 +831,18 @@
     "mtime": 1789930707.4155571,
     "seen": 1789930928.163499,
     "ast_hash": "d75a3474f16b3c56870f222b7444b452",
+    "semantic_hash": ""
+  },
+  "packages/core/src/utils/validation.ts": {
+    "mtime": 1789935298.0754251,
+    "seen": 1789935307.400125,
+    "ast_hash": "58937789c09e9fe5220fb92a81bec4ad",
+    "semantic_hash": ""
+  },
+  "packages/core/src/utils/validation.test.ts": {
+    "mtime": 1789935303.0425634,
+    "seen": 1789935307.400125,
+    "ast_hash": "d47b7e2085a898516c1ac81289f5307b",
     "semantic_hash": ""
   }
 }
