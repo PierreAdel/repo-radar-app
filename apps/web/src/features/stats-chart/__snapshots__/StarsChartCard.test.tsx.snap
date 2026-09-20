@@ -213,7 +213,7 @@ exports[`StarsChartCard > matches its snapshot 1`] = `
           </div>
         </div>
         <p
-          class="MuiTypography-root MuiTypography-body1 css-11458bc-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1xb0p9z-MuiTypography-root"
         >
           a/a: 10 stars
         </p>
