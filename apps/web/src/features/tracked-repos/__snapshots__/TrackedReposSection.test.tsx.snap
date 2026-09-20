@@ -3,7 +3,7 @@
 exports[`TrackedReposSection > matches its snapshot in the plain-grid state 1`] = `
 <div>
   <div
-    class="MuiBox-root css-f4yevk"
+    class="MuiBox-root css-p3tles"
     role="list"
   >
     <div

@@ -11,6 +11,7 @@ playwright/.cache
 lighthouse-report.json
 NOTES.md
 ARCHITECTURE-REVIEW.md
+tasks/
 *.log
 .env
 .env.local

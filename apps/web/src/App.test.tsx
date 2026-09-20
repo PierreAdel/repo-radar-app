@@ -18,4 +18,20 @@ describe("App", () => {
     expect(screen.getByRole("link", { name: /skip to main content/i })).toBeInTheDocument();
     expect(screen.getByRole("main")).toBeInTheDocument();
   });
+
+  it("shows the offline banner when navigator.onLine is false", () => {
+    Object.defineProperty(window.navigator, "onLine", { configurable: true, value: false });
+
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText(/you.?re offline/i)).toBeInTheDocument();
+
+    Object.defineProperty(window.navigator, "onLine", { configurable: true, value: true });
+  });
 });

@@ -88,6 +88,25 @@ describe("useRepoSearch", () => {
     expect(result.current.isTracked("facebook/react")).toBe(false);
   });
 
+  it("onRetry refetches after a failed search", async () => {
+    // A 404 isn't retried automatically (see githubApi's isRetryableError), so
+    // this surfaces immediately instead of waiting through the automatic
+    // retry backoff used for 5xx/network errors.
+    fetchMock.mockReturnValueOnce(jsonResponse({ status: 404, message: "not found" }, 404));
+    const { result } = renderWithProviders(["/search?q=react"]);
+
+    await waitFor(() => expect(result.current.error).toBeDefined());
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    fetchMock.mockReturnValueOnce(jsonResponse({ items: [{ id: 1, fullName: "a/b" }] }));
+    act(() => {
+      result.current.onRetry();
+    });
+
+    await waitFor(() => expect(result.current.error).toBeUndefined());
+    expect(result.current.items).toHaveLength(1);
+  });
+
   it("clamps an invalid page param to 1", async () => {
     fetchMock.mockReturnValueOnce(jsonResponse({ items: [], totalCount: 0 }));
     renderWithProviders(["/search?q=react&page=-3"]);

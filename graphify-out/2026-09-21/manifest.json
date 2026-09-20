@@ -886,11 +886,5 @@
     "seen": 1789940392.4028091,
     "ast_hash": "6b9eaf930feb98223c70a42022bf7a45",
     "semantic_hash": ""
-  },
-  "apps/web/src/features/tracked-repos/selectDerivedTrackedRepoView.test.ts": {
-    "mtime": 1789940437.5138433,
-    "seen": 1789940441.199915,
-    "ast_hash": "1b95ef47a7e78091276b3915f73bd376",
-    "semantic_hash": ""
   }
 }

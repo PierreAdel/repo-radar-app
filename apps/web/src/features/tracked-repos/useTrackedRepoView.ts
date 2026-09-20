@@ -2,27 +2,13 @@ import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import { githubApi, selectTrackedFullNames } from "@repo-radar/core";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectDerivedTrackedRepoView } from "./selectDerivedTrackedRepoView";
+import { parseIntParam, type TrackedRepoFilters } from "./trackedRepoFilters";
+import { DEFAULT_SORT_KEY, isSortKey, type SortKey } from "./trackedRepoSort";
 import { useTrackedRepoCacheEntries } from "./useTrackedRepoCacheEntries";
 
-export type SortKey = "stars" | "lastCommit" | "name";
-
-const SORT_KEYS: readonly SortKey[] = ["stars", "lastCommit", "name"];
-const DEFAULT_SORT_KEY: SortKey = "stars";
-
-function isSortKey(value: string | null): value is SortKey {
-  return SORT_KEYS.includes(value as SortKey);
-}
-
-export interface TrackedRepoFilters {
-  minStars?: number;
-  maxStars?: number;
-}
-
-function parseIntParam(value: string | null): number | undefined {
-  if (!value) return undefined;
-  const parsed = Number.parseInt(value, 10);
-  return Number.isFinite(parsed) ? parsed : undefined;
-}
+export type { SortKey } from "./trackedRepoSort";
+export type { TrackedRepoFilters } from "./trackedRepoFilters";
 
 /**
  * Shared sort + filter state for the tracked-repos grid and the stars chart,
@@ -103,39 +89,13 @@ export function useTrackedRepoView() {
 
   const hasActiveFilters = Object.values(filters).some((value) => value !== undefined);
 
-  const entryByFullName = useMemo(
-    () => new Map(entries.map((entry) => [entry.fullName, entry])),
-    [entries],
+  const { entryByFullName, maxStarBound, sortedFullNames } = selectDerivedTrackedRepoView(
+    entries,
+    trackedFullNames,
+    minStarsParam,
+    maxStarsParam,
+    sortKey,
   );
-
-  const maxStarBound = useMemo(
-    () => Math.max(1, ...entries.map((entry) => entry.data?.stargazersCount ?? 0)),
-    [entries],
-  );
-
-  const filteredFullNames = useMemo(() => {
-    return trackedFullNames.filter((fullName) => {
-      const repo = entryByFullName.get(fullName)?.data;
-      if (!repo) return true;
-      if (filters.minStars !== undefined && repo.stargazersCount < filters.minStars) return false;
-      if (filters.maxStars !== undefined && repo.stargazersCount > filters.maxStars) return false;
-      return true;
-    });
-  }, [trackedFullNames, entryByFullName, filters]);
-
-  const sortedFullNames = useMemo(() => {
-    return [...filteredFullNames].sort((a, b) => {
-      if (sortKey === "name") {
-        return a.localeCompare(b);
-      }
-      const repoA = entryByFullName.get(a)?.data;
-      const repoB = entryByFullName.get(b)?.data;
-      if (sortKey === "lastCommit") {
-        return new Date(repoB?.pushedAt ?? 0).getTime() - new Date(repoA?.pushedAt ?? 0).getTime();
-      }
-      return (repoB?.stargazersCount ?? 0) - (repoA?.stargazersCount ?? 0);
-    });
-  }, [filteredFullNames, entryByFullName, sortKey]);
 
   return {
     trackedFullNames,
