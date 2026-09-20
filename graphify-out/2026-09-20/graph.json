@@ -630,7 +630,7 @@
       "file_type": "code",
       "norm_label": "fetchdeployments()",
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L25"
+      "source_location": "L24"
     },
     {
       "id": "scripts_wait_for_vercel_preview_main",
@@ -642,7 +642,7 @@
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L48"
+      "source_location": "L47"
     },
     {
       "id": "scripts_wait_for_vercel_preview_pickdeployment",
@@ -654,7 +654,7 @@
       "file_type": "code",
       "norm_label": "pickdeployment()",
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L41"
+      "source_location": "L40"
     },
     {
       "id": "apps_web_src_features_tracked_repos_trackedrepocontrols_test_baseview",
@@ -3273,7 +3273,7 @@
       "node_kind": "heading",
       "norm_label": "checkpoint: complete",
       "source_file": "tasks/todo.md",
-      "source_location": "L610"
+      "source_location": "L643"
     },
     {
       "id": "tasks_todo_checkpoint_e2e_a11y",
@@ -3357,7 +3357,7 @@
       "node_kind": "heading",
       "norm_label": "phase 5: ratchet the bar",
       "source_file": "tasks/todo.md",
-      "source_location": "L590"
+      "source_location": "L623"
     },
     {
       "id": "tasks_todo_task_13_integration_search_flow",
@@ -3465,7 +3465,7 @@
       "node_kind": "heading",
       "norm_label": "task 21: lighthouse performance gate",
       "source_file": "tasks/todo.md",
-      "source_location": "L525"
+      "source_location": "L530"
     },
     {
       "id": "tasks_todo_task_22_k6_stress_tests_for_the_api_routes",
@@ -3477,7 +3477,7 @@
       "node_kind": "heading",
       "norm_label": "task 22: k6 stress tests for the api routes",
       "source_file": "tasks/todo.md",
-      "source_location": "L542"
+      "source_location": "L561"
     },
     {
       "id": "tasks_todo_task_23_large_data_playwright_test",
@@ -3489,7 +3489,7 @@
       "node_kind": "heading",
       "norm_label": "task 23: large-data playwright test",
       "source_file": "tasks/todo.md",
-      "source_location": "L560"
+      "source_location": "L592"
     },
     {
       "id": "tasks_todo_task_24_flip_coverage_from_warn_to_block",
@@ -3501,7 +3501,7 @@
       "node_kind": "heading",
       "norm_label": "task 24: flip coverage from warn to block",
       "source_file": "tasks/todo.md",
-      "source_location": "L592"
+      "source_location": "L625"
     },
     {
       "id": "tasks_todo_task_2_packages_core_remaining_unit_coverage",
@@ -5757,7 +5757,7 @@
       "file_type": "code",
       "norm_label": "maxattempts",
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L15"
+      "source_location": "L14"
     },
     {
       "id": "scripts_wait_for_vercel_preview_pollintervalms",
@@ -5768,7 +5768,7 @@
       "file_type": "code",
       "norm_label": "pollintervalms",
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L16"
+      "source_location": "L15"
     },
     {
       "id": "apps_web_src_features_tracked_repos_trackedrepocontrols",
@@ -6403,7 +6403,7 @@
       "file_type": "code",
       "norm_label": "options",
       "source_file": "load-tests/github-repo.js",
-      "source_location": "L24"
+      "source_location": "L31"
     },
     {
       "id": "load_tests_github_repo_repos",
@@ -6414,7 +6414,7 @@
       "file_type": "code",
       "norm_label": "repos",
       "source_file": "load-tests/github-repo.js",
-      "source_location": "L13"
+      "source_location": "L20"
     },
     {
       "id": "load_tests_github_search",
@@ -6436,7 +6436,7 @@
       "file_type": "code",
       "norm_label": "options",
       "source_file": "load-tests/github-search.js",
-      "source_location": "L19"
+      "source_location": "L23"
     },
     {
       "id": "load_tests_github_search_queries",
@@ -6447,7 +6447,7 @@
       "file_type": "code",
       "norm_label": "queries",
       "source_file": "load-tests/github-search.js",
-      "source_location": "L17"
+      "source_location": "L21"
     },
     {
       "id": "scripts_check_lighthouse_budget",
@@ -9613,7 +9613,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L50",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -9625,7 +9625,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L51",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -16020,7 +16020,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "load-tests/github-repo.js",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -16032,7 +16032,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "load-tests/github-search.js",
-      "source_location": "L11",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -19601,7 +19601,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "load-tests/github-repo.js",
-      "source_location": "L13",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -19612,7 +19612,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "load-tests/github-repo.js",
-      "source_location": "L24",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -19623,7 +19623,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "load-tests/github-search.js",
-      "source_location": "L17",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -19634,7 +19634,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "load-tests/github-search.js",
-      "source_location": "L19",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -21922,7 +21922,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L15",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -21933,7 +21933,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L16",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -21944,7 +21944,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L25",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -21955,7 +21955,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L41",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -21966,7 +21966,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/wait-for-vercel-preview.mjs",
-      "source_location": "L48",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -22384,7 +22384,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L525",
+      "source_location": "L530",
       "weight": 1.0
     },
     {
@@ -22395,7 +22395,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L542",
+      "source_location": "L561",
       "weight": 1.0
     },
     {
@@ -22406,7 +22406,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L560",
+      "source_location": "L592",
       "weight": 1.0
     },
     {
@@ -22417,7 +22417,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L592",
+      "source_location": "L625",
       "weight": 1.0
     },
     {
@@ -22505,7 +22505,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L590",
+      "source_location": "L623",
       "weight": 1.0
     },
     {
@@ -22516,7 +22516,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tasks/todo.md",
-      "source_location": "L610",
+      "source_location": "L643",
       "weight": 1.0
     },
     {
@@ -23569,7 +23569,7 @@
       "confidence_score": 0.95,
       "context": "StarsChartCard",
       "source_file": "tasks/todo.md",
-      "source_location": "L577",
+      "source_location": "L610",
       "weight": 1.0
     },
     {
@@ -23767,5 +23767,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "cbdd0ee58a061777ff30e7157fbe140608291ed9"
+  "built_at_commit": "438575f6cb39a2d989b507ccb481727272d08de8"
 }
