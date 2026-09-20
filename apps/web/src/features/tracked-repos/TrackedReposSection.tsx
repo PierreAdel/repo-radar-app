@@ -24,7 +24,7 @@ export function TrackedReposSection() {
       <EmptyState
         title="No tracked repos match these filters"
         description="Try widening the star range or activity dates."
-        actionLabel="Clear filters"
+        actionLabel="Clear filter"
         onAction={clearFilters}
       />
     );

@@ -1,7 +1,7 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
-import { selectTrackedFullNames } from "@repo-radar/core";
-import { useAppSelector } from "../../app/hooks";
+import { githubApi, selectTrackedFullNames } from "@repo-radar/core";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useTrackedRepoCacheEntries } from "./useTrackedRepoCacheEntries";
 
 export type SortKey = "stars" | "lastCommit" | "name";
@@ -16,8 +16,6 @@ function isSortKey(value: string | null): value is SortKey {
 export interface TrackedRepoFilters {
   minStars?: number;
   maxStars?: number;
-  activeFrom?: string;
-  activeTo?: string;
 }
 
 function parseIntParam(value: string | null): number | undefined {
@@ -32,9 +30,23 @@ function parseIntParam(value: string | null): number | undefined {
  * State lives in the URL, matching the rest of the app's URL-driven state.
  */
 export function useTrackedRepoView() {
+  const dispatch = useAppDispatch();
   const trackedFullNames = useAppSelector(selectTrackedFullNames);
   const entries = useTrackedRepoCacheEntries();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // Fetch every tracked repo's data unconditionally, not just the ones
+  // whose TrackedRepoCard happens to be mounted (the grid paginates via
+  // "Load more") - otherwise the chart and star-filter bounds silently
+  // ignore anything past the first page.
+  useEffect(() => {
+    const subscriptions = trackedFullNames.map((fullName) =>
+      dispatch(githubApi.endpoints.getRepository.initiate(fullName)),
+    );
+    return () => {
+      subscriptions.forEach((subscription) => subscription.unsubscribe());
+    };
+  }, [dispatch, trackedFullNames]);
 
   const sortParam = searchParams.get("sort");
   const sortKey: SortKey = isSortKey(sortParam) ? sortParam : DEFAULT_SORT_KEY;
@@ -56,17 +68,13 @@ export function useTrackedRepoView() {
 
   const minStarsParam = searchParams.get("minStars");
   const maxStarsParam = searchParams.get("maxStars");
-  const activeFromParam = searchParams.get("activeFrom");
-  const activeToParam = searchParams.get("activeTo");
 
   const filters: TrackedRepoFilters = useMemo(
     () => ({
       minStars: parseIntParam(minStarsParam),
       maxStars: parseIntParam(maxStarsParam),
-      activeFrom: activeFromParam ?? undefined,
-      activeTo: activeToParam ?? undefined,
     }),
-    [minStarsParam, maxStarsParam, activeFromParam, activeToParam],
+    [minStarsParam, maxStarsParam],
   );
 
   const setFilters = (next: Partial<TrackedRepoFilters>) => {
@@ -75,7 +83,7 @@ export function useTrackedRepoView() {
         const nextParams = new URLSearchParams(prev);
         const merged = { ...filters, ...next };
         for (const [key, value] of Object.entries(merged)) {
-          if (value === undefined || value === "") {
+          if (value === undefined) {
             nextParams.delete(key);
           } else {
             nextParams.set(key, String(value));
@@ -91,8 +99,6 @@ export function useTrackedRepoView() {
     setFilters({
       minStars: undefined,
       maxStars: undefined,
-      activeFrom: undefined,
-      activeTo: undefined,
     });
 
   const hasActiveFilters = Object.values(filters).some((value) => value !== undefined);
@@ -113,12 +119,6 @@ export function useTrackedRepoView() {
       if (!repo) return true;
       if (filters.minStars !== undefined && repo.stargazersCount < filters.minStars) return false;
       if (filters.maxStars !== undefined && repo.stargazersCount > filters.maxStars) return false;
-      if (filters.activeFrom && new Date(repo.pushedAt) < new Date(filters.activeFrom)) {
-        return false;
-      }
-      if (filters.activeTo && new Date(repo.pushedAt) > new Date(`${filters.activeTo}T23:59:59`)) {
-        return false;
-      }
       return true;
     });
   }, [trackedFullNames, entryByFullName, filters]);

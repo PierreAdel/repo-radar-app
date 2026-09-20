@@ -63,7 +63,11 @@ export function Header() {
               <Typography variant="subtitle1" fontWeight={700} lineHeight={1.1}>
                 Repo Radar
               </Typography>
-              <Typography variant="caption" color="text.secondary">
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ display: { xs: "none", md: "block" } }}
+              >
                 Search, track, and monitor GitHub repositories
               </Typography>
             </Box>
@@ -71,20 +75,36 @@ export function Header() {
           <Box sx={{ flex: 1, minWidth: 220 }}>
             <SearchBar value={inputValue} onChange={setInputValue} />
           </Box>
-          <Button
-            variant="contained"
-            size="small"
-            startIcon={<RefreshRoundedIcon />}
-            onClick={handleRefreshAll}
-            disabled={trackedFullNames.length === 0}
-          >
-            Refresh all
-          </Button>
-          <Tooltip title={themeMode === "dark" ? "Switch to light theme" : "Switch to dark theme"}>
-            <IconButton onClick={() => dispatch(toggleTheme())}>
-              {themeMode === "dark" ? <LightModeRoundedIcon /> : <DarkModeRoundedIcon />}
-            </IconButton>
-          </Tooltip>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Tooltip title="Refresh all">
+              <span style={{ display: "contents" }}>
+                <IconButton
+                  sx={{ display: { xs: "inline-flex", md: "none" } }}
+                  onClick={handleRefreshAll}
+                  disabled={trackedFullNames.length === 0}
+                >
+                  <RefreshRoundedIcon />
+                </IconButton>
+              </span>
+            </Tooltip>
+            <Button
+              variant="contained"
+              size="small"
+              startIcon={<RefreshRoundedIcon />}
+              onClick={handleRefreshAll}
+              disabled={trackedFullNames.length === 0}
+              sx={{ display: { xs: "none", md: "inline-flex" } }}
+            >
+              Refresh all
+            </Button>
+            <Tooltip
+              title={themeMode === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            >
+              <IconButton onClick={() => dispatch(toggleTheme())}>
+                {themeMode === "dark" ? <LightModeRoundedIcon /> : <DarkModeRoundedIcon />}
+              </IconButton>
+            </Tooltip>
+          </Stack>
         </Container>
       </Toolbar>
     </AppBar>

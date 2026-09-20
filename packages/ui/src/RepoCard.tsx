@@ -164,86 +164,124 @@ function RepoCardContent({
       <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
         <Stack direction="row" spacing={1.5} alignItems="flex-start">
           <Avatar src={repo.ownerAvatarUrl} alt={repo.ownerLogin} sx={{ width: 40, height: 40 }} />
-          <Stack sx={{ flex: 1, minWidth: 0 }} spacing={0.5}>
-            <Typography variant="subtitle2" noWrap title={repo.fullName}>
-              {repo.fullName}
-            </Typography>
+          <Stack spacing={0.5} sx={{ flex: 1, minWidth: 0 }}>
+            <Stack
+              sx={{
+                flexDirection: "column",
+                alignItems: "stretch",
+                gap: 1,
+                "@media (min-width:360px)": {
+                  flexDirection: "row",
+                  alignItems: "center",
+                },
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                noWrap
+                title={repo.fullName}
+                sx={{ flex: 1, minWidth: 0 }}
+              >
+                {repo.fullName}
+              </Typography>
+              <Stack
+                direction="row"
+                spacing={0.5}
+                alignItems="center"
+                sx={{
+                  alignSelf: "flex-end",
+                  flexShrink: 0,
+                  "@media (min-width:360px)": { alignSelf: "center" },
+                }}
+              >
+                {variant === "tracked" && onRefresh ? (
+                  <Tooltip title="Refresh">
+                    <IconButton size="small" onClick={stopThen(onRefresh)} disabled={isLoading}>
+                      <RefreshRoundedIcon fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
+                ) : null}
+                {isTracked ? (
+                  <Tooltip title="Untrack">
+                    <IconButton size="small" onClick={stopThen(onUntrack)}>
+                      <BookmarkRemoveOutlinedIcon fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
+                ) : (
+                  <Tooltip title="Track">
+                    <IconButton size="small" onClick={stopThen(onTrack)}>
+                      <BookmarkAddOutlinedIcon fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
+                )}
+                <Tooltip title="Open on GitHub">
+                  <IconButton
+                    size="small"
+                    onClick={stopThen(() =>
+                      window.open(repo.htmlUrl, "_blank", "noopener,noreferrer"),
+                    )}
+                  >
+                    <OpenInNewRoundedIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+                {hasDetails ? (
+                  <ExpandMoreRoundedIcon
+                    fontSize="small"
+                    sx={{
+                      color: "text.secondary",
+                      transition: "transform 0.15s ease",
+                      transform: expanded ? "rotate(180deg)" : "none",
+                    }}
+                  />
+                ) : null}
+              </Stack>
+            </Stack>
+
             {repo.description ? (
-              <Typography variant="body2" color="text.secondary" noWrap>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
                 {repo.description}
               </Typography>
             ) : null}
+
             <Stack
               direction="row"
               spacing={2}
               alignItems="center"
               useFlexGap
-              sx={{ mt: 0.5, flexWrap: "wrap", rowGap: 0.5 }}
+              sx={{ flexWrap: "wrap", rowGap: 0.5 }}
             >
-              <Stack direction="row" spacing={0.5} alignItems="center">
+              <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flexShrink: 0 }}>
                 <StarBorderRoundedIcon fontSize="small" />
-                <Typography variant="caption">
+                <Typography variant="caption" sx={{ whiteSpace: "nowrap" }}>
                   {formatCompactNumber(repo.stargazersCount)}
                 </Typography>
               </Stack>
-              <Stack direction="row" spacing={0.5} alignItems="center">
+              <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flexShrink: 0 }}>
                 <ErrorOutlineRoundedIcon fontSize="small" />
-                <Typography variant="caption">
+                <Typography variant="caption" sx={{ whiteSpace: "nowrap" }}>
                   {formatCompactNumber(repo.openIssuesCount)}
                 </Typography>
               </Stack>
-              <Stack direction="row" spacing={0.5} alignItems="center">
+              <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flexShrink: 0 }}>
                 <HistoryRoundedIcon fontSize="small" />
-                <Typography variant="caption">{formatRelativeTime(repo.pushedAt)}</Typography>
+                <Typography variant="caption" sx={{ whiteSpace: "nowrap" }}>
+                  {formatRelativeTime(repo.pushedAt)}
+                </Typography>
               </Stack>
             </Stack>
-          </Stack>
-          <Stack direction="row" spacing={0.5} alignItems="center">
-            {variant === "tracked" && onRefresh ? (
-              <Tooltip title="Refresh">
-                <IconButton size="small" onClick={stopThen(onRefresh)} disabled={isLoading}>
-                  <RefreshRoundedIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            ) : null}
-            {isTracked ? (
-              <Tooltip title="Untrack">
-                <IconButton size="small" onClick={stopThen(onUntrack)}>
-                  <BookmarkRemoveOutlinedIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            ) : (
-              <Tooltip title="Track">
-                <IconButton size="small" onClick={stopThen(onTrack)}>
-                  <BookmarkAddOutlinedIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            )}
-            <Tooltip title="Open on GitHub">
-              <IconButton
-                size="small"
-                onClick={stopThen(() => window.open(repo.htmlUrl, "_blank", "noopener,noreferrer"))}
-              >
-                <OpenInNewRoundedIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            {hasDetails ? (
-              <ExpandMoreRoundedIcon
-                fontSize="small"
-                sx={{
-                  color: "text.secondary",
-                  transition: "transform 0.15s ease",
-                  transform: expanded ? "rotate(180deg)" : "none",
-                }}
-              />
-            ) : null}
           </Stack>
         </Stack>
         <Collapse in={expanded} unmountOnExit>
           <Stack spacing={1} sx={{ mt: 1.5, pt: 1.5, borderTop: 1, borderColor: "divider" }}>
-            <Typography variant="body2" color="text.secondary">
-              {repo.description ?? "No description provided."}
-            </Typography>
             <Stack direction="row" spacing={0.75} alignItems="center">
               <LanguageRoundedIcon fontSize="small" sx={{ color: "text.secondary" }} />
               <Typography variant="caption">{repo.language ?? "No language detected"}</Typography>

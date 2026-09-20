@@ -17,3 +17,4 @@ graphify-out/
 graph.json
 # Personal Claude Code hook config (machine-specific paths)
 .claude/settings.json
+SPEC.md

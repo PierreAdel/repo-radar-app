@@ -8,7 +8,11 @@ export function StarsChartCard() {
     .map((fullName) => entryByFullName.get(fullName)?.data)
     .filter((repo) => repo !== undefined)
     .map((repo) => ({
-      label: repo.fullName.split("/")[1] ?? repo.fullName,
+      // Keep the full "owner/repo" as the label - two different owners can
+      // have a repo with the same name, and a band-scale axis needs unique
+      // category values or same-named repos silently collapse onto the same
+      // bar. StarsBarChart shortens it for display via an axis valueFormatter.
+      label: repo.fullName,
       value: repo.stargazersCount,
     }));
 
@@ -16,12 +20,20 @@ export function StarsChartCard() {
     return null;
   }
 
+  const missingCount = sortedFullNames.length - data.length;
+
   return (
     <Card>
       <CardContent>
-        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
-          Stars over time
+        <Typography variant="h6" fontWeight={600} sx={{ mb: missingCount > 0 ? 0.5 : 2 }}>
+          Stars by repo
         </Typography>
+        {missingCount > 0 ? (
+          <Typography variant="caption" color="text.secondary" sx={{ display: "block", mb: 1.5 }}>
+            Showing {data.length} of {sortedFullNames.length} tracked repos — the rest are still
+            loading or failed to load.
+          </Typography>
+        ) : null}
         <StarsBarChart data={data} />
       </CardContent>
     </Card>

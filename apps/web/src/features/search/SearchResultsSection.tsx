@@ -58,7 +58,7 @@ export function SearchResultsSection() {
       ))}
       {hasMore ? (
         <Button variant="outlined" onClick={loadMore}>
-          Load 10 more
+          Load more
         </Button>
       ) : null}
     </Stack>
