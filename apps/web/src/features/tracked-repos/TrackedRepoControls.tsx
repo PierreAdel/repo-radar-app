@@ -93,9 +93,15 @@ export function TrackedRepoControls() {
           aria-label="Sort tracked repos by"
           sx={{ flexShrink: 0, ml: { sm: "auto" } }}
         >
-          <MenuItem value="stars">Stars</MenuItem>
-          <MenuItem value="lastCommit">Last commit</MenuItem>
-          <MenuItem value="name">Name</MenuItem>
+          <MenuItem value="stars" aria-label="Sort by stars">
+            Stars
+          </MenuItem>
+          <MenuItem value="lastCommit" aria-label="Sort by last commit">
+            Last commit
+          </MenuItem>
+          <MenuItem value="name" aria-label="Sort by name">
+            Name
+          </MenuItem>
         </Select>
       </Stack>
     </Stack>
