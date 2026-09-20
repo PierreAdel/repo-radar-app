@@ -13,6 +13,9 @@ const repo: GithubRepo = {
   pushedAt: new Date(Date.now() - 1000 * 60 * 60 * 6).toISOString(),
   ownerLogin: "facebook",
   ownerAvatarUrl: "https://avatars.githubusercontent.com/u/69631?v=4",
+  language: "JavaScript",
+  license: "MIT License",
+  homepage: "https://react.dev",
 };
 
 const meta: Meta<typeof RepoCard> = {

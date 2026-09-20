@@ -12,6 +12,9 @@ interface RawGithubRepo {
   open_issues_count: number;
   pushed_at: string;
   owner: { login: string; avatar_url: string };
+  language: string | null;
+  license: { name: string } | null;
+  homepage: string | null;
 }
 
 const GITHUB_API_BASE = "https://api.github.com";
@@ -38,6 +41,9 @@ function mapRawRepo(raw: RawGithubRepo): GithubRepo {
     pushedAt: raw.pushed_at,
     ownerLogin: raw.owner.login,
     ownerAvatarUrl: raw.owner.avatar_url,
+    language: raw.language,
+    license: raw.license?.name,
+    homepage: raw.homepage || undefined,
   };
 }
 

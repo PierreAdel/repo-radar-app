@@ -21,7 +21,7 @@ export function SearchResultsSection() {
 
   if (isLoading) {
     return (
-      <Stack spacing={1.5}>
+      <Stack spacing={2}>
         {Array.from({ length: 4 }, (_, index) => (
           <RepoCard key={index} variant="result" isLoading />
         ))}
@@ -42,7 +42,7 @@ export function SearchResultsSection() {
   }
 
   return (
-    <Stack spacing={1.5}>
+    <Stack spacing={2}>
       <Typography variant="subtitle2" color="text.secondary">
         Search results
       </Typography>
@@ -58,7 +58,7 @@ export function SearchResultsSection() {
       ))}
       {hasMore ? (
         <Button variant="outlined" onClick={loadMore}>
-          Load 10 more
+          Load more
         </Button>
       ) : null}
     </Stack>
