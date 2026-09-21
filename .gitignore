@@ -8,7 +8,7 @@ test-results
 playwright-report
 blob-report
 playwright/.cache
-lighthouse-report.json
+.lighthouseci
 NOTES.md
 ARCHITECTURE-REVIEW.md
 tasks/
