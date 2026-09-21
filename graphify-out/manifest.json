@@ -30,14 +30,14 @@
     "semantic_hash": ""
   },
   "apps/web/package.json": {
-    "mtime": 1789979260.0450034,
-    "seen": 1789979269.2251,
+    "mtime": 1789985093.472932,
+    "seen": 1789987064.277309,
     "ast_hash": "d025186bebb2735d290bebd6ac7ac44b",
     "semantic_hash": ""
   },
   "apps/web/src/App.tsx": {
-    "mtime": 1789942553.8221176,
-    "seen": 1789942810.50261,
+    "mtime": 1789985439.7668943,
+    "seen": 1789987064.27731,
     "ast_hash": "d493ffc96224900f1d3a87aff2fe0ec7",
     "semantic_hash": ""
   },
@@ -48,8 +48,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/app/AppErrorBoundary.tsx": {
-    "mtime": 1789907688.3892024,
-    "seen": 1789912930.815256,
+    "mtime": 1789987056.5481596,
+    "seen": 1789987064.277312,
     "ast_hash": "3cc91175d5bbae4064e66f31d8dafe65",
     "semantic_hash": ""
   },
@@ -90,8 +90,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/stats-chart/StarsChartCard.tsx": {
-    "mtime": 1789979893.9223397,
-    "seen": 1789979903.2227468,
+    "mtime": 1789980845.8513062,
+    "seen": 1789987064.277323,
     "ast_hash": "04a3f7936acd3224d27fab4e49c8bcd2",
     "semantic_hash": ""
   },
@@ -114,8 +114,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/main.tsx": {
-    "mtime": 1789944210.7524457,
-    "seen": 1789944223.0481632,
+    "mtime": 1789987056.5489318,
+    "seen": 1789987064.277335,
     "ast_hash": "c56b2cb837ca779ad86a8e84ba5b2b03",
     "semantic_hash": ""
   },
@@ -126,8 +126,8 @@
     "semantic_hash": ""
   },
   "apps/web/vite.config.ts": {
-    "mtime": 1789944210.7527893,
-    "seen": 1789944223.0481641,
+    "mtime": 1789987056.54974,
+    "seen": 1789987064.2773361,
     "ast_hash": "9b193bb6502b36082573683b141ed8fd",
     "semantic_hash": ""
   },
@@ -138,14 +138,14 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1789979277.6173189,
-    "seen": 1789979280.089791,
-    "ast_hash": "2337806c8cd7a1d7d6663ff769851706",
+    "mtime": 1789987163.9832814,
+    "seen": 1789987176.3603761,
+    "ast_hash": "bcba23042717b8bd59bb112c39d18072",
     "semantic_hash": ""
   },
   "packages/core/package.json": {
-    "mtime": 1789979265.0075889,
-    "seen": 1789979269.225133,
+    "mtime": 1789980845.8666081,
+    "seen": 1789987064.277343,
     "ast_hash": "b643dd2cbd14feef37d89d5f89362574",
     "semantic_hash": ""
   },
@@ -252,8 +252,8 @@
     "semantic_hash": "4639c0b84062dafdd951e1ff1c569add"
   },
   "packages/core/vitest.config.ts": {
-    "mtime": 1789977524.0375326,
-    "seen": 1789977533.673975,
+    "mtime": 1789980845.8670084,
+    "seen": 1789987064.277357,
     "ast_hash": "fd9e731e6b812337003ad05009784284",
     "semantic_hash": ""
   },
@@ -276,8 +276,8 @@
     "semantic_hash": "bfcad70cc0746d2b4bc8516507c5eaed"
   },
   "packages/ui/package.json": {
-    "mtime": 1789979270.117539,
-    "seen": 1789979280.08981,
+    "mtime": 1789980845.8675594,
+    "seen": 1789987064.277359,
     "ast_hash": "8013677f2f79b992da92a0bfd126e791",
     "semantic_hash": ""
   },
@@ -312,8 +312,8 @@
     "semantic_hash": ""
   },
   "packages/ui/src/RepoCard.test.tsx": {
-    "mtime": 1789977997.0583913,
-    "seen": 1789978009.672509,
+    "mtime": 1789980845.8678982,
+    "seen": 1789987064.277365,
     "ast_hash": "ff93fa9c6ab9178eabcdb265ffa465d5",
     "semantic_hash": ""
   },
@@ -330,8 +330,8 @@
     "semantic_hash": ""
   },
   "packages/ui/src/StarsBarChart.tsx": {
-    "mtime": 1789979511.4896352,
-    "seen": 1789979522.0798259,
+    "mtime": 1789980845.8688593,
+    "seen": 1789987064.277367,
     "ast_hash": "8b0b0d0eec7e52f5232d8277caae809e",
     "semantic_hash": ""
   },
@@ -354,8 +354,8 @@
     "semantic_hash": "0a311cfe7e6d44b7a2dba4113c611667"
   },
   "packages/ui/vitest.config.ts": {
-    "mtime": 1789977546.2546918,
-    "seen": 1789977559.5085728,
+    "mtime": 1789980845.8703969,
+    "seen": 1789987064.2773702,
     "ast_hash": "d07a21eb68492e279d95f17e2d7ac573",
     "semantic_hash": ""
   },
@@ -378,8 +378,8 @@
     "semantic_hash": "43d17670a2d3776fd1166360e33fac6b"
   },
   "turbo.json": {
-    "mtime": 1789979252.6976151,
-    "seen": 1789979269.225162,
+    "mtime": 1789980845.870742,
+    "seen": 1789987064.277376,
     "ast_hash": "1d39b7488fcca9ddc4c2b487a3479b60",
     "semantic_hash": ""
   },
@@ -390,15 +390,15 @@
     "semantic_hash": ""
   },
   "vitest.config.ts": {
-    "mtime": 1789977677.3378272,
-    "seen": 1789977694.024371,
+    "mtime": 1789980845.871004,
+    "seen": 1789987064.2773771,
     "ast_hash": "fde51f512d01ab9d9caf06d3033516f2",
     "semantic_hash": ""
   },
   ".github/workflows/ci.yml": {
-    "mtime": 1789977825.4783275,
-    "seen": 1789977887.218305,
-    "ast_hash": "09054adc085e51e4a7726e3fdffed705",
+    "mtime": 1789987684.399997,
+    "seen": 1789987805.5477152,
+    "ast_hash": "23a38c633e89f9059deb5b4f6668f1ef",
     "semantic_hash": ""
   },
   "README.md": {
@@ -468,8 +468,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/instrumentation.ts": {
-    "mtime": 1789907688.3922842,
-    "seen": 1789912930.815263,
+    "mtime": 1789987056.5485528,
+    "seen": 1789987064.277334,
     "ast_hash": "b58bf778354f8b3d1985e6972a247b98",
     "semantic_hash": ""
   },
@@ -486,8 +486,8 @@
     "semantic_hash": ""
   },
   "packages/ui/src/StarsBarChart.test.tsx": {
-    "mtime": 1789980072.5750043,
-    "seen": 1789980084.79854,
+    "mtime": 1789980845.8683014,
+    "seen": 1789987064.277367,
     "ast_hash": "030871891849dcb39b684f6bd813a38f",
     "semantic_hash": ""
   },
@@ -570,8 +570,8 @@
     "semantic_hash": ""
   },
   "apps/web/vitest.config.ts": {
-    "mtime": 1789978102.6504383,
-    "seen": 1789978119.034792,
+    "mtime": 1789980845.852299,
+    "seen": 1789987064.2773361,
     "ast_hash": "bbdd890a030f987d8b32f79c5d9745b0",
     "semantic_hash": ""
   },
@@ -582,9 +582,9 @@
     "semantic_hash": ""
   },
   "CONSTRAINTS.md": {
-    "mtime": 1789978355.6829362,
-    "seen": 1789978392.477644,
-    "ast_hash": "78221111024ae3f8adefa32b7610005c",
+    "mtime": 1789987857.3105514,
+    "seen": 1789987940.79246,
+    "ast_hash": "5ca8b1fc794bb63c23460c31d8234d80",
     "semantic_hash": ""
   },
   "apps/web/src/App.test.tsx": {
@@ -648,14 +648,14 @@
     "semantic_hash": ""
   },
   "apps/web/src/app/AppErrorBoundary.test.tsx": {
-    "mtime": 1789942553.8244045,
-    "seen": 1789942810.5026119,
+    "mtime": 1789987056.5476937,
+    "seen": 1789987064.277312,
     "ast_hash": "fb4ed381f03fef909ee1af2b88c5e2b1",
     "semantic_hash": ""
   },
   "apps/web/src/Header.test.tsx": {
-    "mtime": 1789979949.1883388,
-    "seen": 1789979971.1411772,
+    "mtime": 1789980845.848789,
+    "seen": 1789987064.277311,
     "ast_hash": "a4df13def6612572f4e56259fe59f0c5",
     "semantic_hash": ""
   },
@@ -720,8 +720,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/stats-chart/StarsChartCard.test.tsx": {
-    "mtime": 1789980077.111392,
-    "seen": 1789980084.798495,
+    "mtime": 1789980845.8503776,
+    "seen": 1789987064.277322,
     "ast_hash": "91258533c034e3517ef4d5f296abcd4b",
     "semantic_hash": ""
   },
@@ -789,12 +789,6 @@
     "mtime": 1789942553.8949795,
     "seen": 1789942810.502666,
     "ast_hash": "709ef91cbc51fce0096fdb7902a86900",
-    "semantic_hash": ""
-  },
-  "scripts/check-lighthouse-budget.mjs": {
-    "mtime": 1789942553.8946319,
-    "seen": 1789942810.502665,
-    "ast_hash": "de9a5662da1949d0e3a784487295d0d0",
     "semantic_hash": ""
   },
   "load-tests/github-repo.js": {
@@ -957,6 +951,12 @@
     "mtime": 1789976772.772126,
     "seen": 1789977256.4994738,
     "ast_hash": "50ba8490e1f10be4468270f21c6e84ec",
+    "semantic_hash": ""
+  },
+  ".lighthouserc.cjs": {
+    "mtime": 1789987857.2574677,
+    "seen": 1789987940.792383,
+    "ast_hash": "248a5f5dc964cc66887a65c6e20337a3",
     "semantic_hash": ""
   }
 }
