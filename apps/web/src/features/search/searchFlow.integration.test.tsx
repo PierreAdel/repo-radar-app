@@ -10,7 +10,7 @@ import {
   trackedReposReducer,
   themeReducer,
 } from "@repo-radar/core";
-import { Header } from "../../Header";
+import { Header } from "../../app/Header";
 import { SearchResultsSection } from "./SearchResultsSection";
 
 // Real SearchBar -> useSearchBox -> URL -> useRepoSearch -> githubApi -> render,

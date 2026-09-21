@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { Provider } from "react-redux";
-import { store } from "./app/store";
+import { store } from "./store";
 import App from "./App";
 
 describe("App", () => {

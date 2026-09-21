@@ -6,10 +6,10 @@ import { Header } from "./Header";
 import { DashboardPage } from "./DashboardPage";
 import { RouteFallback } from "./RouteFallback";
 import { visuallyHidden } from "./visuallyHidden";
-import { useOnlineStatus } from "./app/useOnlineStatus";
+import { useOnlineStatus } from "./useOnlineStatus";
 
 const SearchResultsSection = lazy(() =>
-  import("./features/search/SearchResultsSection").then((m) => ({
+  import("../features/search/SearchResultsSection").then((m) => ({
     default: m.SearchResultsSection,
   })),
 );
