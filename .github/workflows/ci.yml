@@ -105,6 +105,45 @@ jobs:
       - name: Run e2e tests
         run: pnpm e2e
 
+  api-smoke-test:
+    name: API smoke test (deployed Functions)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Wait for Vercel preview deployment
+        id: preview
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          GIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          URL=$(node scripts/wait-for-vercel-preview.mjs)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      # pnpm typecheck/build never catch this class of bug: Vercel's own
+      # build step for api/*.ts enforces stricter TypeScript module
+      # resolution than this repo's tsconfig does, so a broken API Function
+      # can still pass every other CI check and only fail once actually
+      # deployed and invoked - see PR #39. This hits the real deployed
+      # Functions directly, not a mock.
+      - name: Smoke test deployed API routes
+        run: node scripts/smoke-test-api.mjs "${{ steps.preview.outputs.url }}"
+
   lighthouse:
     name: Performance budget (Lighthouse)
     runs-on: ubuntu-latest
