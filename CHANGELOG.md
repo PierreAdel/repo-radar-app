@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/PierreAdel/repo-radar-app/compare/repo-radar-app-v1.1.0...repo-radar-app-v1.2.0) (2026-09-21)
+
+
+### Features
+
+* promote staging to main - folder reorg, README rewrite, and demo cleanup ([#70](https://github.com/PierreAdel/repo-radar-app/issues/70)) ([b4580da](https://github.com/PierreAdel/repo-radar-app/commit/b4580dad30aeba55b4904526fb0cbb85e3e8c20a))
+
 ## [1.1.0](https://github.com/PierreAdel/repo-radar-app/compare/repo-radar-app-v1.0.0...repo-radar-app-v1.1.0) (2026-09-21)
 
 
