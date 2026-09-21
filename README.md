@@ -62,41 +62,9 @@ Type a query and results load ~400ms after you stop typing - no request-per-keys
 </td>
 <td width="50%">
 
-**Track / untrack a repo**
-![Track and untrack](./docs/screenshots/track-untrack.gif)
-One click adds a repo to your tracked list; one click removes it.
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
 **Tracked Repos view**
 ![Tracked repos grid with stars chart](./docs/screenshots/tracked-repos.png)
 Stars, open issues, and last commit date per repo, plus the stars-per-repo chart above the grid.
-
-</td>
-<td width="50%">
-
-**Refresh (per repo)**
-![Refresh a repo](./docs/screenshots/refresh.gif)
-Pull fresh stats for one repo without touching the others.
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-**Independent loading & error states**
-![Loading and error states](./docs/screenshots/loading-error-states.png)
-Every card loads, errors, and retries on its own - one flaky repo never blocks the rest.
-
-</td>
-<td width="50%">
-
-**Survives a reload**
-![Persistence across reload](./docs/screenshots/persistence.gif)
-Tracked repos are saved to `localStorage` and restored on the next visit.
 
 </td>
 </tr>
@@ -121,10 +89,25 @@ cached data underneath.
 </table>
 
 **Responsive layout**
-<img src="./docs/screenshots/tablet-responsive.png" alt="Tracked repos view on a tablet viewport, two-column grid" width="360" />
-<img src="./docs/screenshots/mobile-responsive.png" alt="Tracked repos view on a narrow mobile viewport, single-column grid" width="360" />
 The grid steps down from three columns to two (tablet) to one (mobile) - same data, same
 sort/filter controls at every breakpoint.
+
+<table>
+<tr>
+<td width="50%">
+
+Tablet
+<img src="./docs/screenshots/tablet-responsive.png" alt="Tracked repos view on a tablet viewport, two-column grid" width="360" />
+
+</td>
+<td width="50%">
+
+Mobile
+<img src="./docs/screenshots/mobile-responsive.png" alt="Tracked repos view on a narrow mobile viewport, single-column grid" width="360" />
+
+</td>
+</tr>
+</table>
 
 ---
 

@@ -17,10 +17,11 @@ Stills live in this folder (`docs/screenshots/`), animated captures live in
 | `../gifs/search.gif`    | Typing in the search box, debounced results appearing                        |
 | `search-results.png`    | Populated search results - captured but not currently linked from the README |
 
-## Still needed
+## Optional additions
 
-Run `pnpm dev`, open the app, and capture (PNG for stills, GIF for interactions,
-saving GIFs into `docs/gifs/`):
+Not currently referenced from the README (removed for lacking media) - capture and wire
+back in later if you want the fuller demo grid. Run `pnpm dev`, open the app, and
+capture (PNG for stills, GIF for interactions, saving GIFs into `docs/gifs/`):
 
 | File                        | What to capture                                                              |
 | --------------------------- | ---------------------------------------------------------------------------- |
