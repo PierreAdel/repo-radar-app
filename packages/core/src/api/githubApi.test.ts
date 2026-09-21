@@ -23,7 +23,7 @@ const fetchMock = vi.hoisted(() => {
 });
 globalThis.fetch = fetchMock as unknown as typeof fetch;
 
-const { githubApi } = await import("./githubApi");
+const { githubApi } = await import("./githubApi.js");
 
 function makeStore() {
   return configureStore({

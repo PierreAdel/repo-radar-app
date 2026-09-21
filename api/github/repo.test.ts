@@ -4,7 +4,7 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 const getRepositoryMock = vi.hoisted(() => vi.fn());
 vi.mock("../_lib/githubProxy", () => ({ getRepository: getRepositoryMock }));
 
-const { default: handler } = await import("./repo");
+const { default: handler } = await import("./repo.js");
 
 function mockRequest(query: Record<string, unknown>) {
   return { query } as unknown as VercelRequest;

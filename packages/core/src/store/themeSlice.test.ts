@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { themeReducer, toggleTheme, setTheme, type ThemeState } from "./themeSlice";
+import { themeReducer, toggleTheme, setTheme, type ThemeState } from "./themeSlice.js";
 
 describe("themeSlice", () => {
   it("toggles between dark and light", () => {

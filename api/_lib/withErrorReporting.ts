@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { Sentry } from "./sentry";
+import { Sentry } from "./sentry.js";
 
 // Wraps a Vercel Function handler so an unhandled exception gets reported to
 // Sentry and turned into a generic 500 instead of crashing the function with

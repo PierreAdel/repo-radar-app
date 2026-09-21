@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { GithubRepo } from "../types/repo";
-import { mergeSearchResults } from "./mergeSearchResults";
+import type { GithubRepo } from "../types/repo.js";
+import { mergeSearchResults } from "./mergeSearchResults.js";
 
 function makeRepo(id: number, fullName = `owner/repo-${id}`): GithubRepo {
   return {
