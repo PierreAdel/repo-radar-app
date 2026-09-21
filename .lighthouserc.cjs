@@ -2,8 +2,18 @@ module.exports = {
   ci: {
     collect: {
       numberOfRuns: 3,
-      // No `settings` override - inherits Lighthouse's default profile
-      // (mobile, simulated throttling).
+      settings: {
+        // chromeFlags only affect how Chrome launches, not the
+        // performance-simulation profile (formFactor/throttling stay at
+        // Lighthouse's defaults, untouched here - see the CI note below).
+        // --no-sandbox is required in GitHub Actions' container: Chrome's
+        // sandbox needs privileges the runner doesn't grant, and it
+        // otherwise crashes with "FATAL: No usable sandbox!" before it can
+        // even open a page. --disable-gpu avoids a second common source of
+        // headless-Linux flakiness. Matches the flags the old
+        // chrome-launcher-based script passed directly.
+        chromeFlags: ["--headless", "--no-sandbox", "--disable-gpu"],
+      },
     },
     assert: {
       assertions: {
