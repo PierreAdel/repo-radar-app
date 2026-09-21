@@ -6,10 +6,6 @@ import { searchRepositories, getRepository } from "../../api/_lib/githubProxy";
 
 const repoRoot = path.resolve(__dirname, "../..");
 
-// Groups for manualChunks below, checked in order. @mui/x-charts and its d3-*
-// dependencies are deliberately not listed here, so they stay in
-// StarsChartCard's existing lazy/dynamic-import chunk instead of being
-// pulled into one of these, which load on every page.
 const vendorChunks: [name: string, pattern: RegExp][] = [
   ["vendor-sentry", /@sentry/],
   ["vendor-mui", /@mui|@emotion|@popperjs|\/stylis\/|react-transition-group/],
@@ -80,14 +76,6 @@ export default defineConfig(({ mode }) => {
         : null,
     ],
     build: {
-      modulePreload: {
-        // StarsChartCard is React.lazy()-loaded specifically so it doesn't
-        // load until there's tracked-repo data to chart, but Vite's default
-        // modulePreload still eagerly <link rel="modulepreload">s every
-        // dynamically-imported chunk reachable from the entry regardless -
-        // defeating the point on a fresh visit with nothing tracked yet.
-        resolveDependencies: (_url, deps) => deps.filter((dep) => !dep.includes("StarsChartCard")),
-      },
       rollupOptions: {
         output: {
           // Splits the previously-monolithic main chunk into vendor groups
