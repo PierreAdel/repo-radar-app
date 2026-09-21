@@ -48,7 +48,7 @@
 
 <!-- TODO: a couple of GIFs are still placeholders - see docs/screenshots/README.md for the shot list -->
 
-![Repo Radar search results](./docs/screenshots/search-results.png)
+![Repo Radar tracked repos with stars chart](./docs/screenshots/tracked-repos.png)
 
 <table>
 <tr>
@@ -118,6 +118,11 @@ cached data underneath.
 </td>
 </tr>
 </table>
+
+**Responsive layout**
+<img src="./docs/screenshots/mobile-responsive.png" alt="Tracked repos view on a narrow mobile viewport" width="360" />
+The grid and chart collapse to a single column on narrow viewports - same data, same
+sort/filter controls.
 
 ---
 

@@ -5,14 +5,15 @@ Stills live in this folder (`docs/screenshots/`), animated captures live in
 
 ## Captured
 
-| File                    | Shows                                                  |
-| ----------------------- | ------------------------------------------------------ |
-| `search-results.png`    | Populated search results (used as the top hero image)  |
-| `tracked-repos.png`     | Tracked Repos grid + the stars-per-repo chart above it |
-| `empty-state-dark.png`  | Empty state ("no tracked repos yet"), dark theme       |
-| `empty-state-light.png` | Empty state, light theme                               |
-| `offline-state.png`     | `OfflineBanner` shown while the browser is offline     |
-| `../gifs/search.gif`    | Typing in the search box, debounced results appearing  |
+| File                    | Shows                                                                        |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| `tracked-repos.png`     | Tracked Repos grid + the stars-per-repo chart (used as the hero image)       |
+| `mobile-responsive.png` | Tracked Repos view on a narrow mobile viewport                               |
+| `empty-state-dark.png`  | Empty state ("no tracked repos yet"), dark theme                             |
+| `empty-state-light.png` | Empty state, light theme                                                     |
+| `offline-state.png`     | `OfflineBanner` shown while the browser is offline                           |
+| `../gifs/search.gif`    | Typing in the search box, debounced results appearing                        |
+| `search-results.png`    | Populated search results - captured but not currently linked from the README |
 
 ## Still needed
 
