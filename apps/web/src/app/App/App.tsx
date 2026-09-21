@@ -2,14 +2,14 @@ import { Suspense, lazy, useEffect, useRef } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router";
 import { Container, Link } from "@mui/material";
 import { OfflineBanner } from "@repo-radar/ui";
-import { Header } from "./Header";
-import { DashboardPage } from "./DashboardPage";
-import { RouteFallback } from "./RouteFallback";
-import { visuallyHidden } from "./visuallyHidden";
-import { useOnlineStatus } from "./useOnlineStatus";
+import { Header } from "../Header/Header";
+import { DashboardPage } from "../DashboardPage/DashboardPage";
+import { RouteFallback } from "../RouteFallback/RouteFallback";
+import { visuallyHidden } from "../visuallyHidden";
+import { useOnlineStatus } from "../useOnlineStatus/useOnlineStatus";
 
 const SearchResultsSection = lazy(() =>
-  import("../features/search/SearchResultsSection").then((m) => ({
+  import("../../features/search/SearchResultsSection").then((m) => ({
     default: m.SearchResultsSection,
   })),
 );

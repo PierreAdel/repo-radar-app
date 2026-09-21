@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { MemoryRouter } from "react-router";
 import { Provider } from "react-redux";
 import { setTheme } from "@repo-radar/core";
-import { store } from "./store";
+import { store } from "../store/store";
 import { ThemedApp } from "./ThemedApp";
 
 function renderThemedApp() {
