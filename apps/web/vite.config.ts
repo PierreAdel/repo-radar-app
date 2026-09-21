@@ -6,10 +6,6 @@ import { searchRepositories, getRepository } from "../../api/_lib/githubProxy";
 
 const repoRoot = path.resolve(__dirname, "../..");
 
-// Groups for manualChunks below, checked in order. @mui/x-charts and its d3-*
-// dependencies are deliberately not listed here, so they stay in the chunk
-// created by StarsBarChart's own dynamic import inside StarsChartCard.tsx,
-// instead of being pulled into one of these, which load on every page.
 const vendorChunks: [name: string, pattern: RegExp][] = [
   ["vendor-sentry", /@sentry/],
   ["vendor-mui", /@mui|@emotion|@popperjs|\/stylis\/|react-transition-group/],
@@ -80,18 +76,6 @@ export default defineConfig(({ mode }) => {
         : null,
     ],
     build: {
-      modulePreload: {
-        // TrackedRepoControls is React.lazy()-loaded specifically so it
-        // doesn't load until there's tracked-repo data to show, but Vite's
-        // default modulePreload still eagerly <link rel="modulepreload">s
-        // every dynamically-imported chunk reachable from the entry
-        // regardless - defeating the point on a fresh visit with nothing
-        // tracked yet. (StarsChartCard's own heavy dependency, @mui/x-charts,
-        // is deferred separately via its own internal dynamic import - see
-        // StarsChartCard.tsx - so it isn't named here.)
-        resolveDependencies: (_url, deps) =>
-          deps.filter((dep) => !dep.includes("TrackedRepoControls")),
-      },
       rollupOptions: {
         output: {
           // Splits the previously-monolithic main chunk into vendor groups
