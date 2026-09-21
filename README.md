@@ -49,6 +49,7 @@
 <!-- TODO: a couple of GIFs are still placeholders - see docs/screenshots/README.md for the shot list -->
 
 ![Repo Radar tracked repos with stars chart](./docs/screenshots/tracked-repos.png)
+![Repo Radar hero demo](./docs/gifs/hero.gif)
 
 <table>
 <tr>

@@ -7,7 +7,8 @@ Stills live in this folder (`docs/screenshots/`), animated captures live in
 
 | File                    | Shows                                                                        |
 | ----------------------- | ---------------------------------------------------------------------------- |
-| `tracked-repos.png`     | Tracked Repos grid + the stars-per-repo chart (used as the hero image)       |
+| `tracked-repos.png`     | Tracked Repos grid + the stars-per-repo chart (used as a hero image)         |
+| `../gifs/hero.gif`      | Full flow demo (used as a hero image, alongside `tracked-repos.png`)         |
 | `tablet-responsive.png` | Tracked Repos view on a tablet viewport (two-column grid)                    |
 | `mobile-responsive.png` | Tracked Repos view on a narrow mobile viewport (single-column grid)          |
 | `empty-state-dark.png`  | Empty state ("no tracked repos yet"), dark theme                             |
@@ -29,5 +30,5 @@ saving GIFs into `docs/gifs/`):
 | `../gifs/persistence.gif`   | Tracking a repo, reloading the page, and it's still there                    |
 
 Keep GIFs short (5-10s) and under ~3MB so the README stays fast to load -
-`../gifs/search.gif` is down to ~11MB after re-exporting (was ~36MB), still worth
-trimming further if you get the chance.
+`../gifs/search.gif` is down to ~11MB after re-exporting (was ~36MB), and
+`../gifs/hero.gif` is ~32MB. Both are worth trimming further when you get the chance.
