@@ -10,7 +10,11 @@ export default defineConfig({
       reporter: ["text", "lcov", "json-summary"],
       reportsDirectory: "./coverage",
       include: ["src/**/*.{ts,tsx}"],
-      exclude: ["src/**/*.test.{ts,tsx}"],
+      // main.tsx/instrumentation.ts are CONSTRAINTS.md's T1 exception (thin
+      // bootstrap, verified by the e2e smoke spec instead) - excluded here
+      // too so that exemption is real, not just absorbed by average slack.
+      exclude: ["src/**/*.test.{ts,tsx}", "src/main.tsx", "src/instrumentation.ts"],
+      thresholds: { lines: 80 },
     },
   },
 });

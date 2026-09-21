@@ -100,4 +100,9 @@ describe("StarsBarChart", () => {
     expect(screen.getByText("3 / 3")).toBeInTheDocument();
     expect(screen.getByLabelText("Next repos")).toBeDisabled();
   });
+
+  it("matches its snapshot with pagination controls visible", () => {
+    const { container } = render(<StarsBarChart data={manyRepos} />);
+    expect(container).toMatchSnapshot();
+  });
 });
