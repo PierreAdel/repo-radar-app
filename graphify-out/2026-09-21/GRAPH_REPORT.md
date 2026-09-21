@@ -1,17 +1,17 @@
 # Graph Report - repo-radar-app  (2026-09-21)
 
 ## Corpus Check
-- 147 files · ~44,067 words
+- 146 files · ~44,531 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 9 file(s) not represented in the graph (top: (none) 5, .graphify-bak 1, .example 1)
 
 ## Summary
-- 799 nodes · 1302 edges · 62 communities (48 shown, 14 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 26 edges (avg confidence: 0.85)
+- 798 nodes · 1303 edges · 59 communities (43 shown, 16 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 28 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b7afb898`
+- Built from commit: `2db4a182`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -59,25 +59,22 @@
 - release-please-config.json
 - wait-for-vercel-preview.mjs
 - @sentry/react
-- Constraints
-- useOnlineStatus.ts
-- graphify reference: GitHub clone and cross-repo merge
-- RepoCard.tsx
-- github-repo.js
+- StarsBarChart
 - ui/src/index.ts
-- ref_playwright_core
-- ref_mui_material
-- SearchResultsSection.tsx
+- graphify reference: GitHub clone and cross-repo merge
+- ErrorFallback.stories.tsx
+- github-repo.js
 - ref_testing_library_react
-- ref_testing_library_user_event
-- CHANGELOG.md
-- Header.tsx
-- eslint.config.js
-- SearchResultsSection.test.tsx
+- ref_playwright_core
 - StarsBarChart.stories.tsx
+- createAppTheme
+- EmptyState.stories.tsx
+- AppErrorBoundary.tsx
+- CHANGELOG.md
 - dependencies
-- lint-staged
-- engines
+- scripts
+- main.ts
+- peerDependencies
 
 ## God Nodes (most connected - your core abstractions)
 1. `scripts` - 19 edges
@@ -88,25 +85,25 @@
 6. `GithubRepo` - 13 edges
 7. `What You Must Do When Invoked` - 12 edges
 8. `useAppSelector` - 11 edges
-9. `@playwright/test` - 11 edges
+9. `@playwright/test` - 10 edges
 10. `trackedReposReducer` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Enforced with numbers` --references--> `OfflineBanner()`  [INFERRED]
+  CONSTRAINTS.md → packages/ui/src/OfflineBanner.tsx
+- `Enforced with numbers` --references--> `StarsBarChart()`  [INFERRED]
+  CONSTRAINTS.md → packages/ui/src/StarsBarChart.tsx
 - `Header()` --indirect_call--> `selectThemeMode()`  [INFERRED]
   apps/web/src/Header.tsx → packages/core/src/store/themeSlice.ts
-- `Header()` --indirect_call--> `selectTrackedFullNames()`  [INFERRED]
-  apps/web/src/Header.tsx → packages/core/src/store/trackedReposSlice.ts
 - `ThemedApp()` --indirect_call--> `selectThemeMode()`  [INFERRED]
   apps/web/src/app/ThemedApp.tsx → packages/core/src/store/themeSlice.ts
-- `ThemedApp()` --calls--> `createAppTheme()`  [EXTRACTED]
-  apps/web/src/app/ThemedApp.tsx → packages/ui/src/theme/createAppTheme.ts
-- `useRepoSearch()` --indirect_call--> `selectTrackedFullNames()`  [INFERRED]
-  apps/web/src/features/search/useRepoSearch.ts → packages/core/src/store/trackedReposSlice.ts
+- `useTrackedRepoView()` --indirect_call--> `selectTrackedFullNames()`  [INFERRED]
+  apps/web/src/features/tracked-repos/useTrackedRepoView.ts → packages/core/src/store/trackedReposSlice.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (62 total, 14 thin omitted)
+## Communities (59 total, 16 thin omitted)
 
 ### Community 1 - "Repo Radar (project overview)"
 Cohesion: 0.20
@@ -117,24 +114,24 @@ Cohesion: 0.07
 Nodes (26): @emotion/react, @emotion/styled, jsdom, @mui/icons-material, @mui/material, @mui/x-charts, react, react-dom (+18 more)
 
 ### Community 3 - "ui/package.json"
-Cohesion: 0.04
-Nodes (44): dependencies, @emotion/react, @emotion/styled, @mui/icons-material, @mui/material, @mui/x-charts, @repo-radar/core, exports (+36 more)
+Cohesion: 0.07
+Nodes (26): exports, @emotion/react, @emotion/styled, jsdom, @mui/icons-material, @mui/material, @mui/x-charts, react (+18 more)
 
 ### Community 4 - "RepoCard.stories.tsx"
-Cohesion: 0.08
-Nodes (24): meta, NoTrackedRepos, Story, TitleOnly, WithIconAndAction, Default, meta, Story (+16 more)
+Cohesion: 0.06
+Nodes (37): fetchMock, TrackedRepoCard(), baseQueryWithRetry, githubApi, isRetryableError(), SearchArgs, fetchMock, requestedUrl() (+29 more)
 
 ### Community 5 - "devDependencies"
 Cohesion: 0.10
 Nodes (21): devDependencies, @axe-core/playwright, eslint, eslint-config-prettier, @eslint/js, eslint-plugin-jsx-a11y, eslint-plugin-react-hooks, eslint-plugin-react-refresh (+13 more)
 
 ### Community 6 - "App.tsx"
-Cohesion: 0.18
-Nodes (9): App(), store, ThemedApp(), visuallyHidden, packages_core_src_index_settheme, selectThemeMode(), ref_react_dom, ref_react_redux (+1 more)
+Cohesion: 0.06
+Nodes (34): App(), useAppDispatch, useAppSelector, SearchResultsSection, AppDispatch, RootState, store, ThemedApp() (+26 more)
 
 ### Community 7 - "package.json"
-Cohesion: 0.12
-Nodes (16): @repo-radar/core, @types/node, typescript, vitest, name, packageManager, private, type (+8 more)
+Cohesion: 0.06
+Nodes (37): dependencies, @repo-radar/core, @sentry/node, engines, node, @repo-radar/core, @types/node, typescript (+29 more)
 
 ### Community 8 - "core/package.json"
 Cohesion: 0.06
@@ -189,12 +186,12 @@ Cohesion: 0.22
 Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
 
 ### Community 25 - "useTrackedRepoView.ts"
-Cohesion: 0.07
-Nodes (36): useAppDispatch, useAppSelector, StarsChartCard, RootState, useRepoSearch(), StarsChartCard(), mockedUseTrackedRepoView, CacheEntries (+28 more)
+Cohesion: 0.10
+Nodes (23): StarsChartCard, StarsChartCard(), mockedUseTrackedRepoView, CacheEntries, selectDerivedTrackedRepoView, CacheEntries, mockedUseTrackedRepoView, TrackedRepoControls() (+15 more)
 
 ### Community 26 - "core/src/index.ts"
-Cohesion: 0.05
-Nodes (38): AppDispatch, fetchMock, fetchMock, fetchMock, fetchMock, fetchMock, baseQueryWithRetry, githubApi (+30 more)
+Cohesion: 0.07
+Nodes (30): fetchMock, fetchMock, fetchMock, fetchMock, packages_core_src_api_githubapi_usegetrepositoryquery, packages_core_src_api_githubapi_usesearchrepositoriesquery, packages_core_src_index_trackrepo, loadFromStorage() (+22 more)
 
 ### Community 27 - "devDependencies"
 Cohesion: 0.15
@@ -221,8 +218,8 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ### Community 33 - "@playwright/test"
-Cohesion: 0.11
-Nodes (18): assertNoA11yViolations(), mockGithubApi(), MockRepo, toRepoResponse(), REPOS, REACT, lighthouse, ref_node_fs (+10 more)
+Cohesion: 0.16
+Nodes (12): assertNoA11yViolations(), mockGithubApi(), MockRepo, toRepoResponse(), REPOS, REACT, ref_node_path, ref_node_url (+4 more)
 
 ### Community 35 - "scripts"
 Cohesion: 0.11
@@ -240,85 +237,65 @@ Nodes (4): bootstrap-sha, packages, release-type, $schema
 Cohesion: 0.47
 Nodes (5): fetchDeployments(), main(), maxAttempts, pickDeployment(), pollIntervalMs
 
-### Community 43 - "Constraints"
-Cohesion: 0.29
-Nodes (6): Constraints, Enforced with numbers, Exceptions, Floor (always enforced, no setup required), Measured, not yet enforced (baseline, 2026-09-20), Notes on scope
-
-### Community 44 - "useOnlineStatus.ts"
-Cohesion: 0.48
-Nodes (4): getServerSnapshot(), getSnapshot(), subscribe(), useOnlineStatus()
-
-### Community 46 - "RepoCard.tsx"
+### Community 43 - "StarsBarChart"
 Cohesion: 0.20
-Nodes (11): ApiError, compactNumberFormatter, DIVISIONS, formatCompactNumber(), formatRelativeTime(), relativeTimeFormatter, isSafeHttpUrl(), isValidRepoFullName() (+3 more)
+Nodes (8): Constraints, Enforced with numbers, Exceptions, Floor (always enforced, no setup required), Measured, not yet enforced (baseline, 2026-09-20), Notes on scope, OfflineBanner(), StarsBarChart()
+
+### Community 44 - "ui/src/index.ts"
+Cohesion: 0.31
+Nodes (6): EmptyState(), EmptyStateProps, StarsBarChartDatum, StarsBarChartProps, visuallyHidden, ref_mui_x_charts
+
+### Community 46 - "ErrorFallback.stories.tsx"
+Cohesion: 0.22
+Nodes (8): ErrorFallback(), ErrorFallbackProps, Default, meta, Story, WithErrorDetails, WithReportAction, @storybook/test
 
 ### Community 47 - "github-repo.js"
 Cohesion: 0.29
 Nodes (5): options, REPOS, options, QUERIES, ref_k6
 
-### Community 48 - "ui/src/index.ts"
-Cohesion: 0.18
-Nodes (12): Props, State, EmptyState(), EmptyStateProps, ErrorFallback(), ErrorFallbackProps, StarsBarChart(), StarsBarChartDatum (+4 more)
+### Community 48 - "ref_testing_library_react"
+Cohesion: 0.16
+Nodes (8): MAX_SEARCH_QUERY_LENGTH, SearchBar(), SearchBarProps, fewRepos, manyRepos, ref_mui_icons_material, ref_testing_library_react, ref_testing_library_user_event
 
-### Community 50 - "ref_mui_material"
-Cohesion: 0.31
-Nodes (5): OfflineBanner(), createAppTheme(), preview, withTheme(), ref_mui_material
-
-### Community 51 - "SearchResultsSection.tsx"
-Cohesion: 0.22
-Nodes (5): SearchResultsSection, SearchResultsListProps, MIN_QUERY_LENGTH, RepoCard, repo
-
-### Community 52 - "ref_testing_library_react"
-Cohesion: 0.33
-Nodes (3): useSearchBox(), useDebouncedValue(), ref_testing_library_react
-
-### Community 53 - "ref_testing_library_user_event"
-Cohesion: 0.25
-Nodes (3): fewRepos, manyRepos, ref_testing_library_user_event
-
-### Community 55 - "Header.tsx"
-Cohesion: 0.36
-Nodes (5): MAX_SEARCH_QUERY_LENGTH, SearchBar(), SearchBarProps, packages_core_src_index_toggletheme, ref_mui_icons_material
-
-### Community 56 - "eslint.config.js"
-Cohesion: 0.25
-Nodes (7): eslint-config-prettier, @eslint/js, eslint-plugin-jsx-a11y, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, typescript-eslint
-
-### Community 57 - "SearchResultsSection.test.tsx"
-Cohesion: 0.33
-Nodes (4): SearchResultsSection(), mockedUseRepoSearch, renderAtSearch(), renderAtSearchWith()
-
-### Community 58 - "StarsBarChart.stories.tsx"
+### Community 50 - "StarsBarChart.stories.tsx"
 Cohesion: 0.29
 Nodes (6): Default, ManyRepos, meta, SingleRepo, Story, TallBar
 
-### Community 59 - "dependencies"
-Cohesion: 0.67
-Nodes (3): dependencies, @repo-radar/core, @sentry/node
+### Community 51 - "createAppTheme"
+Cohesion: 0.43
+Nodes (4): createAppTheme(), preview, withTheme(), @storybook/react
 
-### Community 60 - "lint-staged"
-Cohesion: 0.67
-Nodes (3): lint-staged, *.{json,md,yml,yaml,css,html}, *.{ts,tsx,js,jsx}
+### Community 52 - "EmptyState.stories.tsx"
+Cohesion: 0.33
+Nodes (5): meta, NoTrackedRepos, Story, TitleOnly, WithIconAndAction
+
+### Community 55 - "dependencies"
+Cohesion: 0.29
+Nodes (7): dependencies, @emotion/react, @emotion/styled, @mui/icons-material, @mui/material, @mui/x-charts, @repo-radar/core
+
+### Community 56 - "scripts"
+Cohesion: 0.29
+Nodes (7): scripts, build-storybook, lint, storybook, test, test:coverage, typecheck
 
 ## Knowledge Gaps
-- **405 isolated node(s):** `semi`, `singleQuote`, `trailingComma`, `printWidth`, `ProxyResult` (+400 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 503 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **404 isolated node(s):** `semi`, `singleQuote`, `trailingComma`, `printWidth`, `ProxyResult` (+399 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 501 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `@vercel/node` connect `ref_vitest` to `package.json`?**
-  _High betweenness centrality (0.131) - this node is a cross-community bridge._
-- **Why does `react-router` connect `App.tsx` to `web/package.json`, `SearchResultsSection.tsx`, `ref_testing_library_react`, `Header.tsx`, `useTrackedRepoView.ts`, `core/src/index.ts`, `SearchResultsSection.test.tsx`?**
-  _High betweenness centrality (0.084) - this node is a cross-community bridge._
-- **Why does `@storybook/react` connect `RepoCard.stories.tsx` to `StarsBarChart.stories.tsx`, `ui/package.json`, `ref_mui_material`?**
-  _High betweenness centrality (0.064) - this node is a cross-community bridge._
+  _High betweenness centrality (0.132) - this node is a cross-community bridge._
+- **Why does `react-router` connect `App.tsx` to `useTrackedRepoView.ts`, `web/package.json`, `core/src/index.ts`?**
+  _High betweenness centrality (0.086) - this node is a cross-community bridge._
+- **Why does `@storybook/react` connect `createAppTheme` to `ui/package.json`, `RepoCard.stories.tsx`, `ErrorFallback.stories.tsx`, `StarsBarChart.stories.tsx`, `EmptyState.stories.tsx`?**
+  _High betweenness centrality (0.065) - this node is a cross-community bridge._
 - **What connects `semi`, `singleQuote`, `trailingComma` to the rest of the system?**
-  _405 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _404 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `web/package.json` be split into smaller, more focused modules?**
   _Cohesion score 0.07407407407407407 - nodes in this community are weakly interconnected._
 - **Should `ui/package.json` be split into smaller, more focused modules?**
-  _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07407407407407407 - nodes in this community are weakly interconnected._
 - **Should `RepoCard.stories.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07977207977207977 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05519480519480519 - nodes in this community are weakly interconnected._
