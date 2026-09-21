@@ -541,13 +541,11 @@ add 429/`Retry-After`-aware backoff, and wire up `pnpm audit`/Dependabot.
 
 ## 🤝 Contributing
 
-Solo take-home project — no separate `CONTRIBUTING.md`, but the process used:
-
-- Conventional Commit messages (`feat:`, `fix:`, `chore:`, …), since `release-please`
-  derives version bumps and the changelog directly from them.
-- Feature branch → PR → CI green (lint, typecheck, coverage, e2e, smoke test,
-  Lighthouse) → merge.
-- Husky + `lint-staged` enforce formatting/lint locally before a commit can even land.
+Solo take-home project, but the workflow is written down in
+[`CONTRIBUTING.md`](./CONTRIBUTING.md): branch off `staging` → PR → CI green (lint,
+typecheck, coverage, e2e, smoke test, Lighthouse) → merge, with Conventional Commit
+messages (since `release-please` derives version bumps and the changelog from them) and
+Husky + `lint-staged` enforcing formatting/lint locally before a commit can even land.
 
 ---
 
