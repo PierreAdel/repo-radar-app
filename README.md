@@ -412,6 +412,11 @@ GitHub rate limit). Copy `.env.example` to `.env.local` and fill in what you nee
 | `SENTRY_DSN`      | optional  | Server-side error tracking for the `/api` functions.                      |
 | `VITE_SENTRY_DSN` | optional  | Browser-side error tracking + Web Vitals for the app.                     |
 
+For `GITHUB_TOKEN`, a [personal access token](https://github.com/settings/tokens) with
+read-only access is enough - no special scopes are needed just to search/read public
+repos. Useful locally if you're testing search-heavy flows and don't want to hit the
+unauthenticated 60/hr limit.
+
 ```bash
 pnpm dev
 ```
