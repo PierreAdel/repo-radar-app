@@ -6,7 +6,7 @@ exports[`SearchResultsSection > matches its snapshot in the populated, non-virtu
     class="MuiStack-root css-1sazv7p-MuiStack-root"
   >
     <h1
-      class="MuiTypography-root MuiTypography-subtitle2 css-1x0mq5c-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-subtitle2 css-3axufd-MuiTypography-root"
     >
       Search results
     </h1>
