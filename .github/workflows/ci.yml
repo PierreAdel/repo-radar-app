@@ -149,12 +149,22 @@ jobs:
           echo "url=$URL" >> "$GITHUB_OUTPUT"
 
       - name: Check Lighthouse budget
-        run: node scripts/check-lighthouse-budget.mjs "${{ steps.preview.outputs.url }}"
+        run: |
+          # playwright-core isn't a direct dependency here, only a transitive
+          # one of @playwright/test - resolve it the same way scripts in this
+          # repo already do, anchored at @playwright/test's own location.
+          export CHROME_PATH=$(node -e "
+            const { createRequire } = require('node:module');
+            const req = createRequire(process.cwd() + '/package.json');
+            const anchoredReq = createRequire(req.resolve('@playwright/test'));
+            console.log(anchoredReq('playwright-core').chromium.executablePath());
+          ")
+          pnpm exec lhci autorun --collect.url="${{ steps.preview.outputs.url }}"
 
       - name: Upload Lighthouse report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: lighthouse-report
-          path: lighthouse-report.json
+          path: .lighthouseci/**
           if-no-files-found: ignore
