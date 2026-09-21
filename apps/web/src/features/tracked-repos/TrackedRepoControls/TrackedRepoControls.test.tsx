@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { TrackedRepoControls } from "./TrackedRepoControls";
-import { useTrackedRepoView } from "./useTrackedRepoView";
+import { useTrackedRepoView } from "../useTrackedRepoView/useTrackedRepoView";
 
-vi.mock("./useTrackedRepoView", () => ({ useTrackedRepoView: vi.fn() }));
+vi.mock("../useTrackedRepoView/useTrackedRepoView", () => ({ useTrackedRepoView: vi.fn() }));
 const mockedUseTrackedRepoView = vi.mocked(useTrackedRepoView);
 
 function baseView(overrides: Partial<ReturnType<typeof useTrackedRepoView>> = {}) {

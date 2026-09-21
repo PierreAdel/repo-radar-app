@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { TrackedReposSection } from "./TrackedReposSection";
-import { useTrackedRepoView } from "./useTrackedRepoView";
+import { useTrackedRepoView } from "../useTrackedRepoView/useTrackedRepoView";
 
-vi.mock("./useTrackedRepoView", () => ({ useTrackedRepoView: vi.fn() }));
-vi.mock("./TrackedRepoCard", () => ({
+vi.mock("../useTrackedRepoView/useTrackedRepoView", () => ({ useTrackedRepoView: vi.fn() }));
+vi.mock("../TrackedRepoCard/TrackedRepoCard", () => ({
   TrackedRepoCard: ({ fullName }: { fullName: string }) => <div>card:{fullName}</div>,
 }));
 

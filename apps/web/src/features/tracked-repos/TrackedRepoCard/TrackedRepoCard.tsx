@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { toApiError, untrackRepo, useGetRepositoryQuery } from "@repo-radar/core";
 import { RepoCard } from "@repo-radar/ui";
-import { useAppDispatch } from "../../app/store/hooks";
+import { useAppDispatch } from "../../../app/store/hooks";
 
 export function TrackedRepoCard({ fullName }: { fullName: string }) {
   const dispatch = useAppDispatch();

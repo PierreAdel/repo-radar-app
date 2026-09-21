@@ -1,9 +1,11 @@
 import { Suspense, lazy } from "react";
 import { Stack, Typography } from "@mui/material";
-import { TrackedReposSection } from "../../features/tracked-repos/TrackedReposSection";
-import { RouteFallback } from "../RouteFallback/RouteFallback";
+import { selectTrackedFullNames } from "@repo-radar/core";
+import { useAppSelector } from "../store/hooks";
+import { TrackedReposSection } from "../../features/tracked-repos/TrackedReposSection/TrackedReposSection";
 import { visuallyHidden } from "../visuallyHidden";
 import { TrackedRepoControlsSkeleton } from "./TrackedRepoControlsSkeleton";
+import { StarsChartCardSkeleton } from "../../features/stats-chart/StarsChartCardSkeleton";
 
 const StarsChartCard = lazy(() =>
   import("../../features/stats-chart/StarsChartCard").then((m) => ({
@@ -11,23 +13,29 @@ const StarsChartCard = lazy(() =>
   })),
 );
 const TrackedRepoControls = lazy(() =>
-  import("../../features/tracked-repos/TrackedRepoControls").then((m) => ({
+  import("../../features/tracked-repos/TrackedRepoControls/TrackedRepoControls").then((m) => ({
     default: m.TrackedRepoControls,
   })),
 );
 
 export function DashboardPage() {
+  const hasTrackedRepos = useAppSelector(selectTrackedFullNames).length > 0;
+
   return (
     <Stack spacing={4}>
       <Typography component="h1" sx={visuallyHidden}>
         Dashboard
       </Typography>
-      <Suspense fallback={<TrackedRepoControlsSkeleton />}>
-        <TrackedRepoControls />
-      </Suspense>
-      <Suspense fallback={<RouteFallback />}>
-        <StarsChartCard />
-      </Suspense>
+      {hasTrackedRepos ? (
+        <>
+          <Suspense fallback={<TrackedRepoControlsSkeleton />}>
+            <TrackedRepoControls />
+          </Suspense>
+          <Suspense fallback={<StarsChartCardSkeleton />}>
+            <StarsChartCard />
+          </Suspense>
+        </>
+      ) : null}
       <TrackedReposSection />
     </Stack>
   );

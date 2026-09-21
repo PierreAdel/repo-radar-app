@@ -11,7 +11,7 @@ import {
   trackRepo,
   TRACKED_REPOS_STORAGE_KEY,
 } from "@repo-radar/core";
-import { TrackedReposSection } from "./TrackedReposSection";
+import { TrackedReposSection } from "./TrackedReposSection/TrackedReposSection";
 
 // Real store + real persistenceMiddleware + real localStorage (jsdom provides
 // a working one; no need to mock it), only the network boundary mocked, same
@@ -119,7 +119,8 @@ describe("track-repo flow (integration)", () => {
 
     vi.resetModules();
     const core = await import("@repo-radar/core");
-    const { TrackedReposSection: FreshTrackedReposSection } = await import("./TrackedReposSection");
+    const { TrackedReposSection: FreshTrackedReposSection } =
+      await import("./TrackedReposSection/TrackedReposSection");
     const { Provider: FreshProvider } = await import("react-redux");
 
     const store = configureStore({
