@@ -16,6 +16,7 @@ module.exports = {
         // stringifies an array there with commas instead of spaces,
         // corrupting every flag in it.
         chromeFlags: "--no-sandbox --disable-gpu",
+        preset: "desktop",
       },
     },
     assert: {
@@ -23,7 +24,7 @@ module.exports = {
         "total-blocking-time": ["error", { maxNumericValue: 200, aggregationMethod: "median" }],
         "largest-contentful-paint": [
           "error",
-          { maxNumericValue: 2700, aggregationMethod: "median" },
+          { maxNumericValue: 2500, aggregationMethod: "median" },
         ],
         "cumulative-layout-shift": ["error", { maxNumericValue: 0.1, aggregationMethod: "median" }],
         "first-contentful-paint": ["warn", { maxNumericValue: 1800, aggregationMethod: "median" }],
