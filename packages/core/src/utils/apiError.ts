@@ -1,6 +1,6 @@
 import type { SerializedError } from "@reduxjs/toolkit";
 import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import type { ApiError } from "../types/repo";
+import type { ApiError } from "../types/repo.js";
 
 export function toApiError(
   error: FetchBaseQueryError | SerializedError | undefined,

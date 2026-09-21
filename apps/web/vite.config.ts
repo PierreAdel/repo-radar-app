@@ -1,9 +1,22 @@
 import path from "node:path";
 import { defineConfig, loadEnv, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
+import { visualizer } from "rollup-plugin-visualizer";
 import { searchRepositories, getRepository } from "../../api/_lib/githubProxy";
 
 const repoRoot = path.resolve(__dirname, "../..");
+
+// Groups for manualChunks below, checked in order. @mui/x-charts and its d3-*
+// dependencies are deliberately not listed here, so they stay in
+// StarsChartCard's existing lazy/dynamic-import chunk instead of being
+// pulled into one of these, which load on every page.
+const vendorChunks: [name: string, pattern: RegExp][] = [
+  ["vendor-sentry", /@sentry/],
+  ["vendor-mui", /@mui|@emotion|@popperjs|\/stylis\/|react-transition-group/],
+  ["vendor-redux", /@reduxjs|react-redux|\/redux\/|\/immer\/|\/reselect\//],
+  ["vendor-router", /react-router/],
+  ["vendor-react", /\/react\/|\/react-dom\/|\/scheduler\//],
+];
 
 // Mirrors the /api/github/* Vercel Functions locally so `pnpm dev` works without the Vercel CLI.
 function githubApiDevProxyPlugin(githubToken?: string): Plugin {
@@ -52,6 +65,46 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, repoRoot, "");
   return {
     envDir: repoRoot,
-    plugins: [react(), githubApiDevProxyPlugin(env.GITHUB_TOKEN)],
+    plugins: [
+      react(),
+      githubApiDevProxyPlugin(env.GITHUB_TOKEN),
+      // Opt-in bundle breakdown: `ANALYZE=1 pnpm build` writes
+      // dist/bundle-analysis.html instead of affecting every normal build.
+      process.env.ANALYZE
+        ? visualizer({
+            filename: "dist/bundle-analysis.html",
+            gzipSize: true,
+            brotliSize: true,
+            template: "treemap",
+          })
+        : null,
+    ],
+    build: {
+      modulePreload: {
+        // StarsChartCard is React.lazy()-loaded specifically so it doesn't
+        // load until there's tracked-repo data to chart, but Vite's default
+        // modulePreload still eagerly <link rel="modulepreload">s every
+        // dynamically-imported chunk reachable from the entry regardless -
+        // defeating the point on a fresh visit with nothing tracked yet.
+        resolveDependencies: (_url, deps) => deps.filter((dep) => !dep.includes("StarsChartCard")),
+      },
+      rollupOptions: {
+        output: {
+          // Splits the previously-monolithic main chunk into vendor groups
+          // that change at different rates, so a deploy that only touches
+          // app code doesn't invalidate the browser's cache of React.
+          manualChunks(id) {
+            if (
+              !id.includes("node_modules") ||
+              id.includes("@mui/x-charts") ||
+              id.includes("/d3-")
+            ) {
+              return undefined;
+            }
+            return vendorChunks.find(([, pattern]) => pattern.test(id))?.[0] ?? "vendor";
+          },
+        },
+      },
+    },
   };
 });

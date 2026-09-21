@@ -4,16 +4,25 @@ dist
 .vercel
 coverage
 storybook-static
+test-results
+playwright-report
+blob-report
+playwright/.cache
+.lighthouseci
 NOTES.md
 ARCHITECTURE-REVIEW.md
+tasks/
 *.log
 .env
 .env.local
 .env.*.local
 !.env.example
-# Graphify generated knowledge graph
-graphify-out/
-graph.json
+# Graphify generated knowledge graph (graphify-out/ itself is committed so the
+# team shares one map; only local-machine-specific outputs are excluded)
+graphify-out/**/cost.json
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/needs_update
 # Personal Claude Code hook config (machine-specific paths)
 .claude/settings.json
 SPEC.md

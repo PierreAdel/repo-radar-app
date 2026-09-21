@@ -1,6 +1,6 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
-import * as Sentry from "@sentry/react";
 import { ErrorFallback } from "@repo-radar/ui";
+import { loadSentry } from "../instrumentation";
 
 interface Props {
   children: ReactNode;
@@ -19,7 +19,9 @@ export class AppErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, info: ErrorInfo) {
     console.error("Repo Radar crashed:", error, info);
-    Sentry.captureException(error, { extra: { componentStack: info.componentStack } });
+    void loadSentry().then((Sentry) =>
+      Sentry.captureException(error, { extra: { componentStack: info.componentStack } }),
+    );
   }
 
   private handleRetry = () => {

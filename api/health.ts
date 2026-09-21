@@ -1,7 +1,7 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { withErrorReporting } from "./_lib/withErrorReporting.js";
 
 // Dependency-free liveness check for external uptime monitoring
 // UptimeRobot.
-export default function handler(_req: VercelRequest, res: VercelResponse) {
+export default withErrorReporting("Unexpected error in health check.", async (_req, res) => {
   res.status(200).json({ status: "ok" });
-}
+});

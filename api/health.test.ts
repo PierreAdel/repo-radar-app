@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import handler from "./health";
+import handler from "./health.js";
 
 function mockResponse() {
   const res = {
@@ -10,9 +10,9 @@ function mockResponse() {
 }
 
 describe("api/health", () => {
-  it("returns 200 ok without calling any external service", () => {
+  it("returns 200 ok without calling any external service", async () => {
     const res = mockResponse();
-    handler({} as import("@vercel/node").VercelRequest, res);
+    await handler({} as import("@vercel/node").VercelRequest, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ status: "ok" });

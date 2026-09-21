@@ -25,6 +25,13 @@
     },
     "test": {
       "dependsOn": ["^build"]
+    },
+    "test:coverage": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "test:snapshots": {
+      "dependsOn": ["^build"]
     }
   }
 }

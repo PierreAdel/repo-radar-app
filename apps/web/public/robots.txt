@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://repo-radar-app.vercel.app/sitemap.xml

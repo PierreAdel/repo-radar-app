@@ -54,4 +54,51 @@ describe("RepoCard", () => {
     await userEvent.click(screen.getByRole("button", { name: "Untrack" }));
     expect(onUntrack).toHaveBeenCalledOnce();
   });
+
+  it("renders a safe homepage as a clickable link", async () => {
+    render(<RepoCard variant="result" repo={{ ...repo, homepage: "https://react.dev" }} />);
+
+    await userEvent.click(screen.getByRole("button", { name: /expand details/i }));
+
+    const link = screen.getByRole("link", { name: "https://react.dev" });
+    expect(link).toHaveAttribute("href", "https://react.dev");
+  });
+
+  it("does not render a javascript: homepage as a link", async () => {
+    render(
+      <RepoCard
+        variant="result"
+        repo={{ ...repo, homepage: "javascript:alert(document.cookie)" }}
+      />,
+    );
+
+    await userEvent.click(screen.getByRole("button", { name: /expand details/i }));
+
+    expect(screen.getByText("javascript:alert(document.cookie)")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /javascript:/i })).not.toBeInTheDocument();
+  });
+
+  it("matches its snapshot in the loaded, tracked state", () => {
+    // Fixed clock + a pushedAt safely in the past: formatRelativeTime's
+    // output ("2 days ago") only stays snapshot-stable if it can't drift
+    // between when this snapshot was written and when it's replayed later.
+    vi.setSystemTime(new Date("2026-01-10T00:00:00.000Z"));
+    const { container } = render(
+      <RepoCard
+        variant="tracked"
+        repo={{
+          ...repo,
+          pushedAt: "2026-01-08T00:00:00.000Z",
+          language: "JavaScript",
+          license: "MIT License",
+          homepage: "https://react.dev",
+        }}
+        isTracked
+        onUntrack={() => {}}
+        onRefresh={() => {}}
+      />,
+    );
+    expect(container).toMatchSnapshot();
+    vi.useRealTimers();
+  });
 });

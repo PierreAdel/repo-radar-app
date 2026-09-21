@@ -1,0 +1,22 @@
+# Repo Radar
+
+> Repo Radar is a web dashboard for searching GitHub repositories, tracking
+> favorites, and monitoring their stats (stars, open issues, last commit)
+> over time. It's a client-side single-page app backed by a small serverless
+> proxy in front of the GitHub REST API.
+
+## Pages
+
+- [Dashboard](https://repo-radar-app.vercel.app/): tracked repos, a
+  stars-by-repo chart, sort and filter controls (by star count).
+- Search (`/?q=<query>`): search GitHub repositories by name and track any
+  result directly from the results list.
+
+## Notes for AI agents / crawlers
+
+- This is a single-page app; only `/` is a stable, indexable URL. The search
+  view is state driven by URL query parameters and has no separate canonical
+  pages per query.
+- No authentication is required to use the app. Tracked repos are stored in
+  the visiting browser only (not synced to an account).
+- Source code: https://github.com/PierreAdel/repo-radar-app

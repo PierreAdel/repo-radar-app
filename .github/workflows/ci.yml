@@ -53,11 +53,157 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      # Runs with coverage (not just `pnpm test`) so the per-workspace
+      # coverage thresholds in each vitest.config.ts actually gate merges -
+      # see CONSTRAINTS.md's Coverage/Unit+integration rows.
       - name: Test
-        run: pnpm test
+        run: pnpm test:coverage
 
       - name: Build
         run: pnpm build
 
       - name: Build Storybook
         run: pnpm build-storybook
+
+  e2e:
+    name: E2E + accessibility (Playwright)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(pnpm exec playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+
+      # A cache hit still needs the OS-level libraries Playwright's browsers link
+      # against (fonts, codecs, ...) — those aren't part of what gets cached, so
+      # --with-deps runs every time regardless; only the browser download itself
+      # is skipped on a hit.
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run e2e tests
+        run: pnpm e2e
+
+  api-smoke-test:
+    name: API smoke test (deployed Functions)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Wait for Vercel preview deployment
+        id: preview
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          GIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          URL=$(node scripts/wait-for-vercel-preview.mjs)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      # pnpm typecheck/build never catch this class of bug: Vercel's own
+      # build step for api/*.ts enforces stricter TypeScript module
+      # resolution than this repo's tsconfig does, so a broken API Function
+      # can still pass every other CI check and only fail once actually
+      # deployed and invoked - see PR #39. This hits the real deployed
+      # Functions directly, not a mock.
+      - name: Smoke test deployed API routes
+        run: node scripts/smoke-test-api.mjs "${{ steps.preview.outputs.url }}"
+
+  lighthouse:
+    name: Performance budget (Lighthouse)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(pnpm exec playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install chromium
+
+      - name: Wait for Vercel preview deployment
+        id: preview
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          GIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          URL=$(node scripts/wait-for-vercel-preview.mjs)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      - name: Check Lighthouse budget
+        run: |
+          # playwright-core isn't a direct dependency here, only a transitive
+          # one of @playwright/test - resolve it the same way scripts in this
+          # repo already do, anchored at @playwright/test's own location.
+          export CHROME_PATH=$(node -e "
+            const { createRequire } = require('node:module');
+            const req = createRequire(process.cwd() + '/package.json');
+            const anchoredReq = createRequire(req.resolve('@playwright/test'));
+            console.log(anchoredReq('playwright-core').chromium.executablePath());
+          ")
+          pnpm exec lhci autorun --collect.url="${{ steps.preview.outputs.url }}"
+
+      - name: Upload Lighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: .lighthouseci/**
+          if-no-files-found: ignore

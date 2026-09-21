@@ -10,6 +10,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:snapshots": "vitest run -t snapshot",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

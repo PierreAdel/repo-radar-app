@@ -42,3 +42,8 @@ pnpm build-storybook    # static build to packages/ui/storybook-static
 - **CD** — deployment is handled by Vercel's own GitHub integration, not this workflow: pushes to
   `main` deploy to production, and every branch/PR gets its own preview URL. No deploy secrets
   live in this repo.
+- **Releases** — [.github/workflows/release-please.yml](.github/workflows/release-please.yml) runs
+  on every push to `main` and keeps a "Release PR" up to date with the next version bump and
+  [CHANGELOG.md](CHANGELOG.md), computed from [Conventional Commits](https://www.conventionalcommits.org/)
+  since the last release. Merging that PR is what actually tags the release and publishes it on
+  GitHub — nothing is tagged automatically on every push.
