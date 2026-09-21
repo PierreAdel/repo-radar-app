@@ -29,5 +29,5 @@ saving GIFs into `docs/gifs/`):
 | `../gifs/persistence.gif`   | Tracking a repo, reloading the page, and it's still there                    |
 
 Keep GIFs short (5-10s) and under ~3MB so the README stays fast to load -
-`../gifs/search.gif` is currently ~36MB and worth re-exporting smaller when you get a
-chance (trim length, lower fps/resolution, or convert to a smaller format).
+`../gifs/search.gif` is down to ~11MB after re-exporting (was ~36MB), still worth
+trimming further if you get the chance.
