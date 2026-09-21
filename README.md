@@ -11,7 +11,7 @@
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white" />
 </p>
 
-**🔗 Live demo:** `<VERCEL_URL_HERE>` · **📦 Repo:** [github.com/PierreAdel/repo-radar-app](https://github.com/PierreAdel/repo-radar-app)
+**🔗 Live demo:** [repo-radar-app.vercel.app](https://repo-radar-app.vercel.app/) · **📦 Repo:** [github.com/PierreAdel/repo-radar-app](https://github.com/PierreAdel/repo-radar-app)
 
 > This README covers the demo, the architecture and technical decisions behind it, and
 > the assumptions/limitations made along the way.
