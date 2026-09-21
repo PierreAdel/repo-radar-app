@@ -12,7 +12,9 @@ this file exists mainly to make the workflow explicit rather than tribal knowled
    `build-storybook`, plus `e2e` (Playwright + axe-core accessibility checks),
    `api-smoke-test` (against the real Vercel preview deploy), and `lighthouse`
    (performance budget). See [`.github/workflows/ci.yml`](./.github/workflows/ci.yml).
-4. `main` and `staging` are both protected branches.
+4. Wait for review and approval from [@PierreAdel](https://github.com/PierreAdel) before
+   merging - a green CI run is necessary but not sufficient on its own.
+5. `main` and `staging` are both protected branches.
 
 ## Commit messages
 

@@ -561,7 +561,8 @@ and wire up `pnpm audit`/Dependabot.
 
 Currently a one-person project, but the workflow is written down in
 [`CONTRIBUTING.md`](./CONTRIBUTING.md): branch off `staging` → PR → CI green (lint,
-typecheck, coverage, e2e, smoke test, Lighthouse) → merge, with Conventional Commit
+typecheck, coverage, e2e, smoke test, Lighthouse) → **review and approval from
+[@PierreAdel](https://github.com/PierreAdel)** → merge, with Conventional Commit
 messages (since `release-please` derives version bumps and the changelog from them) and
 Husky + `lint-staged` enforcing formatting/lint locally before a commit can even land.
 
