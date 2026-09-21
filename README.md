@@ -263,6 +263,9 @@ The browser never calls `api.github.com` directly - every request goes through
 - **Input validation** - the repo-lookup route validates its `fullName` parameter
   (`api/_lib/validation.ts::isValidRepoFullName`) before it's used to build the
   upstream GitHub request.
+- **Per-IP rate limiting** - `/api/github/*` is capped at 100 requests per IP per route
+  per 60 seconds via Vercel's platform-level rate limiting, independent of GitHub's own
+  limit. See [API Rate-Limit Handling](#-api-rate-limit-handling) for detail.
 - **No secrets in source** - enforced as a project-wide floor rule in
   [`CONSTRAINTS.md`](./CONSTRAINTS.md).
 - **Dependency security** - no automated dependency-audit tool (e.g. Dependabot,
@@ -272,9 +275,12 @@ The browser never calls `api.github.com` directly - every request goes through
 
 ## 🚦 API Rate-Limit Handling
 
-GitHub's REST API allows **60 requests/hour unauthenticated**, **5,000/hour** with a
-token. `GITHUB_TOKEN` (optional, server-side only - see [`.env.example`](./.env.example))
-raises the deployed app from the former to the latter.
+Two separate rate limits are in play - GitHub's own limit on the upstream API, and a
+limit we put in front of our own proxy endpoints.
+
+**GitHub's limit:** the REST API allows **60 requests/hour unauthenticated**,
+**5,000/hour** with a token. `GITHUB_TOKEN` (optional, server-side only - see
+[`.env.example`](./.env.example)) raises the deployed app from the former to the latter.
 
 - 403 responses matching GitHub's rate-limit message are caught in
   `githubProxy.ts::normalizeError` and rewritten into a friendly `ApiError`
@@ -284,6 +290,11 @@ raises the deployed app from the former to the latter.
   responses, so a rate-limited request isn't retried straight into a worse rate limit.
 - **Known gap**: there's no explicit `Retry-After`/429-header-based backoff yet - see
   [Limitations](#-assumptions--limitations).
+
+**Our own limit:** `/api/github/*` is rate-limited to **100 requests per IP, per API
+route, per 60 seconds** at the Vercel platform level (Firewall/rate-limiting rules
+configured on the project, not in application code) - protects the proxy itself from
+abuse independently of whatever GitHub's own limit is doing.
 
 ---
 
@@ -357,7 +368,7 @@ How the design holds up as usage grows:
   generic 500 is returned).
 - **Lighthouse CI** acts as a continuous performance monitor, running against every
   preview deploy rather than only on demand.
-- **UptimeRobot** polls `/api/health` on an interval, so an outage in the deployed app
+- **UptimeRobot** polls `/api/health` every 5 minutes, so an outage in the deployed app
   or its serverless functions surfaces as an alert, not silence.
 
 ---
@@ -497,8 +508,15 @@ pnpm e2e                # Playwright
 merge.
 
 **CD** is handled entirely by Vercel's own GitHub integration, not a workflow in this
-repo: every push to `main` deploys to production, every branch/PR gets its own preview
-URL. No deploy secrets live in this repository.
+repo. Every branch/PR gets its own ephemeral preview deployment. **Production only
+deploys when the release-please Release PR is merged into `main`** (see
+[Release Process](#-release-process) below) - not on every push to `main`. No deploy
+secrets live in this repository.
+
+**Environments:** Vercel's GitHub integration provisions two environments - **Production**
+(the live app, deployed from `main`) and **Preview** (every branch/PR) - and mirrors them
+as GitHub Environments of the same name, which is how CI scopes environment-specific
+secrets (e.g. `TESTING_GITHUB_TOKEN` in [`stress-test.yml`](./.github/workflows/stress-test.yml)).
 
 ---
 
@@ -509,7 +527,8 @@ every push to `main` and keeps a "Release PR" up to date with the next version b
 [`CHANGELOG.md`](./CHANGELOG.md), computed from
 [Conventional Commits](https://www.conventionalcommits.org/) since the last release.
 Nothing is tagged automatically on every push - merging that Release PR is what actually
-tags and publishes the release.
+tags and publishes the release, and it's also what triggers the production deploy on
+Vercel (see [Environments](#-cicd) above).
 
 ---
 
