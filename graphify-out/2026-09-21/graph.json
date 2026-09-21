@@ -1440,18 +1440,6 @@
       "source_location": "L3"
     },
     {
-      "id": "api_lib_validation_isvalidrepofullname",
-      "label": "isValidRepoFullName()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 50,
-      "community_name": "_lib/validation.test.ts",
-      "file_type": "code",
-      "norm_label": "isvalidrepofullname()",
-      "source_file": "api/_lib/validation.ts",
-      "source_location": "L11"
-    },
-    {
       "id": "packages_ui_src_theme_createapptheme_createapptheme",
       "label": "createAppTheme()",
       "_callable": true,
@@ -1750,6 +1738,18 @@
       "norm_label": "jsonresponse()",
       "source_file": "api/_lib/githubProxy.test.ts",
       "source_location": "L4"
+    },
+    {
+      "id": "api_lib_validation_isvalidrepofullname",
+      "label": "isValidRepoFullName()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "githubProxy.ts",
+      "file_type": "code",
+      "norm_label": "isvalidrepofullname()",
+      "source_file": "api/_lib/validation.ts",
+      "source_location": "L11"
     },
     {
       "id": "api_lib_witherrorreporting_test_mockresponse",
@@ -7217,28 +7217,6 @@
       "source_location": "L47"
     },
     {
-      "id": "api_lib_validation",
-      "label": "_lib/validation.ts",
-      "_origin": "ast",
-      "community": 50,
-      "community_name": "_lib/validation.test.ts",
-      "file_type": "code",
-      "norm_label": "_lib/validation.ts",
-      "source_file": "api/_lib/validation.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "api_lib_validation_test",
-      "label": "_lib/validation.test.ts",
-      "_origin": "ast",
-      "community": 50,
-      "community_name": "_lib/validation.test.ts",
-      "file_type": "code",
-      "norm_label": "_lib/validation.test.ts",
-      "source_file": "api/_lib/validation.test.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "packages_ui_src_starsbarchart_stories",
       "label": "StarsBarChart.stories.tsx",
       "_origin": "ast",
@@ -8510,6 +8488,28 @@
       "norm_label": "initmock",
       "source_file": "api/_lib/sentry.test.ts",
       "source_location": "L3"
+    },
+    {
+      "id": "api_lib_validation",
+      "label": "_lib/validation.ts",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "githubProxy.ts",
+      "file_type": "code",
+      "norm_label": "_lib/validation.ts",
+      "source_file": "api/_lib/validation.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "api_lib_validation_test",
+      "label": "_lib/validation.test.ts",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "githubProxy.ts",
+      "file_type": "code",
+      "norm_label": "_lib/validation.test.ts",
+      "source_file": "api/_lib/validation.test.ts",
+      "source_location": "L1"
     },
     {
       "id": "api_lib_witherrorreporting",
@@ -10655,7 +10655,7 @@
     },
     {
       "source": "api_github_repo",
-      "target": "packages_core_src_utils_validation_isvalidrepofullname",
+      "target": "api_lib_validation_isvalidrepofullname",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -13943,7 +13943,7 @@
     },
     {
       "source": "api_github_repo",
-      "target": "packages_core_src_index",
+      "target": "api_lib_validation",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",

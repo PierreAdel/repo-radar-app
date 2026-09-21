@@ -6,7 +6,7 @@
 - Unclassified: 9 file(s) not represented in the graph (top: (none) 5, .graphify-bak 1, .example 1)
 
 ## Summary
-- 807 nodes · 1310 edges · 58 communities (43 shown, 15 thin omitted)
+- 807 nodes · 1310 edges · 57 communities (43 shown, 14 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 28 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
@@ -66,7 +66,6 @@
 - github-repo.js
 - ui/src/index.ts
 - ref_playwright_core
-- _lib/validation.test.ts
 - StarsBarChart.stories.tsx
 - createAppTheme
 - CHANGELOG.md
@@ -101,7 +100,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (58 total, 15 thin omitted)
+## Communities (57 total, 14 thin omitted)
 
 ### Community 1 - "Repo Radar (project overview)"
 Cohesion: 0.20
@@ -137,7 +136,7 @@ Nodes (34): dependencies, react-redux, @reduxjs/toolkit, devDependencies, jsdom,
 
 ### Community 9 - "githubProxy.ts"
 Cohesion: 0.06
-Nodes (27): getRepositoryMock, searchRepositoriesMock, mockResponse(), buildHeaders(), getRepository(), mapRawRepo(), normalizeError(), ProxyResult (+19 more)
+Nodes (28): getRepositoryMock, searchRepositoriesMock, mockResponse(), buildHeaders(), getRepository(), mapRawRepo(), normalizeError(), ProxyResult (+20 more)
 
 ### Community 10 - "tasks"
 Cohesion: 0.08
@@ -278,17 +277,17 @@ Nodes (5): Constraints, Exceptions, Floor (always enforced, no setup required), 
 ## Knowledge Gaps
 - **408 isolated node(s):** `semi`, `singleQuote`, `trailingComma`, `printWidth`, `ProxyResult` (+403 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 509 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `@vercel/node` connect `githubProxy.ts` to `package.json`?**
-  _High betweenness centrality (0.127) - this node is a cross-community bridge._
+  _High betweenness centrality (0.125) - this node is a cross-community bridge._
 - **Why does `react-router` connect `ref_vitest` to `useTrackedRepoView.ts`, `web/package.json`, `SearchResultsSection.tsx`?**
-  _High betweenness centrality (0.087) - this node is a cross-community bridge._
+  _High betweenness centrality (0.086) - this node is a cross-community bridge._
 - **Why does `@storybook/react` connect `createAppTheme` to `ui/package.json`, `core/src/index.ts`, `EmptyState.stories.tsx`, `ErrorFallback.stories.tsx`, `StarsBarChart.stories.tsx`?**
-  _High betweenness centrality (0.065) - this node is a cross-community bridge._
+  _High betweenness centrality (0.066) - this node is a cross-community bridge._
 - **What connects `semi`, `singleQuote`, `trailingComma` to the rest of the system?**
   _408 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `web/package.json` be split into smaller, more focused modules?**

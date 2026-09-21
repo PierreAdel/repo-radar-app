@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   ".github/workflows/ci.yml": {
-    "mtime": 1789989612.6512852,
-    "seen": 1789989790.623745,
-    "ast_hash": "23a38c633e89f9059deb5b4f6668f1ef",
+    "mtime": 1789992117.4778306,
+    "seen": 1789992138.180268,
+    "ast_hash": "fe8636c1891a7db16bafa0a229ea474d",
     "semantic_hash": ""
   },
   "README.md": {
@@ -969,6 +969,12 @@
     "mtime": 1789991350.433841,
     "seen": 1789991361.52144,
     "ast_hash": "07e2e7f8e487902e25a26b82d7244a77",
+    "semantic_hash": ""
+  },
+  "scripts/smoke-test-api.mjs": {
+    "mtime": 1789992124.9830425,
+    "seen": 1789992138.180259,
+    "ast_hash": "eaa3a7bcb25d765e6558db04b6da38ce",
     "semantic_hash": ""
   }
 }
