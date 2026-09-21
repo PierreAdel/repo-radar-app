@@ -1,7 +1,7 @@
 # Contributing
 
-This is a solo take-home project, so there's no external contributor process - this
-file exists mainly to make the workflow explicit rather than tribal knowledge.
+This is currently a one-person project, so there's no external contributor process yet -
+this file exists mainly to make the workflow explicit rather than tribal knowledge.
 
 ## Workflow
 

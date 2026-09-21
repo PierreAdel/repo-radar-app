@@ -12,9 +12,8 @@
 
 **🔗 Live demo:** `<VERCEL_URL_HERE>` · **📦 Repo:** [github.com/PierreAdel/repo-radar-app](https://github.com/PierreAdel/repo-radar-app)
 
-> Built for the Siemens Senior Frontend take-home ("Repo Radar"). This README covers the
-> demo, architecture and technical decisions, and the assumptions/limitations made along
-> the way, as requested in the brief.
+> This README covers the demo, the architecture and technical decisions behind it, and
+> the assumptions/limitations made along the way.
 
 ---
 
@@ -108,7 +107,7 @@ Tracked repos are saved to `localStorage` and restored on the next visit.
 
 ## ✅ Features
 
-Mapped directly to the ticket's core requirements:
+What the dashboard does, end to end:
 
 - [x] Debounced GitHub repository search (400ms, URL-synced query)
 - [x] Track / untrack repositories
@@ -126,11 +125,11 @@ Mapped directly to the ticket's core requirements:
 
 | Tool                                    | Why                                                                                                                                                                           |
 | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **React 19 + TypeScript + Vite**        | Required by the brief; Vite for fast local dev and small, predictable production builds.                                                                                      |
+| **React 19 + TypeScript + Vite**        | Vite for fast local dev and small, predictable production builds.                                                                                                             |
 | **Redux Toolkit + RTK Query**           | One library for both client state (tracked repo IDs, theme) and server-cache state (per-repo async data, retries, refetch-on-focus) - no second data-fetching library needed. |
-| **MUI + `@mui/x-charts`**               | Required by the brief; `x-charts` gives an accessible, themeable bar chart for free instead of hand-rolling SVG.                                                              |
-| **pnpm workspaces + Turborepo**         | Required (monorepo); pnpm workspaces for fast, disk-efficient installs, Turborepo for cached/parallel task pipelines (`build`, `lint`, `test`) across packages.               |
-| **Vercel (app + serverless functions)** | Required deploy target; its `api/` convention doubles as the GitHub API proxy with zero extra infra.                                                                          |
+| **MUI + `@mui/x-charts`**               | `x-charts` gives an accessible, themeable bar chart for free instead of hand-rolling SVG.                                                                                     |
+| **pnpm workspaces + Turborepo**         | pnpm workspaces for fast, disk-efficient installs, Turborepo for cached/parallel task pipelines (`build`, `lint`, `test`) across packages.                                    |
+| **Vercel (app + serverless functions)** | Its `api/` convention doubles as the GitHub API proxy with zero extra infra.                                                                                                  |
 | **Sentry**                              | Error tracking + Web Vitals on both the browser app and the serverless functions.                                                                                             |
 | **Playwright + axe-core**               | Real-browser e2e coverage of critical flows, with accessibility assertions built into the same specs.                                                                         |
 | **Lighthouse CI**                       | Enforced performance budgets (LCP/TBT/CLS) on every preview deploy, not just a manual spot-check.                                                                             |
@@ -198,10 +197,9 @@ per package.
 | `packages/ui`   | Shared, MUI-based presentational components with Storybook + snapshot tests: `RepoCard`, `StarsBarChart`, `EmptyState`, `ErrorFallback`, `OfflineBanner`, and the app's theme factory.                                                                                          |
 | `api/`          | Vercel serverless functions - the GitHub API proxy (see below). Part of the root workspace, not a `packages/*` entry.                                                                                                                                                           |
 
-> **On the ticket's "package for the needed plots":** `StarsBarChart` lives inside
-> `packages/ui` alongside the other shared components rather than in its own
-> `packages/charts`. See [Assumptions & Limitations](#-assumptions--limitations) for the
-> reasoning.
+> **Why there's no dedicated `packages/charts`:** `StarsBarChart` lives inside
+> `packages/ui` alongside the other shared components instead. See
+> [Assumptions & Limitations](#-assumptions--limitations) for the reasoning.
 
 ### State & data-layer design
 
@@ -328,7 +326,7 @@ raises the deployed app from the former to the latter.
 
 ## 📈 Scalability & Maintainability
 
-Directly addresses the ticket's named criterion:
+How the design holds up as usage grows:
 
 - **Validated at scale** - list/grid virtualization is tested against 1,000+ tracked
   repos in `e2e/large-data.spec.ts`, confirming the UI stays responsive well past
@@ -511,18 +509,16 @@ tags and publishes the release.
 
 ## 📋 Assumptions & Limitations
 
-Stated explicitly, per the brief's request:
+Stated explicitly rather than left implicit:
 
-- **Chart lives in `packages/ui`, not a dedicated `packages/charts`.** The ticket asks
-  for "a package for the needed plots" - with exactly one chart in the app, a fourth
-  workspace package felt like build/versioning overhead without a real benefit. The
-  chart is still code-split and lazy-loaded (`React.lazy`/`Suspense`) as the heaviest
-  dependency in the bundle, which is the performance concern a separate package would
-  have addressed anyway.
-- **No dedicated "Refresh All" button.** The brief says "refresh individual repos
-  and/or all repos" - this reads as either being sufficient. Per-repo refresh is
-  implemented, plus automatic refetch on reconnect/window-focus, which covers the
-  "refresh everything" case without a redundant control.
+- **Chart lives in `packages/ui`, not a dedicated `packages/charts`.** With exactly one
+  chart in the app, a fourth workspace package felt like build/versioning overhead
+  without a real benefit. The chart is still code-split and lazy-loaded
+  (`React.lazy`/`Suspense`) as the heaviest dependency in the bundle, which is the
+  performance concern a separate package would have addressed anyway.
+- **No dedicated "Refresh All" button.** Per-repo refresh is implemented, plus
+  automatic refetch on reconnect/window-focus, which covers the "refresh everything"
+  case without a redundant control.
 - **No `Retry-After`/429-specific handling yet.** Rate-limit detection currently keys
   off GitHub's 403 response message; a dedicated header-based backoff for 429s isn't
   implemented.
@@ -541,7 +537,7 @@ add 429/`Retry-After`-aware backoff, and wire up `pnpm audit`/Dependabot.
 
 ## 🤝 Contributing
 
-Solo take-home project, but the workflow is written down in
+Currently a one-person project, but the workflow is written down in
 [`CONTRIBUTING.md`](./CONTRIBUTING.md): branch off `staging` → PR → CI green (lint,
 typecheck, coverage, e2e, smoke test, Lighthouse) → merge, with Conventional Commit
 messages (since `release-please` derives version bumps and the changelog from them) and
