@@ -10,9 +10,12 @@ module.exports = {
         // sandbox needs privileges the runner doesn't grant, and it
         // otherwise crashes with "FATAL: No usable sandbox!" before it can
         // even open a page. --disable-gpu avoids a second common source of
-        // headless-Linux flakiness. Matches the flags the old
-        // chrome-launcher-based script passed directly.
-        chromeFlags: ["--headless", "--no-sandbox", "--disable-gpu"],
+        // headless-Linux flakiness. Must be a plain space-delimited string,
+        // not an array - @lhci/cli's node-runner.js appends
+        // " --headless=new" onto this value with +=, and JS silently
+        // stringifies an array there with commas instead of spaces,
+        // corrupting every flag in it.
+        chromeFlags: "--no-sandbox --disable-gpu",
       },
     },
     assert: {
