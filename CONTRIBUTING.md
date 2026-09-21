@@ -1,11 +1,11 @@
 # Contributing
 
-This is a solo take-home project, so there's no external contributor process — this
+This is a solo take-home project, so there's no external contributor process - this
 file exists mainly to make the workflow explicit rather than tribal knowledge.
 
 ## Workflow
 
-1. Branch off `staging` (the active integration branch — `main` trails behind it and is
+1. Branch off `staging` (the active integration branch - `main` trails behind it and is
    only updated via release cuts).
 2. Open a PR targeting `staging`.
 3. CI must pass before merge: `lint` → `typecheck` → `test:coverage` → `build` →
@@ -18,13 +18,13 @@ file exists mainly to make the workflow explicit rather than tribal knowledge.
 
 Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`,
 `chore:`, `refactor:`, `perf:`, `docs:`, `test:`, …). `release-please` derives version
-bumps and [`CHANGELOG.md`](./CHANGELOG.md) directly from these on every push to `main` —
+bumps and [`CHANGELOG.md`](./CHANGELOG.md) directly from these on every push to `main` -
 an inaccurate prefix produces an inaccurate changelog entry.
 
 ## Before opening a PR
 
 ```bash
-pnpm check:task   # typecheck + lint + test:coverage — the full local gate
+pnpm check:task   # typecheck + lint + test:coverage - the full local gate
 ```
 
 Husky + `lint-staged` also run ESLint (`--fix`) and Prettier automatically on every
@@ -32,7 +32,7 @@ Husky + `lint-staged` also run ESLint (`--fix`) and Prettier automatically on ev
 
 ## Quality bar
 
-[`CONSTRAINTS.md`](./CONSTRAINTS.md) is the project's written quality contract —
+[`CONSTRAINTS.md`](./CONSTRAINTS.md) is the project's written quality contract -
 coverage thresholds, accessibility, performance budgets, and the "floor" rules (no
 `@ts-ignore`/`eslint-disable` suppressions, no unimplemented stubs, no skipped tests
 without a reason). It does not get weakened to make a change pass; if a change needs an

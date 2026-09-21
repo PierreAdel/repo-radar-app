@@ -1,7 +1,7 @@
 # Screenshots / GIFs to capture
 
 The main [README.md](../../README.md) links to image files in this folder that don't
-exist yet — they're placeholders. Run `pnpm dev`, open the app, and capture the
+exist yet - they're placeholders. Run `pnpm dev`, open the app, and capture the
 following (PNG for stills, GIF for interactions):
 
 | File                       | What to capture                                                              |
