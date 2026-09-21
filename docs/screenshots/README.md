@@ -8,7 +8,8 @@ Stills live in this folder (`docs/screenshots/`), animated captures live in
 | File                    | Shows                                                                        |
 | ----------------------- | ---------------------------------------------------------------------------- |
 | `tracked-repos.png`     | Tracked Repos grid + the stars-per-repo chart (used as the hero image)       |
-| `mobile-responsive.png` | Tracked Repos view on a narrow mobile viewport                               |
+| `tablet-responsive.png` | Tracked Repos view on a tablet viewport (two-column grid)                    |
+| `mobile-responsive.png` | Tracked Repos view on a narrow mobile viewport (single-column grid)          |
 | `empty-state-dark.png`  | Empty state ("no tracked repos yet"), dark theme                             |
 | `empty-state-light.png` | Empty state, light theme                                                     |
 | `offline-state.png`     | `OfflineBanner` shown while the browser is offline                           |

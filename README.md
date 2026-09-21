@@ -120,9 +120,10 @@ cached data underneath.
 </table>
 
 **Responsive layout**
-<img src="./docs/screenshots/mobile-responsive.png" alt="Tracked repos view on a narrow mobile viewport" width="360" />
-The grid and chart collapse to a single column on narrow viewports - same data, same
-sort/filter controls.
+<img src="./docs/screenshots/tablet-responsive.png" alt="Tracked repos view on a tablet viewport, two-column grid" width="360" />
+<img src="./docs/screenshots/mobile-responsive.png" alt="Tracked repos view on a narrow mobile viewport, single-column grid" width="360" />
+The grid steps down from three columns to two (tablet) to one (mobile) - same data, same
+sort/filter controls at every breakpoint.
 
 ---
 
