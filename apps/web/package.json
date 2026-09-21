@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:snapshots": "vitest run -t snapshot"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",

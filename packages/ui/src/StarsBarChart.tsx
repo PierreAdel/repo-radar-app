@@ -29,12 +29,15 @@ export interface StarsBarChartDatum {
 export interface StarsBarChartProps {
   data: StarsBarChartDatum[];
   height?: number;
+  // Lets tests render the chart in its settled state instead of mid-animation,
+  // since @mui/x-charts otherwise animates bar heights in on every mount.
+  skipAnimation?: boolean;
 }
 
 const PAGE_SIZE_DEFAULT = 8;
 const PAGE_SIZE_SMALL = 3;
 
-export function StarsBarChart({ data, height = 260 }: StarsBarChartProps) {
+export function StarsBarChart({ data, height = 260, skipAnimation }: StarsBarChartProps) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const pageSize = isSmallScreen ? PAGE_SIZE_SMALL : PAGE_SIZE_DEFAULT;
@@ -60,6 +63,7 @@ export function StarsBarChart({ data, height = 260 }: StarsBarChartProps) {
       <Box aria-hidden="true">
         <BarChart
           height={height}
+          skipAnimation={skipAnimation}
           series={[
             {
               data: pageData.map((d) => d.value),

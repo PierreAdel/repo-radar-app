@@ -61,66 +61,66 @@ exports[`StarsBarChart > matches its snapshot with pagination controls visible 1
             />
           </g>
           <g
-            clip-path="url(#_r_k_-clip-path)"
+            clip-path="url(#stable-id-8)"
           >
             <clippath
-              id="_r_n__auto-generated-id-0_0_0"
+              id="stable-id-0"
             >
               <rect
                 style="height: 160px; width: 0px; clip-path: inset(0px round 6px 6px 0px 0px); transform: translate3d(56px,50px,0);"
               />
             </clippath>
             <clippath
-              id="_r_n__auto-generated-id-0_0_1"
+              id="stable-id-1"
             >
               <rect
                 style="height: 152px; width: 0px; clip-path: inset(0px round 6px 6px 0px 0px); transform: translate3d(56px,58px,0);"
               />
             </clippath>
             <clippath
-              id="_r_n__auto-generated-id-0_0_2"
+              id="stable-id-2"
             >
               <rect
                 style="height: 144px; width: 0px; clip-path: inset(0px round 6px 6px 0px 0px); transform: translate3d(56px,66px,0);"
               />
             </clippath>
             <clippath
-              id="_r_n__auto-generated-id-0_0_3"
+              id="stable-id-3"
             >
               <rect
                 style="height: 136px; width: 0px; clip-path: inset(0px round 6px 6px 0px 0px); transform: translate3d(56px,74px,0);"
               />
             </clippath>
             <clippath
-              id="_r_n__auto-generated-id-0_0_4"
+              id="stable-id-4"
             >
               <rect
                 style="height: 128px; width: 0px; clip-path: inset(0px round 6px 6px 0px 0px); transform: translate3d(56px,82px,0);"
               />
             </clippath>
             <clippath
-              id="_r_n__auto-generated-id-0_0_5"
+              id="stable-id-5"
             >
               <rect
                 style="height: 120px; width: 0px; clip-path: inset(0px round 6px 6px 0px 0px); transform: translate3d(56px,90px,0);"
               />
             </clippath>
             <clippath
-              id="_r_n__auto-generated-id-0_0_6"
+              id="stable-id-6"
             >
               <rect
                 style="height: 112px; width: 0px; clip-path: inset(0px round 6px 6px 0px 0px); transform: translate3d(56px,98px,0);"
               />
             </clippath>
             <clippath
-              id="_r_n__auto-generated-id-0_0_7"
+              id="stable-id-7"
             >
               <rect
                 style="height: 104px; width: 0px; clip-path: inset(0px round 6px 6px 0px 0px); transform: translate3d(56px,106px,0);"
               />
             </clippath>
             <g
-              clip-path="url(#_r_n__auto-generated-id-0_0_0)"
+              clip-path="url(#stable-id-0)"
             >
               <rect
                 class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
@@ -129,7 +129,7 @@ exports[`StarsBarChart > matches its snapshot with pagination controls visible 1
               />
             </g>
             <g
-              clip-path="url(#_r_n__auto-generated-id-0_0_1)"
+              clip-path="url(#stable-id-1)"
             >
               <rect
                 class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
@@ -138,7 +138,7 @@ exports[`StarsBarChart > matches its snapshot with pagination controls visible 1
               />
             </g>
             <g
-              clip-path="url(#_r_n__auto-generated-id-0_0_2)"
+              clip-path="url(#stable-id-2)"
             >
               <rect
                 class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
@@ -147,7 +147,7 @@ exports[`StarsBarChart > matches its snapshot with pagination controls visible 1
               />
             </g>
             <g
-              clip-path="url(#_r_n__auto-generated-id-0_0_3)"
+              clip-path="url(#stable-id-3)"
             >
               <rect
                 class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
@@ -156,7 +156,7 @@ exports[`StarsBarChart > matches its snapshot with pagination controls visible 1
               />
             </g>
             <g
-              clip-path="url(#_r_n__auto-generated-id-0_0_4)"
+              clip-path="url(#stable-id-4)"
             >
               <rect
                 class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
@@ -165,7 +165,7 @@ exports[`StarsBarChart > matches its snapshot with pagination controls visible 1
               />
             </g>
             <g
-              clip-path="url(#_r_n__auto-generated-id-0_0_5)"
+              clip-path="url(#stable-id-5)"
             >
               <rect
                 class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
@@ -174,7 +174,7 @@ exports[`StarsBarChart > matches its snapshot with pagination controls visible 1
               />
             </g>
             <g
-              clip-path="url(#_r_n__auto-generated-id-0_0_6)"
+              clip-path="url(#stable-id-6)"
             >
               <rect
                 class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
@@ -183,7 +183,7 @@ exports[`StarsBarChart > matches its snapshot with pagination controls visible 1
               />
             </g>
             <g
-              clip-path="url(#_r_n__auto-generated-id-0_0_7)"
+              clip-path="url(#stable-id-7)"
             >
               <rect
                 class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
@@ -539,7 +539,7 @@ exports[`StarsBarChart > matches its snapshot with pagination controls visible 1
             </g>
           </g>
           <clippath
-            id="_r_k_-clip-path"
+            id="stable-id-8"
           >
             <rect
               height="160"

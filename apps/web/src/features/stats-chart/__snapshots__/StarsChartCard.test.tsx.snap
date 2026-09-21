@@ -59,22 +59,22 @@ exports[`StarsChartCard > matches its snapshot 1`] = `
                 />
               </g>
               <g
-                clip-path="url(#_r_4_-clip-path)"
+                clip-path="url(#stable-id-1)"
               >
                 <clippath
-                  id="_r_5__auto-generated-id-0_0_0"
+                  id="stable-id-0"
                 >
                   <rect
-                    style="height: 0px; width: 0px; clip-path: inset(0px round 0px 0px 0px 0px); transform: translate3d(56px,210px,0);"
+                    style="height: 160px; width: 0px; clip-path: inset(0px round 6px 6px 0px 0px); transform: translate3d(56px,50px,0);"
                   />
                 </clippath>
                 <g
-                  clip-path="url(#_r_5__auto-generated-id-0_0_0)"
+                  clip-path="url(#stable-id-0)"
                 >
                   <rect
                     class="MuiBarElement-root MuiBarElement-series-auto-generated-id-0 css-szp4sa-MuiBarElement-root"
                     cursor="unset"
-                    style="height: 0px; width: 0px; transform: translate3d(56px,210px,0);"
+                    style="height: 160px; width: 0px; transform: translate3d(56px,50px,0);"
                   />
                 </g>
               </g>
@@ -200,7 +200,7 @@ exports[`StarsChartCard > matches its snapshot 1`] = `
                 </g>
               </g>
               <clippath
-                id="_r_4_-clip-path"
+                id="stable-id-1"
               >
                 <rect
                   height="160"

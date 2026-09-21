@@ -2,7 +2,13 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { StarsBarChart } from "@repo-radar/ui";
 import { useTrackedRepoView } from "../tracked-repos/useTrackedRepoView";
 
-export function StarsChartCard() {
+export interface StarsChartCardProps {
+  // Passed through to StarsBarChart so tests can render it in its settled
+  // state instead of mid-animation.
+  skipAnimation?: boolean;
+}
+
+export function StarsChartCard({ skipAnimation }: StarsChartCardProps = {}) {
   const { entryByFullName, sortedFullNames } = useTrackedRepoView();
   const data = sortedFullNames
     .map((fullName) => entryByFullName.get(fullName)?.data)
@@ -44,7 +50,7 @@ export function StarsChartCard() {
             loading or failed to load.
           </Typography>
         ) : null}
-        <StarsBarChart data={data} />
+        <StarsBarChart data={data} skipAnimation={skipAnimation} />
       </CardContent>
     </Card>
   );
