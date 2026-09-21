@@ -46,16 +46,16 @@
 
 ## 🎬 Demo
 
-<!-- TODO: capture real screenshots/GIFs - see docs/screenshots/README.md for the shot list -->
+<!-- TODO: a couple of GIFs are still placeholders - see docs/screenshots/README.md for the shot list -->
 
-![Repo Radar hero demo](./docs/screenshots/hero.gif)
+![Repo Radar search results](./docs/screenshots/search-results.png)
 
 <table>
 <tr>
 <td width="50%">
 
 **Debounced search**
-![Debounced search](./docs/screenshots/search.gif)
+![Debounced search](./docs/gifs/search.gif)
 Type a query and results load ~400ms after you stop typing - no request-per-keystroke.
 
 </td>
@@ -71,8 +71,8 @@ One click adds a repo to your tracked list; one click removes it.
 <td width="50%">
 
 **Tracked Repos view**
-![Tracked repos grid](./docs/screenshots/tracked-repos.png)
-Stars, open issues, and last commit date per repo, at a glance.
+![Tracked repos grid with stars chart](./docs/screenshots/tracked-repos.png)
+Stars, open issues, and last commit date per repo, plus the stars-per-repo chart above the grid.
 
 </td>
 <td width="50%">
@@ -99,10 +99,25 @@ Tracked repos are saved to `localStorage` and restored on the next visit.
 
 </td>
 </tr>
-</table>
+<tr>
+<td width="50%">
 
-**Bar chart of stars per tracked repo**
-![Stars bar chart](./docs/screenshots/stars-chart.png)
+**Light / dark theme**
+![Empty state in dark theme](./docs/screenshots/empty-state-dark.png)
+![Empty state in light theme](./docs/screenshots/empty-state-light.png)
+Toggled from the header, persisted the same way tracked repos are.
+
+</td>
+<td width="50%">
+
+**Offline mode**
+![Offline banner](./docs/screenshots/offline-state.png)
+`OfflineBanner` surfaces when the connection drops; RTK Query keeps serving the last
+cached data underneath.
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -513,10 +528,8 @@ pnpm e2e                # Playwright
 merge.
 
 **CD** is handled entirely by Vercel's own GitHub integration, not a workflow in this
-repo. Every branch/PR gets its own ephemeral preview deployment. **Production only
-deploys when the release-please Release PR is merged into `main`** (see
-[Release Process](#-release-process) below) - not on every push to `main`. No deploy
-secrets live in this repository.
+repo: every push to `main` deploys to production, every branch/PR gets its own preview
+deployment. No deploy secrets live in this repository.
 
 **Environments:** Vercel's GitHub integration provisions two environments - **Production**
 (the live app, deployed from `main`) and **Preview** (every branch/PR) - and mirrors them
@@ -532,8 +545,7 @@ every push to `main` and keeps a "Release PR" up to date with the next version b
 [`CHANGELOG.md`](./CHANGELOG.md), computed from
 [Conventional Commits](https://www.conventionalcommits.org/) since the last release.
 Nothing is tagged automatically on every push - merging that Release PR is what actually
-tags and publishes the release, and it's also what triggers the production deploy on
-Vercel (see [Environments](#-cicd) above).
+tags and publishes the release.
 
 ---
 
