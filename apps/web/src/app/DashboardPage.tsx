@@ -1,12 +1,9 @@
 import { Suspense, lazy } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
+import { StarsChartCard } from "../features/stats-chart/StarsChartCard";
 import { TrackedReposSection } from "../features/tracked-repos/TrackedReposSection";
-import { RouteFallback } from "./RouteFallback";
 import { visuallyHidden } from "./visuallyHidden";
 
-const StarsChartCard = lazy(() =>
-  import("../features/stats-chart/StarsChartCard").then((m) => ({ default: m.StarsChartCard })),
-);
 const TrackedRepoControls = lazy(() =>
   import("../features/tracked-repos/TrackedRepoControls").then((m) => ({
     default: m.TrackedRepoControls,
@@ -50,9 +47,7 @@ export function DashboardPage() {
       <Suspense fallback={<TrackedRepoControlsSkeleton />}>
         <TrackedRepoControls />
       </Suspense>
-      <Suspense fallback={<RouteFallback />}>
-        <StarsChartCard />
-      </Suspense>
+      <StarsChartCard />
       <TrackedReposSection />
     </Stack>
   );
