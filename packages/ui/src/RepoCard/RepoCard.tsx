@@ -170,7 +170,7 @@ const RepoCardContent = memo(function RepoCardContent({
                 ) : null}
                 {isTracked ? (
                   <Tooltip title="Untrack">
-                    <IconButton size="small" onClick={stopThen(onUntrack)}>
+                    <IconButton size="small" color="primary" onClick={stopThen(onUntrack)}>
                       <BookmarkRemoveOutlinedIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
