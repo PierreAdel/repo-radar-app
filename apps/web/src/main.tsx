@@ -2,9 +2,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router";
-import { AppErrorBoundary } from "./app/AppErrorBoundary";
-import { store } from "./app/store";
-import { ThemedApp } from "./app/ThemedApp";
+import { AppErrorBoundary } from "./app/AppErrorBoundary/AppErrorBoundary";
+import { store } from "./app/store/store";
+import { ThemedApp } from "./app/ThemedApp/ThemedApp";
 import { loadSentry } from "./instrumentation";
 
 createRoot(document.getElementById("root")!).render(

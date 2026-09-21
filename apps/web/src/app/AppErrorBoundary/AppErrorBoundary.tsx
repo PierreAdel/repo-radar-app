@@ -1,6 +1,6 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
 import { ErrorFallback } from "@repo-radar/ui";
-import { loadSentry } from "../instrumentation";
+import { loadSentry } from "../../instrumentation";
 
 interface Props {
   children: ReactNode;
