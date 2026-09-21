@@ -65,6 +65,23 @@ describe("StarsChartCard", () => {
     expect(screen.queryByRole("status")).toBeNull();
   });
 
+  it("shows a chart skeleton while the chart chunk loads, then swaps in the real chart", async () => {
+    const entryByFullName = new Map([
+      ["a/a", { fullName: "a/a", data: { fullName: "a/a", stargazersCount: 10 } }],
+    ]);
+    mockedUseTrackedRepoView.mockReturnValue(
+      baseView({ sortedFullNames: ["a/a"], entryByFullName } as never),
+    );
+    const { container } = render(<StarsChartCard skipAnimation />);
+
+    expect(container.querySelectorAll(".MuiSkeleton-root").length).toBeGreaterThan(0);
+
+    await waitFor(() => {
+      expect(container.querySelector(".MuiBarElement-root")).toBeInTheDocument();
+    });
+    expect(container.querySelectorAll(".MuiSkeleton-root").length).toBe(0);
+  });
+
   it("shows a partial-data notice when some tracked repos haven't loaded", () => {
     const entryByFullName = new Map([
       ["a/a", { fullName: "a/a", data: { fullName: "a/a", stargazersCount: 10 } }],
