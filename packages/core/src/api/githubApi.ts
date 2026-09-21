@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
-import type { GithubRepo, SearchReposResult } from "../types/repo";
-import { mergeSearchResults } from "./mergeSearchResults";
+import type { GithubRepo, SearchReposResult } from "../types/repo.js";
+import { mergeSearchResults } from "./mergeSearchResults.js";
 
 interface SearchArgs {
   query: string;

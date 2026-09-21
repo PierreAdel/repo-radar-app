@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { formatCompactNumber, formatRelativeTime } from "./format";
+import { formatCompactNumber, formatRelativeTime } from "./format.js";
 
 describe("formatCompactNumber", () => {
   it("formats large numbers compactly", () => {

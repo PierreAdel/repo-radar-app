@@ -19,7 +19,7 @@ describe("api/_lib/sentry", () => {
     vi.stubEnv("SENTRY_DSN", "https://example@sentry.io/1");
     vi.stubEnv("VERCEL_ENV", "production");
 
-    await import("./sentry");
+    await import("./sentry.js");
 
     expect(initMock).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -34,7 +34,7 @@ describe("api/_lib/sentry", () => {
     vi.stubEnv("VERCEL_ENV", undefined);
     vi.stubEnv("SENTRY_DSN", undefined);
 
-    await import("./sentry");
+    await import("./sentry.js");
 
     expect(initMock).toHaveBeenCalledWith(expect.objectContaining({ environment: "development" }));
   });

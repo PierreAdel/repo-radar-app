@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { getRepository, searchRepositories } from "./githubProxy";
+import { getRepository, searchRepositories } from "./githubProxy.js";
 
 function jsonResponse(status: number, body: unknown) {
   return {

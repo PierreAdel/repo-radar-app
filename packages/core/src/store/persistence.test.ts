@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { loadFromStorage, saveToStorage } from "./persistence";
+import { loadFromStorage, saveToStorage } from "./persistence.js";
 
 function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item) => typeof item === "string");

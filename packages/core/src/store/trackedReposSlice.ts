@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { loadFromStorage } from "./persistence";
+import { loadFromStorage } from "./persistence.js";
 
 const STORAGE_KEY = "repo-radar/tracked-repos";
 

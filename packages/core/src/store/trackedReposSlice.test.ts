@@ -4,7 +4,7 @@ import {
   trackRepo,
   untrackRepo,
   type TrackedReposState,
-} from "./trackedReposSlice";
+} from "./trackedReposSlice.js";
 
 describe("trackedReposSlice", () => {
   it("tracks a new repo", () => {
