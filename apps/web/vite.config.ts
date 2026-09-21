@@ -81,12 +81,16 @@ export default defineConfig(({ mode }) => {
     ],
     build: {
       modulePreload: {
-        // StarsChartCard is React.lazy()-loaded specifically so it doesn't
-        // load until there's tracked-repo data to chart, but Vite's default
-        // modulePreload still eagerly <link rel="modulepreload">s every
-        // dynamically-imported chunk reachable from the entry regardless -
-        // defeating the point on a fresh visit with nothing tracked yet.
-        resolveDependencies: (_url, deps) => deps.filter((dep) => !dep.includes("StarsChartCard")),
+        // StarsChartCard and TrackedRepoControls are React.lazy()-loaded
+        // specifically so they don't load until there's tracked-repo data to
+        // show, but Vite's default modulePreload still eagerly
+        // <link rel="modulepreload">s every dynamically-imported chunk
+        // reachable from the entry regardless - defeating the point on a
+        // fresh visit with nothing tracked yet.
+        resolveDependencies: (_url, deps) =>
+          deps.filter(
+            (dep) => !dep.includes("StarsChartCard") && !dep.includes("TrackedRepoControls"),
+          ),
       },
       rollupOptions: {
         output: {
