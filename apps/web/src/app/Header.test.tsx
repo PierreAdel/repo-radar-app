@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { MemoryRouter, useLocation } from "react-router";
 import { Provider } from "react-redux";
 import { setTheme } from "@repo-radar/core";
-import { store } from "./app/store";
+import { store } from "./store";
 import { Header } from "./Header";
 
 function LocationProbe() {

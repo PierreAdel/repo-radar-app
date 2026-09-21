@@ -1,58 +1,18 @@
 import { Suspense, lazy, useEffect, useRef } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router";
-import { CircularProgress, Container, Link, Stack, Typography } from "@mui/material";
+import { Container, Link } from "@mui/material";
 import { OfflineBanner } from "@repo-radar/ui";
 import { Header } from "./Header";
-import { TrackedRepoControls } from "./features/tracked-repos/TrackedRepoControls";
-import { TrackedReposSection } from "./features/tracked-repos/TrackedReposSection";
-import { useOnlineStatus } from "./app/useOnlineStatus";
-
-// MUI's sx treats bare numbers for width/height as fractions (1 -> "100%"),
-// not px, so these need explicit units or the "1x1px" box becomes full-size
-// and inflates the page's scrollable area even though it stays invisible.
-const visuallyHidden = {
-  position: "absolute",
-  width: "1px",
-  height: "1px",
-  padding: 0,
-  margin: "-1px",
-  overflow: "hidden",
-  clip: "rect(0, 0, 0, 0)",
-  whiteSpace: "nowrap",
-  border: 0,
-} as const;
+import { DashboardPage } from "./DashboardPage";
+import { RouteFallback } from "./RouteFallback";
+import { visuallyHidden } from "./visuallyHidden";
+import { useOnlineStatus } from "./useOnlineStatus";
 
 const SearchResultsSection = lazy(() =>
-  import("./features/search/SearchResultsSection").then((m) => ({
+  import("../features/search/SearchResultsSection").then((m) => ({
     default: m.SearchResultsSection,
   })),
 );
-const StarsChartCard = lazy(() =>
-  import("./features/stats-chart/StarsChartCard").then((m) => ({ default: m.StarsChartCard })),
-);
-
-function RouteFallback() {
-  return (
-    <Stack alignItems="center" sx={{ py: 6 }}>
-      <CircularProgress size={28} />
-    </Stack>
-  );
-}
-
-function DashboardPage() {
-  return (
-    <Stack spacing={4}>
-      <Typography component="h1" sx={visuallyHidden}>
-        Dashboard
-      </Typography>
-      <TrackedRepoControls />
-      <Suspense fallback={<RouteFallback />}>
-        <StarsChartCard />
-      </Suspense>
-      <TrackedReposSection />
-    </Stack>
-  );
-}
 
 function App() {
   const location = useLocation();
