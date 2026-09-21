@@ -4,7 +4,9 @@
 
 Search GitHub repositories, track favorites, and monitor their latest stats.
 
-See [docs/FEATURES.md](docs/FEATURES.md) for a full walkthrough with screenshots.
+- 📸 [docs/FEATURES.md](docs/FEATURES.md) — a feature walkthrough with screenshots.
+- 🛠️ [docs/ENGINEERING.md](docs/ENGINEERING.md) — architecture, testing, security, performance,
+  and everything else under the hood.
 
 ## Stack
 
