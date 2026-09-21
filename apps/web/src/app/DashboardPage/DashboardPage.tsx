@@ -5,10 +5,10 @@ import { useAppSelector } from "../store/hooks";
 import { TrackedReposSection } from "../../features/tracked-repos/TrackedReposSection/TrackedReposSection";
 import { visuallyHidden } from "../visuallyHidden";
 import { TrackedRepoControlsSkeleton } from "./TrackedRepoControlsSkeleton";
-import { StarsChartCardSkeleton } from "../../features/stats-chart/StarsChartCardSkeleton";
+import { StarsChartCardSkeleton } from "../../features/stats-chart/StarsChartCard/StarsChartCardSkeleton";
 
 const StarsChartCard = lazy(() =>
-  import("../../features/stats-chart/StarsChartCard").then((m) => ({
+  import("../../features/stats-chart/StarsChartCard/StarsChartCard").then((m) => ({
     default: m.StarsChartCard,
   })),
 );

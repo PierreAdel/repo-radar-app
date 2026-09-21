@@ -1,6 +1,6 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import { lazy, Suspense } from "react";
-import { useTrackedRepoView } from "../tracked-repos/useTrackedRepoView/useTrackedRepoView";
+import { useTrackedRepoView } from "../../tracked-repos/useTrackedRepoView/useTrackedRepoView";
 import { StarsBarChartSkeleton } from "./StarsBarChartSkeleton";
 
 // @mui/x-charts is the heaviest dependency this card pulls in - split it into

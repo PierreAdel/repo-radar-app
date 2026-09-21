@@ -11,7 +11,7 @@ import {
   themeReducer,
 } from "@repo-radar/core";
 import { Header } from "../../app/Header/Header";
-import { SearchResultsSection } from "./SearchResultsSection";
+import { SearchResultsSection } from "./SearchResultsSection/SearchResultsSection";
 
 // Real SearchBar -> useSearchBox -> URL -> useRepoSearch -> githubApi -> render,
 // with only the network boundary mocked. Same jsdom fetch/Request situation as
