@@ -3,7 +3,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createAppTheme } from "@repo-radar/ui";
 import { selectThemeMode } from "@repo-radar/core";
 import { useAppSelector } from "./hooks";
-import App from "../App";
+import App from "./App";
 
 export function ThemedApp() {
   const mode = useAppSelector(selectThemeMode);
