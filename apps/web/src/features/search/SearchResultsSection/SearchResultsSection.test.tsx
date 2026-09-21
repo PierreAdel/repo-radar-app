@@ -4,10 +4,10 @@ import { describe, expect, it, vi } from "vitest";
 import { MemoryRouter, Route, Routes } from "react-router";
 import type { GithubRepo } from "@repo-radar/core";
 import { SearchResultsSection } from "./SearchResultsSection";
-import { useRepoSearch } from "./useRepoSearch";
+import { useRepoSearch } from "../useRepoSearch/useRepoSearch";
 
-vi.mock("./useRepoSearch", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("./useRepoSearch")>();
+vi.mock("../useRepoSearch/useRepoSearch", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../useRepoSearch/useRepoSearch")>();
   return { ...actual, useRepoSearch: vi.fn() };
 });
 

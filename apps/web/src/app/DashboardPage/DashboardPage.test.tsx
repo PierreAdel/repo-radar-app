@@ -11,7 +11,7 @@ vi.mock("../../features/tracked-repos/TrackedReposSection/TrackedReposSection", 
 vi.mock("../../features/tracked-repos/TrackedRepoControls/TrackedRepoControls", () => ({
   TrackedRepoControls: () => <div>tracked-repo-controls</div>,
 }));
-vi.mock("../../features/stats-chart/StarsChartCard", () => ({
+vi.mock("../../features/stats-chart/StarsChartCard/StarsChartCard", () => ({
   StarsChartCard: () => <div>stars-chart-card</div>,
 }));
 

@@ -1,9 +1,9 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { StarsChartCard } from "./StarsChartCard";
-import { useTrackedRepoView } from "../tracked-repos/useTrackedRepoView/useTrackedRepoView";
+import { useTrackedRepoView } from "../../tracked-repos/useTrackedRepoView/useTrackedRepoView";
 
-vi.mock("../tracked-repos/useTrackedRepoView/useTrackedRepoView", () => ({
+vi.mock("../../tracked-repos/useTrackedRepoView/useTrackedRepoView", () => ({
   useTrackedRepoView: vi.fn(),
 }));
 const mockedUseTrackedRepoView = vi.mocked(useTrackedRepoView);

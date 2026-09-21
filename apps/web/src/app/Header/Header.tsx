@@ -17,8 +17,8 @@ import {
 import { githubApi, selectThemeMode, selectTrackedFullNames, toggleTheme } from "@repo-radar/core";
 import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { SearchBar } from "../../features/search/SearchBar";
-import { useSearchBox } from "../../features/search/useSearchBox";
+import { SearchBar } from "../../features/search/SearchBar/SearchBar";
+import { useSearchBox } from "../../features/search/useSearchBox/useSearchBox";
 
 export function Header() {
   const dispatch = useAppDispatch();

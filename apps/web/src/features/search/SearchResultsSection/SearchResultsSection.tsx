@@ -3,8 +3,8 @@ import { Navigate } from "react-router";
 import { Box, Button, CircularProgress, Stack, Typography } from "@mui/material";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { RepoCard } from "@repo-radar/ui";
-import { visuallyHidden } from "../../app/visuallyHidden";
-import { MIN_QUERY_LENGTH, useRepoSearch } from "./useRepoSearch";
+import { visuallyHidden } from "../../../app/visuallyHidden";
+import { MIN_QUERY_LENGTH, useRepoSearch } from "../useRepoSearch/useRepoSearch";
 
 const VIRTUALIZE_THRESHOLD = 20;
 const ESTIMATED_CARD_HEIGHT = 140;

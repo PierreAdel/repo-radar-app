@@ -9,7 +9,7 @@ import { visuallyHidden } from "../visuallyHidden";
 import { useOnlineStatus } from "../useOnlineStatus/useOnlineStatus";
 
 const SearchResultsSection = lazy(() =>
-  import("../../features/search/SearchResultsSection").then((m) => ({
+  import("../../features/search/SearchResultsSection/SearchResultsSection").then((m) => ({
     default: m.SearchResultsSection,
   })),
 );

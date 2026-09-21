@@ -7,7 +7,7 @@ import {
   untrackRepo,
   useSearchRepositoriesQuery,
 } from "@repo-radar/core";
-import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/store/hooks";
 
 export const MIN_QUERY_LENGTH = 2;
 const MAX_RESULTS = 1000; // GitHub Search API's documented result cap.
