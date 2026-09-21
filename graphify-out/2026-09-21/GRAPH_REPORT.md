@@ -22,7 +22,7 @@
 - ui/package.json
 - core/src/index.ts
 - devDependencies
-- SearchResultsSection.tsx
+- githubApi
 - package.json
 - core/package.json
 - githubProxy.ts
@@ -86,6 +86,8 @@
 10. `trackedReposReducer` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Enforced with numbers` --references--> `StarsBarChart()`  [INFERRED]
+  CONSTRAINTS.md → packages/ui/src/StarsBarChart.tsx
 - `Enforced with numbers` --references--> `OfflineBanner()`  [INFERRED]
   CONSTRAINTS.md → packages/ui/src/OfflineBanner.tsx
 - `Enforced with numbers` --references--> `StarsBarChart()`  [INFERRED]
@@ -107,8 +109,8 @@ Cohesion: 0.20
 Nodes (11): CI Workflow (lint, typecheck, test, build, storybook), CI/CD split: Vercel handles deployment, workflow is CI-only, pnpm install --no-frozen-lockfile rationale, Node 22 required for jsdom/undici webidl compatibility, pnpm workspace packages config (apps/*, packages/*), CI/CD section, Getting Started instructions, Repo Radar (project overview) (+3 more)
 
 ### Community 2 - "web/package.json"
-Cohesion: 0.07
-Nodes (26): @emotion/react, @emotion/styled, jsdom, @mui/icons-material, @mui/material, @mui/x-charts, react, react-dom (+18 more)
+Cohesion: 0.04
+Nodes (48): devDependencies, jsdom, rollup-plugin-visualizer, @testing-library/jest-dom, @testing-library/react, @testing-library/user-event, @types/node, @types/react (+40 more)
 
 ### Community 3 - "ui/package.json"
 Cohesion: 0.04
@@ -194,9 +196,9 @@ Nodes (32): useAppSelector, StarsChartCard, AppDispatch, RootState, StarsChartCa
 Cohesion: 0.12
 Nodes (19): loadFromStorage(), saveToStorage(), persistenceMiddleware, initialState, packages_core_src_store_themeslice_settheme, THEME_STORAGE_KEY, ThemeMode, themeReducer (+11 more)
 
-### Community 27 - "devDependencies"
-Cohesion: 0.15
-Nodes (13): devDependencies, jsdom, rollup-plugin-visualizer, @testing-library/jest-dom, @testing-library/react, @testing-library/user-event, @types/node, @types/react (+5 more)
+### Community 27 - "SearchResultsSection.tsx"
+Cohesion: 0.19
+Nodes (9): SearchResultsSection, SearchResultsListProps, SearchResultsSection(), mockedUseRepoSearch, renderAtSearch(), renderAtSearchWith(), MIN_QUERY_LENGTH, useRepoSearch() (+1 more)
 
 ### Community 28 - "graphify reference: query, path, explain"
 Cohesion: 0.33
@@ -291,7 +293,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `semi`, `singleQuote`, `trailingComma` to the rest of the system?**
   _408 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `web/package.json` be split into smaller, more focused modules?**
-  _Cohesion score 0.07407407407407407 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04081632653061224 - nodes in this community are weakly interconnected._
 - **Should `ui/package.json` be split into smaller, more focused modules?**
   _Cohesion score 0.0425531914893617 - nodes in this community are weakly interconnected._
 - **Should `core/src/index.ts` be split into smaller, more focused modules?**

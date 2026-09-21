@@ -3,7 +3,7 @@
   "1": "Repo Radar (project overview)",
   "2": "web/package.json",
   "3": "ui/package.json",
-  "4": "RepoCard.stories.tsx",
+  "4": "core/src/index.ts",
   "5": "devDependencies",
   "6": "ref_mui_material",
   "7": "package.json",
