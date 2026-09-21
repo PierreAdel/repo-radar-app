@@ -1,5 +1,5 @@
-import { withErrorReporting } from "../_lib/withErrorReporting";
-import { searchRepositories } from "../_lib/githubProxy";
+import { withErrorReporting } from "../_lib/withErrorReporting.js";
+import { searchRepositories } from "../_lib/githubProxy.js";
 
 export default withErrorReporting("Unexpected error searching repositories.", async (req, res) => {
   const query = typeof req.query.q === "string" ? req.query.q : "";

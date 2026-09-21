@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { describe, expect, it, vi } from "vitest";
-import * as persistence from "./persistence";
-import { persistenceMiddleware } from "./persistenceMiddleware";
-import { trackRepo, untrackRepo, trackedReposReducer } from "./trackedReposSlice";
-import { toggleTheme, setTheme, themeReducer } from "./themeSlice";
+import * as persistence from "./persistence.js";
+import { persistenceMiddleware } from "./persistenceMiddleware.js";
+import { trackRepo, untrackRepo, trackedReposReducer } from "./trackedReposSlice.js";
+import { toggleTheme, setTheme, themeReducer } from "./themeSlice.js";
 
 function makeStore() {
   return configureStore({

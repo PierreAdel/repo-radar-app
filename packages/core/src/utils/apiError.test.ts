@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { toApiError } from "./apiError";
+import { toApiError } from "./apiError.js";
 
 describe("toApiError", () => {
   it("returns undefined for no error", () => {

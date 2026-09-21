@@ -1,4 +1,4 @@
-import type { GithubRepo, SearchReposResult } from "../types/repo";
+import type { GithubRepo, SearchReposResult } from "../types/repo.js";
 
 // GitHub's search ranking is not a stable sort across requests, so a repo whose
 // score shifts between two calls can legitimately appear on both page 1 and

@@ -1,6 +1,6 @@
-import { isValidRepoFullName } from "@repo-radar/core";
-import { withErrorReporting } from "../_lib/withErrorReporting";
-import { getRepository } from "../_lib/githubProxy";
+import { isValidRepoFullName } from "../_lib/validation.js";
+import { withErrorReporting } from "../_lib/withErrorReporting.js";
+import { getRepository } from "../_lib/githubProxy.js";
 
 export default withErrorReporting("Unexpected error fetching repository.", async (req, res) => {
   const fullName = typeof req.query.fullName === "string" ? req.query.fullName : "";

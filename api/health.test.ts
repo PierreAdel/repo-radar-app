@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import handler from "./health";
+import handler from "./health.js";
 
 function mockResponse() {
   const res = {

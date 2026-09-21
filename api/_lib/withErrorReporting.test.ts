@@ -8,8 +8,8 @@ vi.mock("./sentry", () => ({
   },
 }));
 
-const { Sentry } = await import("./sentry");
-const { withErrorReporting } = await import("./withErrorReporting");
+const { Sentry } = await import("./sentry.js");
+const { withErrorReporting } = await import("./withErrorReporting.js");
 
 function mockResponse() {
   const res = {

@@ -1,4 +1,4 @@
-import { withErrorReporting } from "./_lib/withErrorReporting";
+import { withErrorReporting } from "./_lib/withErrorReporting.js";
 
 // Dependency-free liveness check for external uptime monitoring
 // UptimeRobot.
