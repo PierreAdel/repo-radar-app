@@ -15,6 +15,7 @@
     "test": "turbo run test && vitest run",
     "test:api": "vitest run",
     "test:coverage": "turbo run test:coverage && vitest run --coverage",
+    "test:snapshots": "turbo run test:snapshots && vitest run -t snapshot",
     "check:fast": "pnpm typecheck && eslint .",
     "check:task": "pnpm check:fast && pnpm test:coverage",
     "e2e": "playwright test",

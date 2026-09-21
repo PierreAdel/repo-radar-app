@@ -53,8 +53,11 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      # Runs with coverage (not just `pnpm test`) so the per-workspace
+      # coverage thresholds in each vitest.config.ts actually gate merges -
+      # see CONSTRAINTS.md's Coverage/Unit+integration rows.
       - name: Test
-        run: pnpm test
+        run: pnpm test:coverage
 
       - name: Build
         run: pnpm build

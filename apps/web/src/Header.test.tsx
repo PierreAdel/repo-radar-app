@@ -61,7 +61,23 @@ describe("Header", () => {
   });
 
   it("matches its snapshot", () => {
+    // Set explicitly rather than relying on the "toggles the theme mode"
+    // test's dispatch above having already left the shared store in this
+    // state - depending on execution order for that made this test only
+    // pass when run after it, not in isolation.
+    store.dispatch(setTheme("light"));
     const { container } = renderHeader();
-    expect(container.querySelector("header")).toMatchSnapshot();
+    const header = container.querySelector("header");
+
+    // React's useId() ids are based on how many roots have mounted earlier
+    // in the process, so they shift depending on which other tests ran
+    // first. Normalize so the snapshot doesn't depend on execution order.
+    header?.querySelectorAll("[id]").forEach((el) => {
+      if (el.id.startsWith("_r_")) {
+        el.id = "stable-id";
+      }
+    });
+
+    expect(header).toMatchSnapshot();
   });
 });

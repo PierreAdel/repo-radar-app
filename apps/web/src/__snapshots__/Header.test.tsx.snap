@@ -81,7 +81,7 @@ exports[`Header > matches its snapshot 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedStart css-1q55ijt-MuiInputBase-input-MuiOutlinedInput-input"
-              id="_r_p_"
+              id="stable-id"
               maxlength="100"
               placeholder="Search GitHub repositories…"
               type="text"
