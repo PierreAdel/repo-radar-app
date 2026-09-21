@@ -2,8 +2,8 @@ import { memo, useCallback, useMemo, useRef } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { EmptyState } from "@repo-radar/ui";
-import { TrackedRepoCard } from "./TrackedRepoCard";
-import { useTrackedRepoView } from "./useTrackedRepoView";
+import { TrackedRepoCard } from "../TrackedRepoCard/TrackedRepoCard";
+import { useTrackedRepoView } from "../useTrackedRepoView/useTrackedRepoView";
 
 const VIRTUALIZE_THRESHOLD = 20;
 // A single-card row with a typical description measures ~154px

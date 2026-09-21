@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import { githubApi, selectTrackedFullNames } from "@repo-radar/core";
-import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/store/hooks";
 import { selectDerivedTrackedRepoView } from "./selectDerivedTrackedRepoView";
 import { parseIntParam, type TrackedRepoFilters } from "./trackedRepoFilters";
 import { DEFAULT_SORT_KEY, isSortKey, type SortKey } from "./trackedRepoSort";

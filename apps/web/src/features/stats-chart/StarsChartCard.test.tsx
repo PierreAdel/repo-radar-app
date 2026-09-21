@@ -1,9 +1,11 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { StarsChartCard } from "./StarsChartCard";
-import { useTrackedRepoView } from "../tracked-repos/useTrackedRepoView";
+import { useTrackedRepoView } from "../tracked-repos/useTrackedRepoView/useTrackedRepoView";
 
-vi.mock("../tracked-repos/useTrackedRepoView", () => ({ useTrackedRepoView: vi.fn() }));
+vi.mock("../tracked-repos/useTrackedRepoView/useTrackedRepoView", () => ({
+  useTrackedRepoView: vi.fn(),
+}));
 const mockedUseTrackedRepoView = vi.mocked(useTrackedRepoView);
 
 function baseView(overrides: Partial<ReturnType<typeof useTrackedRepoView>> = {}) {
@@ -52,19 +54,6 @@ describe("StarsChartCard", () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it("renders the chart with loaded repos, no notice when all have loaded", () => {
-    const entryByFullName = new Map([
-      ["a/a", { fullName: "a/a", data: { fullName: "a/a", stargazersCount: 10 } }],
-    ]);
-    mockedUseTrackedRepoView.mockReturnValue(
-      baseView({ sortedFullNames: ["a/a"], entryByFullName } as never),
-    );
-    render(<StarsChartCard />);
-
-    expect(screen.getByText("Stars by repo")).toBeInTheDocument();
-    expect(screen.queryByRole("status")).toBeNull();
-  });
-
   it("shows a chart skeleton while the chart chunk loads, then swaps in the real chart", async () => {
     const entryByFullName = new Map([
       ["a/a", { fullName: "a/a", data: { fullName: "a/a", stargazersCount: 10 } }],
@@ -87,6 +76,19 @@ describe("StarsChartCard", () => {
       { timeout: 5000 },
     );
     expect(container.querySelectorAll(".MuiSkeleton-root").length).toBe(0);
+  });
+
+  it("renders the chart with loaded repos, no notice when all have loaded", () => {
+    const entryByFullName = new Map([
+      ["a/a", { fullName: "a/a", data: { fullName: "a/a", stargazersCount: 10 } }],
+    ]);
+    mockedUseTrackedRepoView.mockReturnValue(
+      baseView({ sortedFullNames: ["a/a"], entryByFullName } as never),
+    );
+    render(<StarsChartCard />);
+
+    expect(screen.getByText("Stars by repo")).toBeInTheDocument();
+    expect(screen.queryByRole("status")).toBeNull();
   });
 
   it("shows a partial-data notice when some tracked repos haven't loaded", () => {
