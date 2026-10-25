@@ -30,7 +30,7 @@ jobs:
       # from Node 20's runtime — "webidl.util.markAsUncloneable is not a function" — so this
       # needs a newer Node than the package's "engines": ">=20" floor. 22 is the current LTS.
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: pnpm
@@ -76,7 +76,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: pnpm
@@ -116,7 +116,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: pnpm
@@ -155,7 +155,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: pnpm
